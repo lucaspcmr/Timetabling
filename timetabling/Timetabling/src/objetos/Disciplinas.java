@@ -1,32 +1,41 @@
 package objetos;
 
+import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Hashtable;
 
 import timetabling.Filetomem;
 
 public class Disciplinas {
-	public static Hashtable <String,String> disciplinacurso;
-	public static Hashtable <String,String> disciplinaperiodo;
-	public static Hashtable <String,String> disciplinasigla;
-	public static Hashtable <String,String> disciplinadesc;	
-	public static Hashtable <String,String> disciplinaCHT;
-	public static Hashtable <String,String> disciplinatipot;
-	public static Hashtable <String,String> disciplinaCHP;
-	public static Hashtable <String,String> discplinatipop;
+        public static Hashtable <Integer,String> disciplinacodigo;
+	public static Hashtable <Integer,String> disciplinacurso;
+	public static Hashtable <Integer,String> disciplinaperiodo;
+	public static Hashtable <Integer,String> disciplinasigla;
+	public static Hashtable <Integer,String> disciplinadesc;	
+	public static Hashtable <Integer,String> disciplinaCHT;
+	public static Hashtable <Integer,String> disciplinatipot;
+	public static Hashtable <Integer,String> disciplinaCHP;
+	public static Hashtable <Integer,String> disciplinatipop;
 	BufferedReader buffR=Filetomem.buffR;
-        int a;
+        public static int quantidade;
+        public static ArrayList<Integer> D;
+        public static ArrayList<Integer> D2;
 	public Disciplinas(){
-		disciplinacurso=new Hashtable <String,String>();
-		disciplinaperiodo=new Hashtable <String,String>();
-		disciplinasigla=new Hashtable <String,String>();
-		disciplinadesc=new Hashtable <String,String>();
-		disciplinaCHT=new Hashtable <String,String>();
-		disciplinatipot=new Hashtable <String,String>();
-		disciplinaCHP=new Hashtable <String,String>();
-		discplinatipop=new Hashtable <String,String>();
+                disciplinacodigo=new Hashtable <Integer,String>();
+		disciplinacurso=new Hashtable <Integer,String>();
+		disciplinaperiodo=new Hashtable <Integer,String>();
+		disciplinasigla=new Hashtable <Integer,String>();
+		disciplinadesc=new Hashtable <Integer,String>();
+		disciplinaCHT=new Hashtable <Integer,String>();
+		disciplinatipot=new Hashtable <Integer,String>();
+		disciplinaCHP=new Hashtable <Integer,String>();
+		disciplinatipop=new Hashtable <Integer,String>();
+                D=new ArrayList<Integer>();//disciplina
+                D2=new ArrayList<Integer>();//tipo da sala
 		try {
+                    int i=1;
 			buffR.readLine();
 			buffR.readLine();
 			String str,str1,str2,str3;
@@ -36,35 +45,62 @@ public class Disciplinas {
 			str1=str.substring(0,str.indexOf(","));
 			str2=str.substring(str.indexOf(",")+1,str.length());
 			str3=str2.substring(0,str2.indexOf(","));
-			disciplinacurso.put(str1, str3);
+                        disciplinacodigo.put(i,str1);
+			disciplinacurso.put(i, str3);
 			str2=str2.substring(str2.indexOf(",")+1,str2.length());
 			str3=str2.substring(0,str2.indexOf(","));
-			disciplinaperiodo.put(str1, str3);
+			disciplinaperiodo.put(i, str3);
 			str2=str2.substring(str2.indexOf(",")+1,str2.length());
 			str3=str2.substring(0,str2.indexOf(","));
-			disciplinasigla.put(str1, str3);
+			disciplinasigla.put(i, str3);
 			str2=str2.substring(str2.indexOf(",")+1,str2.length());
 			str3=str2.substring(0,str2.indexOf(","));
-			disciplinadesc.put(str1, str3);
+			disciplinadesc.put(i, str3);
 			str2=str2.substring(str2.indexOf(",")+1,str2.length());
 			str3=str2.substring(0,str2.indexOf(","));
-			disciplinaCHT.put(str1, str3);
+			disciplinaCHT.put(i, str3);
 			str2=str2.substring(str2.indexOf(",")+1,str2.length());
 			str3=str2.substring(0,str2.indexOf(","));
-			disciplinatipot.put(str1, str3);
+			disciplinatipot.put(i, str3);
 			str2=str2.substring(str2.indexOf(",")+1,str2.length());
 			str3=str2.substring(0,str2.indexOf(","));
-			disciplinaCHP.put(str1, str3);
+			disciplinaCHP.put(i, str3);
 			str2=str2.substring(str2.indexOf(",")+1,str2.length());
 			str3=str2.substring(0,str2.length());
-			discplinatipop.put(str1, str3);
+			disciplinatipop.put(i, str3);
 			}
+                        i++;
 			}while(str.charAt(0)!='/');
 			buffR.readLine();
+                        quantidade=disciplinacurso.size();
 			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+                System.out.println(disciplinacodigo);
+	criaux();
+        }
+        void criaux(){
+            int carga;
+            int salat;
+            int salap;
+            for(int i=1;i<quantidade;i++){
+                carga=0;
+                carga=Integer.valueOf(disciplinaCHT.get(i));
+                salat=Integer.valueOf(disciplinatipot.get(i));
+                carga=carga+Integer.valueOf(disciplinaCHP.get(i));
+                salap=Integer.valueOf(disciplinatipop.get(i));
+                carga=carga/2;
+                for(int j=0;j<carga;j++){
+                    D.add(i);
+                    if(salat!=0)
+                        D2.add(salat);
+                    if(salap!=0)
+                        D2.add(salap);
+                }
+            }
+            System.out.println(Arrays.toString(D.toArray()));
+            System.out.println(Arrays.toString(D2.toArray()));
+        }
 
 }
