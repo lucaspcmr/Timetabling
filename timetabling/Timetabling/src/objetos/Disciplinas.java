@@ -16,6 +16,7 @@ public class Disciplinas {
 	public static Hashtable <String,String> disciplinaCHP;
 	public static Hashtable <String,String> discplinatipop;
 	BufferedReader buffR=Filetomem.buffR;
+        int a;
 	public Disciplinas(){
 		disciplinacurso=new Hashtable <String,String>();
 		disciplinaperiodo=new Hashtable <String,String>();
