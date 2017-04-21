@@ -5,10 +5,6 @@
  */
 package algoritimoGenetico;
 
-/**
- *
- * @author Raquel
- */
 public class TesteGit {
     
 }
