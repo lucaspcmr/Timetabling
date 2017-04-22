@@ -1,4 +1,4 @@
-package algoritimoGenetico;
+package algoritmoGenetico;
 import java.util.Random;
 
 /*
