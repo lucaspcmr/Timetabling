@@ -2,7 +2,9 @@ package objetos;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import timetabling.Filetomem;
 
@@ -19,6 +21,11 @@ public class Estudantes {
 	public static Hashtable <String, String> estudantedisc9;
 	public static Hashtable <String, String> estudantedisc10;
 	BufferedReader buffR=Filetomem.buffR;
+        
+        //Lista Alunos Disciplina
+        private static List<AlunoDisciplina> listAlunoDisciplina = new  ArrayList<AlunoDisciplina>();
+        private static int n_estudantes = 0;
+        
 	public Estudantes(){
 		estudantenome=new Hashtable <String,String>();
 		estudantedisc1=new Hashtable <String,String>();
@@ -88,4 +95,22 @@ public class Estudantes {
 			e.printStackTrace();
 		}
 	}
+        
+        public static void gerarListaAlunosDisciplina(){
+            //do something
+        }
+        
+        public static void calculaNumeroEstudantes(){
+            //do something
+        }
+        
+        public static List<AlunoDisciplina> getAlunosDisciplinas(){
+        
+            return listAlunoDisciplina;
+        }
+        
+        public static int getNumeroAlunos(){
+        
+            return n_estudantes;
+        }
 }

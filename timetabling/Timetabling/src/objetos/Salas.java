@@ -2,7 +2,9 @@ package objetos;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import timetabling.Filetomem;
 
@@ -12,6 +14,10 @@ public class Salas {
 	public static Hashtable<String, String> salatipo;
 	public static Hashtable<String, String> salacap;
 	BufferedReader buffR=Filetomem.buffR;
+        
+        private static List<SalaRestricao> salaRestricao= new ArrayList<SalaRestricao>();
+        
+        
 public Salas(){
 	salasigla=new Hashtable <String,String>();
 	saladesc=new Hashtable <String,String>();
@@ -46,4 +52,13 @@ public Salas(){
 	}
 	
 }
+
+    public static void gerarListaSalaRestricao(){
+        //do something
+    }
+
+    public static List<SalaRestricao> getSalaRestricao(){
+        return salaRestricao;
+    }
+
 }

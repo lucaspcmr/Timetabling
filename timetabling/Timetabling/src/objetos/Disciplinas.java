@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.List;
 
 import timetabling.Filetomem;
 
@@ -22,6 +23,11 @@ public class Disciplinas {
         public static int quantidade;
         public static ArrayList<Integer> D;
         public static ArrayList<Integer> D2;
+        
+        //Lista de disciplinas com restriçoes e lista de disciplinas com
+        private static List<DisciplinaRestricao> disciplinaRestricao= new ArrayList<DisciplinaRestricao>();
+    
+        
 	public Disciplinas(){
                 disciplinacodigo=new Hashtable <Integer,String>();
 		disciplinacurso=new Hashtable <Integer,String>();
@@ -102,5 +108,14 @@ public class Disciplinas {
             System.out.println(Arrays.toString(D.toArray()));
             System.out.println(Arrays.toString(D2.toArray()));
         }
-
+        
+    public static void gerarListaDisciplinaRestricao(){
+        //do something
+    }   
+    
+    public static List<DisciplinaRestricao> getDisciplinaRestricao(){
+        return disciplinaRestricao;
+    }
+    
+ 
 }
