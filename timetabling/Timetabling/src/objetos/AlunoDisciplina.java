@@ -5,13 +5,15 @@
  */
 package objetos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author HugoEduardo
  */
 public class AlunoDisciplina {
     private int aluno;  //codigo  do aluno
-    private int disciplina;//codigo da disciplina
+    private ArrayList<Integer> disciplina=new ArrayList<Integer>();//codigo da disciplina
 
     /**
      * @return the aluno
@@ -30,7 +32,7 @@ public class AlunoDisciplina {
     /**
      * @return the disciplina
      */
-    public int getDisciplina() {
+    public ArrayList getDisciplina() {
         return disciplina;
     }
 
@@ -38,7 +40,7 @@ public class AlunoDisciplina {
      * @param disciplina the disciplina to set
      */
     public void setDisciplina(int disciplina) {
-        this.disciplina = disciplina;
+        this.disciplina.add(disciplina);
     }
     
     
