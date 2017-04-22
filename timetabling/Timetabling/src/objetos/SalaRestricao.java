@@ -10,8 +10,8 @@ package objetos;
  * @author HugoEduardo
  */
 public class SalaRestricao {
-    private int sala;//indice do vetor de sala
-    private int timeslot;//indice do vetor timeslot
+    private int sala;//codigo  da sala
+    private int timeslot;//codigo do timeslot
 
     /**
      * @return the sala

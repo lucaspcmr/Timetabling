@@ -26,8 +26,7 @@ public class Disciplinas {
         
         //Lista de disciplinas com restriçoes e lista de disciplinas com
         private static List<DisciplinaRestricao> disciplinaRestricao= new ArrayList<DisciplinaRestricao>();
-    
-        
+              
 	public Disciplinas(){
                 disciplinacodigo=new Hashtable <Integer,String>();
 		disciplinacurso=new Hashtable <Integer,String>();
@@ -116,6 +115,5 @@ public class Disciplinas {
     public static List<DisciplinaRestricao> getDisciplinaRestricao(){
         return disciplinaRestricao;
     }
-    
- 
+   
 }

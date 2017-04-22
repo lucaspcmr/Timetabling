@@ -9,15 +9,22 @@ package objetos;
  *
  * @author HugoEduardo
  */
-public class DocenteRestricao {
-    private int docente; //codigo de docente
-    private int timeslot;//codigo de timeslot
+public class SalaRestricaoID {
+    private int sala;//indice do vetor de sala
+    private int timeslot;//indice do vetor timeslot
 
     /**
-     * @return the docente
+     * @return the sala
      */
-    public int getDocente() {
-        return docente;
+    public int getSala() {
+        return sala;
+    }
+
+    /**
+     * @param sala the sala to set
+     */
+    public void setSala(int sala) {
+        this.sala = sala;
     }
 
     /**
@@ -28,17 +35,11 @@ public class DocenteRestricao {
     }
 
     /**
-     * @param docente the docente to set
-     */
-    public void setDocente(int docente) {
-        this.docente = docente;
-    }
-
-    /**
      * @param timeslot the timeslot to set
      */
     public void setTimeslot(int timeslot) {
         this.timeslot = timeslot;
     }
+    
     
 }
