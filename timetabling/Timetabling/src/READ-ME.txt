@@ -1,0 +1,80 @@
+﻿Implementado
+
+Data: 19-04-2017
+Autor: Juan
+
+Implementado classe "Solucao" , a qual contem uma mascara de solução para o problema de timetabling.
+Esta mascara é constituida por duas matrizes tipo salas-timeslots e professores-timeslots.
+A matriz Salas dimensão sxt , onde s = numero de salas e t = numero de timeslots.
+A matriz professores dimensão pxt, onde, p = numero de professores e t numero de timeslots. 
+A classe possui um metodo para inicia essa matriz de solução, alem de função para verificar se a solução
+é valida, colocar a solução no espaço de soluçoes, e calcular a função fitnees sobre as hardconstraints (colisoes de professores e colisão de salas).
+
+Implementado  a estrutura do individuo e do cromossomo. A classe individuo  contem o cromossomo e os metodos para manipular ele.
+O cromossomo segue inicialmente a estrutura de um vetor de pontos. cromossomo[] = {[s,p,t,d];....;[s,p,h,d]};
+(uma matriz de classes do tipo Gene,Classe genes,a qual, possui sala,professor,timeslot,disciplina).
+O valor de d será fixado de acordo com a posição do Vetor D (usado apenas para validar a disciplina na mascara de soluçaõ). 
+Valores variaveis serão s,p,t na seleçao crossover.
+
+Implementado o operado crossover tipo one-point, de forma randomica no individuos.
+implementado a função de fitness para as hardconstraints de professor, sala, disciplina, 
+e metodos para de inserção das restriçoes dos professores, salas, e disciplinas na mascara de solução.
+
+- softConstraints       - (choque de alunos, não matriculando na disciplina e função fitnes) 
+                        - (capacidade da sala: quando a capacidade for estourada não matricular o aluno, função fitnees) 
+criado classes auxiliares  DocenteRestricao,SalaRestricao,DisciplinaRestricao para auxiliar na estrutura da soluçao
+onde cada classe deve passar o id da mascara de soluçao e o timeslot que deve ser adicionado
+a classe AlunoDisciplina deve adicionar o codigo do aluno e a disciplina que o estudante deseja se matricular
+
+####################################################Implementar###################################################################################
+
+*********************************************************************************************************************************************
+Lucas: 
+
+Será necessario criar  vetores auxiliares. Utilizando algum metodo para preencher esses vetores com os dados do hashMaps.
+
+D(1xd) onde d e o numero de disciplinas ofertadas para todos os cursos
+ex:(a disciplina de Calculo 1 tem carga horaria de 96 horas então se fosse colocar ela, no vetor auxiliar ,deveria colocar ela 3 vezes pois 
+dividiremos cada aula correspondento em 2 timeslots disponiveis, logo D = [C1,C1,C1,...]). Esse vetor sera usado para a estrutura
+do cromossomo onde a posição da coluna do vetor ira corresponder a posição da coluna do cromossomo, logo para uma posição ex: cromossomo[0] , 
+corresponde a solução da disciplina de calculo 1 que deve ser unica, do tipo de uma combinação de 3 pontos ponto no espaço de soluçao = (s,h,p)  ,
+no qual, s = sala, h=horario(timeslot), p = professor. a solução cromossomo[1] corresponde a solução da outra aula de calculo 1, e assim sucessivamente.
+
+T(1xt) onde t e o numero de timeslots disponiveis, logo teremos um mapeamento nas mascaras de salas-timeslots 
+e professores-timeslots. ex: professores[0][0] corresponde ao professor 0 no timeslot 0 . o timeslot 0 e o timeslot localizado na posição 0 do vetor auxiliar T[0].
+que pode por exemplo corresponder ao primeiro horario de manha de uma segunda feira 7:00 ás 9:00.
+
+De forma analoga, para sala S(1xs), onde, s corresponde ao numero de salas.
+Criar um vetor de restriçoes dos professores tambem, onde possui os timeslots das restriçoes dos professores. Sera utilizado apra setar na mascara de solução,
+no inicio, no qual, ja validaria um solução impossivel . E para as restriçoes das disciplinas.
+
+*********************************************************************************************************************************************
+Raquel:
+Terminar a estrutura de hashMap para as hardsconstraits.
+Criar a clase População que tem uma lista de Individuos. Esta classe deve conter um metodo de ordenação pela função fitness, e os metodos de seleção, crossover, e mutação.
+Fica tambem para criar a geração da população de forma randomica dos individuos (validando as soluçoes criadas com a mascara de solução), ou seja, criar apenas individuos possiveis.
+sempre que for validar uma solução séra necessario iniciar a mascara de solução com o metodo initSolucao(), iniciando para os valores default. Cada gene deve ser testado de forma
+linear (mais facil), ou se preferir usar um metodo randomico (necessario implementar).
+
+
+*********************************************************Proximas implementaçoes************************************************************************************
+
+-criar uma lista de alunos
+-criar um metodo que retorne uma lista de AlunosDisciplina (a variavel aluno deve ser o codigo dele na mascara de aluno cada linha da matriz
+deve ser o id de cada aluno correspondendo com a lista de alunos ex: o aluno na posição 0 da lista de aluno tem o id 0, quando criar a lista de AlunosDisciplinas
+deve setar no valor aluno o valor do id dele, que corresponde a linha 0 da mascara de aluno).
+-Criar metodo uma lista de DisciplinaRestriçao
+-criar metodo uma lista de DocentesRestricao
+-Criar metodo uma lista de salas restricao
+--essas lista segue a mesma logica do aluno como explicado em cima os valores deve corresponder a um id na mascara de solução
+
+-Metodo principal do algoritimo genetico, cria a população, avalia, ordena pela função fitness, faz a seleção, crossover,mutação,e verifica a condição de parada
+- Metodo de seleção tipo Roleta
+- mutação(não sei como fazer ainda)
+-Metodo para imprimir o horario
+
+
+
+
+
+

@@ -18,46 +18,31 @@ public class Individuo {
     //
     public static final int     NO_MUTATION               = 0;   // NÃ£o aplica mutaÃ§Ã£o
     
-    public static final int     COLUNA                    = 4;   // NÃ£o aplica mutaÃ§Ã£o
-    
-    int chromossomo[][];
-    int fitness;
+    private Gene chromossomo[];
+    private int fitness;
     
    public Individuo() {      
         //dosomething
    }
     
-    Individuo(int genes[][], int mutacaoEscolhida,int n){
+    Individuo(Gene genes[], int mutacaoEscolhida){
         
         switch (mutacaoEscolhida) {
             case  NO_MUTATION:
                 Solucao.initSolucao();
-                for (int i = 0; i < n; i++) {
-                    int aux[] = new int[4];
-                    aux[0] = genes[1][i];
-                    aux[0] = genes[2][i];
-                    aux[0] = genes[3][i];
-                    aux[0] = genes[4][i];                           
-                    Solucao.CalculaFitness(aux);
-                }
-             fitness = Solucao.getFitness();
+                fitness = Solucao.CalculaFitnees(genes);
+                chromossomo = genes;
             break;
                 //implementar mutação escolhida
             default:
                 Solucao.initSolucao();
-                for (int i = 0; i < n; i++) {
-                    int aux[] = new int[4];
-                    aux[0] = genes[1][i];
-                    aux[0] = genes[2][i];
-                    aux[0] = genes[3][i];
-                    aux[0] = genes[4][i];                           
-                    Solucao.CalculaFitness(aux);
-                }
-             fitness = Solucao.getFitness();
-        }  
+                fitness = Solucao.CalculaFitnees(genes);
+                chromossomo = genes;
+        }
+        
     }
     
-    public int[][] getGenes(){
+    public Gene[] getGenes(){
         return chromossomo;
     }
     
@@ -65,4 +50,7 @@ public class Individuo {
         return fitness;
     }   
     
+    public int size(){
+        return chromossomo.length;
+    }
 }
