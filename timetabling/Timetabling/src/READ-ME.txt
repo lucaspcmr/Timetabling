@@ -3,7 +3,8 @@
 Data: 19-04-2017
 Autor: Juan
 
-Implementado classe "Solucao" , a qual contem uma mascara de solução para o problema de timetabling.
+#Implementado 
+classe "Solucao" , a qual contem uma mascara de solução para o problema de timetabling.
 Esta mascara é constituida por duas matrizes tipo salas-timeslots e professores-timeslots.
 A matriz Salas dimensão sxt , onde s = numero de salas e t = numero de timeslots.
 A matriz professores dimensão pxt, onde, p = numero de professores e t numero de timeslots. 
@@ -20,19 +21,29 @@ Implementado o operado crossover tipo one-point, de forma randomica no individuo
 implementado a função de fitness para as hardconstraints de professor, sala, disciplina, 
 e metodos para de inserção das restriçoes dos professores, salas, e disciplinas na mascara de solução.
 
-- softConstraints       - (choque de alunos, não matriculando na disciplina e função fitnes) 
+SoftConstraints       - (choque de alunos, não matriculando na disciplina e função fitnes) 
                         - (capacidade da sala: quando a capacidade for estourada não matricular o aluno, função fitnees) 
 criado classes auxiliares  DocenteRestricao,SalaRestricao,DisciplinaRestricao para auxiliar na estrutura da soluçao
 onde cada classe deve passar o id da mascara de soluçao e o timeslot que deve ser adicionado
 a classe AlunoDisciplina deve adicionar o codigo do aluno e a disciplina que o estudante deseja se matricular
 
 criado classes para os objetos para o ID desses objetos, esses ids vão ser utilizados como variaveis do mapa de solução
+
+**Implementando 
+a validacoes das soluções
+
 ####################################################Implementar###################################################################################
 
 *********************************************************************************************************************************************
 Lucas: 
 
 Será necessario criar  vetores auxiliares. Utilizando algum metodo para preencher esses vetores com os dados do hashMaps.
+
+-Criar vetor de professores
+-criar vetor de disciplinas (criado)
+-criar vetor de alunos
+-criar vetor de salas
+-criar vetor de timeslots
 
 D(1xd) onde d e o numero de disciplinas ofertadas para todos os cursos
 ex:(a disciplina de Calculo 1 tem carga horaria de 96 horas então se fosse colocar ela, no vetor auxiliar ,deveria colocar ela 3 vezes pois 
@@ -47,33 +58,36 @@ que pode por exemplo corresponder ao primeiro horario de manha de uma segunda fe
 
 De forma analoga, para sala S(1xs), onde, s corresponde ao numero de salas.
 Criar um vetor de restriçoes dos professores tambem, onde possui os timeslots das restriçoes dos professores. Sera utilizado apra setar na mascara de solução,
-no inicio, no qual, ja validaria um solução impossivel . E para as restriçoes das disciplinas.
+no inicio, no qual, ja validaria um solução impossivel . E para as restriçoes das disciplinas e salas
+
+Foi criado classe tipo DocenteRestricao onde coloca o codigo do professor e o timeslot que ele não pode, criar   lista desse objeto na classeDocente
+Foi criado classe tipo DisciplinaRestricao onde coloca o codigo da disciplina e o timeslot que ela não pode, criar   lista  na classe Disciplinas
+Foi criado classe tipo SalaRestricao onde coloca o codigo da sala e o timeslot que ela não pode, criar   lista na classe Salas
+Foi criado classe AlunoDisciplina onde coloca o codigo do aluno e a disciplina que pode fazer, criar   lista na classe Estudantes
+- criar o metodo de mutação
+- Criar o Metodo de seleção tipo Roleta
 
 *********************************************************************************************************************************************
 Raquel:
+
+-criar um metodo que retorne uma lista de AlunosDisciplinaID (a variavel aluno deve ser o codigo dele na mascara de aluno cada linha da matriz
+deve ser o id de cada aluno correspondendo com a lista de alunos ex: o aluno na posição 0 da lista de aluno tem o id 0, quando criar a lista de AlunosDisciplinasID
+deve setar no valor aluno o valor do id dele, que corresponde a linha 0 da mascara de aluno).
+-criar metodo uma lista de AlunoDisciplinaID
+-Criar metodo uma lista de DisciplinaRestriçaoID
+-criar metodo uma lista de DocentesRestricaoID
+-Criar metodo uma lista de salasRestricaoID
+essas listas deve esta na classe População
+--essas lista segue a mesma logica do aluno como explicado em cima os valores deve corresponder a um id na mascara de solução
+-Metodo principal do algoritimo genetico, cria a população, avalia, ordena pela função fitness, faz a seleção, crossover,mutação,e verifica a condição de parada
+
 Terminar a estrutura de hashMap para as hardsconstraits.
 Criar a clase População que tem uma lista de Individuos. Esta classe deve conter um metodo de ordenação pela função fitness, e os metodos de seleção, crossover, e mutação.
 Fica tambem para criar a geração da população de forma randomica dos individuos (validando as soluçoes criadas com a mascara de solução), ou seja, criar apenas individuos possiveis.
 sempre que for validar uma solução séra necessario iniciar a mascara de solução com o metodo initSolucao(), iniciando para os valores default. Cada gene deve ser testado de forma
 linear (mais facil), ou se preferir usar um metodo randomico (necessario implementar).
 
-
-*********************************************************Proximas implementaçoes************************************************************************************
-
--criar um metodo que dado o array de disciplina,docente,timeslot, retorno o indice desse array ( id ou codigo da mascara de soluçoes)
--criar uma lista de alunos
--criar um metodo que retorne uma lista de AlunosDisciplina (a variavel aluno deve ser o codigo dele na mascara de aluno cada linha da matriz
-deve ser o id de cada aluno correspondendo com a lista de alunos ex: o aluno na posição 0 da lista de aluno tem o id 0, quando criar a lista de AlunosDisciplinas
-deve setar no valor aluno o valor do id dele, que corresponde a linha 0 da mascara de aluno).
--Criar metodo uma lista de DisciplinaRestriçao
--criar metodo uma lista de DocentesRestricao
--Criar metodo uma lista de salas restricao
---essas lista segue a mesma logica do aluno como explicado em cima os valores deve corresponder a um id na mascara de solução
-
--Metodo principal do algoritimo genetico, cria a população, avalia, ordena pela função fitness, faz a seleção, crossover,mutação,e verifica a condição de parada
-- Metodo de seleção tipo Roleta
-- mutação(não sei como fazer ainda)
--Metodo para imprimir o horario
+- Criar o Metodo para imprimir o horario cromossomo
 
 
 
