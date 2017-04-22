@@ -9,9 +9,15 @@ package objetos;
  *
  * @author HugoEduardo
  */
-public class DisciplinaRestricao {
-    private int disciplina;//codigo da disciplina
-    private int timeslot;  //codigo do timeslot
+public class DisciplinaTimeSlotID {
+
+    public DisciplinaTimeSlotID(int disciplina,int timeslot) {
+        this.disciplina = disciplina;//indice do vetor de disciplina
+        this.timeslot = timeslot; //indice do timeslot
+    }
+    
+    private int disciplina;
+    private int timeslot;
 
     /**
      * @return the disciplina
@@ -41,4 +47,6 @@ public class DisciplinaRestricao {
         this.timeslot = timeslot;
     }
     
+    
 }
+

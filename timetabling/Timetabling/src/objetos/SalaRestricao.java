@@ -10,8 +10,8 @@ package objetos;
  * @author HugoEduardo
  */
 public class SalaRestricao {
-    private int sala;
-    private int timeslot;
+    private int sala;//codigo  da sala
+    private int timeslot;//codigo do timeslot
 
     /**
      * @return the sala

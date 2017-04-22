@@ -9,15 +9,22 @@ package objetos;
  *
  * @author HugoEduardo
  */
-public class DocenteRestricao {
-    private int docente; //codigo de docente
-    private int timeslot;//codigo de timeslot
+public class DisciplinaRestricaoID {
+    private int disciplina;//indice do vetor disciplina
+    private int timeslot;  //indice do timeslot
 
     /**
-     * @return the docente
+     * @return the disciplina
      */
-    public int getDocente() {
-        return docente;
+    public int getDisciplina() {
+        return disciplina;
+    }
+
+    /**
+     * @param disciplina the disciplina to set
+     */
+    public void setDisciplina(int disciplina) {
+        this.disciplina = disciplina;
     }
 
     /**
@@ -25,13 +32,6 @@ public class DocenteRestricao {
      */
     public int getTimeslot() {
         return timeslot;
-    }
-
-    /**
-     * @param docente the docente to set
-     */
-    public void setDocente(int docente) {
-        this.docente = docente;
     }
 
     /**

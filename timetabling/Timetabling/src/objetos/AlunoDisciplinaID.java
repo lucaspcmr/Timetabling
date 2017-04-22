@@ -9,9 +9,9 @@ package objetos;
  *
  * @author HugoEduardo
  */
-public class AlunoDisciplina {
-    private int aluno;  //codigo  do aluno
-    private int disciplina;//codigo da disciplina
+public class AlunoDisciplinaID {
+    private int aluno;  //indice do vetor do aluno
+    private int disciplina;//indice do vetor da disciplina
 
     /**
      * @return the aluno

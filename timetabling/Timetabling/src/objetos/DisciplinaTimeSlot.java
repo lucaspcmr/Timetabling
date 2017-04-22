@@ -12,8 +12,8 @@ package objetos;
 public class DisciplinaTimeSlot {
 
     public DisciplinaTimeSlot(int disciplina,int timeslot) {
-        this.disciplina = disciplina;
-        this.timeslot = timeslot;
+        this.disciplina = disciplina;//codigo da disciplina
+        this.timeslot = timeslot; //codido do timeslot
     }
     
     private int disciplina;

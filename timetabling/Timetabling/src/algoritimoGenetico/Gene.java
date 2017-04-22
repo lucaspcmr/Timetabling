@@ -10,10 +10,10 @@ package algoritimoGenetico;
  * @author HugoEduardo
  */
 public class Gene {
-    private int sala;
-    private int professor;
-    private int timeslot;
-    private int disciplina;
+    private int sala;//id da sala
+    private int professor;//id do professor
+    private int timeslot;//id do time slot
+    private int disciplina;//id da disciplina
 
     /**
      * @return the sala
