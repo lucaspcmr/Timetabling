@@ -10,8 +10,8 @@ package objetos;
  * @author HugoEduardo
  */
 public class DocenteRestricao {
-    private int docente;
-    private int timeslot;
+    private int docente; //indice do vetor de docente
+    private int timeslot;//indice do vetro de timeslot
 
     /**
      * @return the docente

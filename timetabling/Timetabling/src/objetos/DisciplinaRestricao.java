@@ -10,8 +10,8 @@ package objetos;
  * @author HugoEduardo
  */
 public class DisciplinaRestricao {
-    private int disciplina;
-    private int timeslot;
+    private int disciplina;//indice do vetor disciplina
+    private int timeslot;  //indice do timeslot
 
     /**
      * @return the disciplina

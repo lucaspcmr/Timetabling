@@ -10,8 +10,8 @@ package objetos;
  * @author HugoEduardo
  */
 public class AlunoDisciplina {
-    private int aluno;
-    private int disciplina;
+    private int aluno;  //indice do vetor do aluno
+    private int disciplina;//indice do vetor da disciplina
 
     /**
      * @return the aluno

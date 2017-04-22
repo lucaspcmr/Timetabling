@@ -59,6 +59,7 @@ linear (mais facil), ou se preferir usar um metodo randomico (necessario impleme
 
 *********************************************************Proximas implementaçoes************************************************************************************
 
+-criar um metodo que dado o array de disciplina,docente,timeslot, retorno o indice desse array ( id ou codigo da mascara de soluçoes)
 -criar uma lista de alunos
 -criar um metodo que retorne uma lista de AlunosDisciplina (a variavel aluno deve ser o codigo dele na mascara de aluno cada linha da matriz
 deve ser o id de cada aluno correspondendo com a lista de alunos ex: o aluno na posição 0 da lista de aluno tem o id 0, quando criar a lista de AlunosDisciplinas
