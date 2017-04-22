@@ -15,11 +15,12 @@ public class AlgoritimoGenetico {
     
     //Retorna um vetor de Individuos, fazendo o crossOver (One-Point)
     //Metodo deve passar dois individuos e o tamanho desses individuos
-    public static Individuo[] crossover(Individuo individuo1, Individuo individuo2,int n) {
+    public static Individuo[] crossover(Individuo individuo1, Individuo individuo2) {
         
+        int size;
         int         pontoCorte;                   
         Random       r;
-        int[][]       geneFilho1, geneFilho2,genePai1,genePai2; 
+        Gene[]     geneFilho1, geneFilho2,genePai1,genePai2; 
         Individuo[]  filhos;       
         r           = new Random();
         
@@ -28,41 +29,36 @@ public class AlgoritimoGenetico {
         //
         // Cria os genes dos filhos, faz copia dos genes dos pais
         //
-        geneFilho1 = new int[Individuo.COLUNA][n];
-        geneFilho2 = new int[Individuo.COLUNA][n];
+        size = individuo1.size();
+        geneFilho1 = new Gene[size];
+        geneFilho2 = new Gene[size];
         genePai1   = individuo1.getGenes();
         genePai2   = individuo2.getGenes();
         
         //one-point crossover
-        pontoCorte = r.nextInt(n + 1);
+        pontoCorte = r.nextInt(size + 1);
         
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < pontoCorte; j++) {
-                geneFilho1[i][j]  = genePai1[i][j];
-            }
+        //Primeiro filho
+        for (int j = 0; j < pontoCorte; j++) {
+            geneFilho1[j]  = genePai1[j];
+        }
+            
+        for (int j = pontoCorte; j < size; j++) {
+            geneFilho1[j]  = genePai2[j];
         }
         
-        for (int i = 0; i < 4; i++) {
-            for (int j = pontoCorte; j < n; j++) {
-                geneFilho1[i][j]  = genePai2[i][j];
-            }
+        //Segundo filho
+        for (int j = 0; j < pontoCorte; j++) {
+            geneFilho2[j]  = genePai2[j];
         }
         
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < pontoCorte; j++) {
-                geneFilho2[i][j]  = genePai2[i][j];
-            }
+        for (int j = pontoCorte; j < size; j++) {
+            geneFilho2[j]  = genePai1[j];
         }
         
-        for (int i = 0; i < 4; i++) {
-            for (int j = pontoCorte; j < n; j++) {
-                geneFilho2[i][j]  = genePai1[i][j];
-            }
-        }
-        
-        
-        filhos[0] = new Individuo(geneFilho1, Individuo.NO_MUTATION,n);
-        filhos[1] = new Individuo(geneFilho2, Individuo.NO_MUTATION,n);
+        //Criar um vetor de individuos (gerado os dois filhos)
+        filhos[0] = new Individuo(geneFilho1, Individuo.NO_MUTATION);
+        filhos[1] = new Individuo(geneFilho2, Individuo.NO_MUTATION);
 
         return (filhos);
     }

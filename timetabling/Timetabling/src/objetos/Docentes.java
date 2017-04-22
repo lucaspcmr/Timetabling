@@ -2,11 +2,14 @@ package objetos;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import timetabling.Filetomem;
 
 public class Docentes {
+    
 	public static Hashtable <String, String> docentesigla;
 	public static Hashtable <String, String> docentenome;
 	public static Hashtable <String, String> docentedisc1;
@@ -15,6 +18,11 @@ public class Docentes {
 	public static Hashtable <String, String> docentedisc4;
 	public static Hashtable <String, String> docentedisc5;
 	BufferedReader buffR=Filetomem.buffR;
+        
+       //Lista de docente com restricao
+        private static List<DocenteRestricao> docenteRestricao= new ArrayList<DocenteRestricao>();
+       
+        
 	public Docentes(){
 		docentesigla=new Hashtable <String,String>();
 		docentenome=new Hashtable <String,String>();
@@ -76,4 +84,12 @@ public class Docentes {
 
 	
 	}
+        
+    public static void gerarListaDocenteRestricao(){
+        //do something
+    }
+        
+    public static List<DocenteRestricao> getDocenteRestricao(){
+        return docenteRestricao;
+    }
 }
