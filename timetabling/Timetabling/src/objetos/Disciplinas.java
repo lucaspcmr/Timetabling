@@ -21,8 +21,8 @@ public class Disciplinas {
 	public static Hashtable <Integer,String> disciplinatipop;
 	BufferedReader buffR=Filetomem.buffR;
         public static int quantidade;
-        public static ArrayList<Integer> D;
-        public static ArrayList<Integer> D2;
+        public static ArrayList<Integer> D;//lista de disciplina
+        public static ArrayList<Integer> D2;//tipo de sala cada disciplina
         
         //Lista de disciplinas com restriçoes e lista de disciplinas com
         private static List<DisciplinaRestricao> disciplinaRestricao= new ArrayList<DisciplinaRestricao>();

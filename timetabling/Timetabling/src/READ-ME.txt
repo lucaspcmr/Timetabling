@@ -21,7 +21,7 @@ Implementado o operado crossover tipo one-point, de forma randomica no individuo
 implementado a função de fitness para as hardconstraints de professor, sala, disciplina, 
 e metodos para de inserção das restriçoes dos professores, salas, e disciplinas na mascara de solução.
 
-SoftConstraints       - (choque de alunos, não matriculando na disciplina e função fitnes) 
+****SoftConstraints       - (choque de alunos, não matriculando na disciplina e função fitnes) 
                         - (capacidade da sala: quando a capacidade for estourada não matricular o aluno, função fitnees) 
 criado classes auxiliares  DocenteRestricao,SalaRestricao,DisciplinaRestricao para auxiliar na estrutura da soluçao
 onde cada classe deve passar o id da mascara de soluçao e o timeslot que deve ser adicionado
@@ -29,8 +29,11 @@ a classe AlunoDisciplina deve adicionar o codigo do aluno e a disciplina que o e
 
 criado classes para os objetos para o ID desses objetos, esses ids vão ser utilizados como variaveis do mapa de solução
 
+Implementado metodos de validação de solução
 **Implementando 
 a validacoes das soluções
+softconstraints
+-estrutura codigo da tabela de horarios
 
 ####################################################Implementar###################################################################################
 
@@ -66,31 +69,33 @@ Foi criado classe tipo SalaRestricao onde coloca o codigo da sala e o timeslot q
 Foi criado classe AlunoDisciplina onde coloca o codigo do aluno e a disciplina que pode fazer, criar   lista na classe Estudantes
 - criar o metodo de mutação
 - Criar o Metodo de seleção tipo Roleta
+-salvar o arquivo
 
 *********************************************************************************************************************************************
 Raquel:
+implementado
+0-  classe População que tem uma lista de Individuos.
 
--criar um metodo que retorne uma lista de AlunosDisciplinaID (a variavel aluno deve ser o codigo dele na mascara de aluno cada linha da matriz
-deve ser o id de cada aluno correspondendo com a lista de alunos ex: o aluno na posição 0 da lista de aluno tem o id 0, quando criar a lista de AlunosDisciplinasID
-deve setar no valor aluno o valor do id dele, que corresponde a linha 0 da mascara de aluno).
--criar metodo uma lista de AlunoDisciplinaID
--Criar metodo uma lista de DisciplinaRestriçaoID
--criar metodo uma lista de DocentesRestricaoID
--Criar metodo uma lista de salasRestricaoID
-essas listas deve esta na classe População
---essas lista segue a mesma logica do aluno como explicado em cima os valores deve corresponder a um id na mascara de solução
--Metodo principal do algoritimo genetico, cria a população, avalia, ordena pela função fitness, faz a seleção, crossover,mutação,e verifica a condição de parada
+Implementando:
+1-  criar um metodo que retorne uma lista de AlunosDisciplinaID (a variavel aluno deve ser o codigo dele na mascara de aluno cada linha da matriz
+    deve ser o id de cada aluno correspondendo com a lista de alunos ex: o aluno na posição 0 da lista de aluno tem o id 0, quando criar a lista de AlunosDisciplinasID
+    deve setar no valor aluno o valor do id dele, que corresponde a linha 0 da mascara de aluno).
+    -criar metodo uma lista de AlunoDisciplinaID
+    -Criar metodo uma lista de DisciplinaRestriçaoID
+    -criar metodo uma lista de DocentesRestricaoID
+    -Criar metodo uma lista de salasRestricaoID
+    essas listas deve esta na classe População
+    --essas lista segue a mesma logica do aluno como explicado em cima os valores deve corresponder a um id na mascara de solução
+    -Metodo principal do algoritimo genetico, cria a população, avalia, ordena pela função fitness, faz a seleção, crossover,mutação,e verifica a condição de parada
 
-Terminar a estrutura de hashMap para as hardsconstraits.
-Criar a clase População que tem uma lista de Individuos. Esta classe deve conter um metodo de ordenação pela função fitness, e os metodos de seleção, crossover, e mutação.
-Fica tambem para criar a geração da população de forma randomica dos individuos (validando as soluçoes criadas com a mascara de solução), ou seja, criar apenas individuos possiveis.
-sempre que for validar uma solução séra necessario iniciar a mascara de solução com o metodo initSolucao(), iniciando para os valores default. Cada gene deve ser testado de forma
-linear (mais facil), ou se preferir usar um metodo randomico (necessario implementar).
-
-- Criar o Metodo para imprimir o horario cromossomo
-
+2 - Fica tambem para criar a geração da população de forma randomica dos individuos (validando as soluçoes criadas com a mascara de solução), ou seja, criar apenas individuos possiveis.
+    sempre que for validar uma solução séra necessario iniciar a mascara de solução com o metodo initSolucao(), iniciando para os valores default. Cada gene deve ser testado de forma
+    linear (mais facil), ou se preferir usar um metodo randomico (necessario implementar).
 
 
+3-  Terminar a estrutura de hashMap para as hardsconstraits.
 
+4-  Esta classe deve conter um metodo de ordenação pela função fitness.
 
+5-  Criar o Metodo para imprimir o horario cromossomo
 

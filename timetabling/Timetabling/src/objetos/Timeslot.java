@@ -10,7 +10,7 @@ public class Timeslot {
  
     public static ArrayList<String> T;
     public Timeslot(){
-    T=new ArrayList<String>();
+    T=new ArrayList<String>();//Array de timeslots 
     criaux();
 }
    void criaux() {

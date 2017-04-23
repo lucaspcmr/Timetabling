@@ -7,12 +7,23 @@
  * and open the template in the editor.
  */
 package algoritmoGenetico;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import objetos.Disciplinas;
+import objetos.Turma;
 /**
  *
  * @author Aluno
  */
 public class AlgoritimoGenetico {
+    private static List<Turma> turmas;//turma
+    private static List<Gene> cromossomo;//solução melhor individuo do AG
+    
+    AlgoritimoGenetico(){
+        turmas = new ArrayList<Turma>();
+        cromossomo = new ArrayList<Gene>();
+    }
     
     //Retorna um vetor de Individuos, fazendo o crossOver (One-Point)
     //Metodo deve passar dois individuos e o tamanho desses individuos
@@ -37,7 +48,7 @@ public class AlgoritimoGenetico {
         genePai2   = individuo2.getGenes();
         
         //one-point crossover
-        pontoCorte = r.nextInt(size + 1);
+        pontoCorte = r.nextInt(size);
         
         //Primeiro filho
         for (int j = 0; j < pontoCorte; j++) {
@@ -63,4 +74,20 @@ public class AlgoritimoGenetico {
 
         return (filhos);
     }
+    
+    // codigo principal do algoritimo genetico
+    public static void startAG(){
+        
+    }
+    
+    public static void gerarTurmas(){
+        //do something
+        
+    }
+     
+     public static List<Turma> getTurmas(){
+         gerarTurmas();
+        //do something
+        return turmas;
+    }   
 }

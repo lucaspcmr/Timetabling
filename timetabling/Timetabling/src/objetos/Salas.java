@@ -21,7 +21,7 @@ public class Salas {
 	public static Hashtable<String, String> saladesc;
 	public static Hashtable<String, String> salatipo;
 	public static Hashtable<String, String> salacap;
-        public static ArrayList<String> S;
+        public static ArrayList<String> S;//array de salas
 	BufferedReader buffR=Filetomem.buffR;
         
         private static List<SalaRestricao> salaRestricao= new ArrayList<SalaRestricao>();
