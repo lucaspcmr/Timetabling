@@ -22,8 +22,8 @@ public class Button {
 	
 	 public JButton addButton(Container pane, String description, int x, int y)
 	    {
-		 	JButton button = new JButton(description);
-		 	GridBagConstraints c = new GridBagConstraints();
+		   JButton button = new JButton(description);
+		    GridBagConstraints c = new GridBagConstraints();
 		    c.fill = GridBagConstraints.HORIZONTAL;
 		    c.gridx = x;
 		    c.gridy = y;
