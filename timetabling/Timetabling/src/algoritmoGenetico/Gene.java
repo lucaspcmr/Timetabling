@@ -7,7 +7,7 @@ package algoritmoGenetico;
 
 /**
  *
- * @author HugoEduardo
+ * @author Home
  */
 public class Gene {
     private int sala;//id da sala

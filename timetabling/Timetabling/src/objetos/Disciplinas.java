@@ -21,6 +21,7 @@ public class Disciplinas {
 	public static Hashtable <Integer,String> disciplinatipop;
 	BufferedReader buffR=Filetomem.buffR;
         public static int quantidade;
+
         public static ArrayList<Integer> D;//lista da chave de identificaçao da hashtable pra cada disciplina
         public static ArrayList<Integer> D2;//lista com tipo de sala pra cada horario da disciplina
         

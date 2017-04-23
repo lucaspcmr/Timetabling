@@ -1,4 +1,5 @@
 package timetabling;
+import algoritmoGenetico.AlgoritimoGenetico;
 import java.awt.Container;
 import java.awt.GridBagLayout;
 import java.awt.Panel;
@@ -32,5 +33,16 @@ public class Window {
 		   JButton b = button.addButton(pane, "Limpar Log", 0,6);
 		    button.limparLog(b,TextArea.LOG);
 		    
+                    //gerarHorario teste tabela
+                    JButton horario =  new JButton("Horario");
+                    button.addButton(pane, horario, 1,2);
+                    button.addLinstenerHorario(horario);//modificar para gerar horario desejado
+                    //horario.setEnabled(false);
+                    
+                    JButton ag =  new JButton("AG");
+                    button.addButton(pane, ag, 1,1);//iniciar AG
+                    button.addLinstenerAG(ag,horario);
+                   
+                    
 		    }
 }
