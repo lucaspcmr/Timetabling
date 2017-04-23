@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author HugoEduardo
+ * @author Home
  */
 public class DisciplinaRestricao {
     private int disciplina;//codigo da disciplina
