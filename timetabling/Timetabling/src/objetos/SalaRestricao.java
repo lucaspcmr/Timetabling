@@ -5,14 +5,18 @@
  */
 package objetos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author HugoEduardo
  */
 public class SalaRestricao {
-    private int sala;//indice do vetor de sala
-    private int timeslot;//indice do vetor timeslot
-
+    private int sala;//codigo  da sala
+    private ArrayList<Integer> timeslot;//codigo do timeslot
+public SalaRestricao(){
+    timeslot=new ArrayList<Integer>();
+}
     /**
      * @return the sala
      */
@@ -30,7 +34,7 @@ public class SalaRestricao {
     /**
      * @return the timeslot
      */
-    public int getTimeslot() {
+    public ArrayList getTimeslot() {
         return timeslot;
     }
 
@@ -38,7 +42,7 @@ public class SalaRestricao {
      * @param timeslot the timeslot to set
      */
     public void setTimeslot(int timeslot) {
-        this.timeslot = timeslot;
+        this.timeslot.add(timeslot);
     }
     
     

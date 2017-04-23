@@ -5,14 +5,19 @@
  */
 package objetos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author HugoEduardo
  */
 public class DisciplinaRestricao {
-    private int disciplina;//indice do vetor disciplina
-    private int timeslot;  //indice do timeslot
-
+    private int disciplina;//codigo da disciplina
+    private ArrayList<Integer> timeslot;  //codigo do timeslot
+public DisciplinaRestricao(){
+    timeslot=new ArrayList<Integer>();
+}
     /**
      * @return the disciplina
      */
@@ -30,7 +35,7 @@ public class DisciplinaRestricao {
     /**
      * @return the timeslot
      */
-    public int getTimeslot() {
+    public ArrayList getTimeslot() {
         return timeslot;
     }
 
@@ -38,7 +43,7 @@ public class DisciplinaRestricao {
      * @param timeslot the timeslot to set
      */
     public void setTimeslot(int timeslot) {
-        this.timeslot = timeslot;
+        this.timeslot.add(timeslot);
     }
     
 }

@@ -18,6 +18,7 @@ public class Docentes {
 	public static Hashtable <String, String> docentedisc4;
 	public static Hashtable <String, String> docentedisc5;
 	BufferedReader buffR=Filetomem.buffR;
+        public static ArrayList<String> P;
         
        //Lista de docente com restricao
         private static List<DocenteRestricao> docenteRestricao= new ArrayList<DocenteRestricao>();
@@ -31,7 +32,7 @@ public class Docentes {
 		docentedisc3=new Hashtable <String,String>();
 		docentedisc4=new Hashtable <String,String>();
 		docentedisc5=new Hashtable <String,String>();
-	
+                P=new ArrayList<String>();
 		try {
 			buffR.readLine();
 			buffR.readLine();
@@ -82,9 +83,18 @@ public class Docentes {
 			e.printStackTrace();
 		}
 
-	
+	criaux();
 	}
-        
+       void criaux(){
+            int quantidade;
+            quantidade=docentenome.size();
+            
+            for(int i=1;i<quantidade;i++){
+                P.add(docentenome.get(Integer.toString(i)));
+                }
+            
+            }
+    
     public static void gerarListaDocenteRestricao(){
         //do something
     }

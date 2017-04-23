@@ -26,8 +26,7 @@ public class Disciplinas {
         
         //Lista de disciplinas com restriçoes e lista de disciplinas com
         private static List<DisciplinaRestricao> disciplinaRestricao= new ArrayList<DisciplinaRestricao>();
-    
-        
+              
 	public Disciplinas(){
                 disciplinacodigo=new Hashtable <Integer,String>();
 		disciplinacurso=new Hashtable <Integer,String>();
@@ -83,7 +82,7 @@ public class Disciplinas {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-                System.out.println(disciplinacodigo);
+                
 	criaux();
         }
         void criaux(){
@@ -96,7 +95,7 @@ public class Disciplinas {
                 salat=Integer.valueOf(disciplinatipot.get(i));
                 carga=carga+Integer.valueOf(disciplinaCHP.get(i));
                 salap=Integer.valueOf(disciplinatipop.get(i));
-                carga=carga/2;
+                carga=carga;
                 for(int j=0;j<carga;j++){
                     D.add(i);
                     if(salat!=0)
@@ -105,8 +104,6 @@ public class Disciplinas {
                         D2.add(salap);
                 }
             }
-            System.out.println(Arrays.toString(D.toArray()));
-            System.out.println(Arrays.toString(D2.toArray()));
         }
         
     public static void gerarListaDisciplinaRestricao(){
@@ -116,6 +113,5 @@ public class Disciplinas {
     public static List<DisciplinaRestricao> getDisciplinaRestricao(){
         return disciplinaRestricao;
     }
-    
- 
+   
 }

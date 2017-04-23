@@ -9,28 +9,22 @@ package objetos;
  *
  * @author HugoEduardo
  */
-public class DisciplinaTimeSlot {
-
-    public DisciplinaTimeSlot(int disciplina,int timeslot) {
-        this.disciplina = disciplina;//codigo da disciplina
-        this.timeslot = timeslot; //codido do timeslot
-    }
-    
-    private int disciplina;
-    private int timeslot;
+public class SalaRestricaoID {
+    private int sala;//indice do vetor de sala
+    private int timeslot;//indice do vetor timeslot
 
     /**
-     * @return the disciplina
+     * @return the sala
      */
-    public int getDisciplina() {
-        return disciplina;
+    public int getSala() {
+        return sala;
     }
 
     /**
-     * @param disciplina the disciplina to set
+     * @param sala the sala to set
      */
-    public void setDisciplina(int disciplina) {
-        this.disciplina = disciplina;
+    public void setSala(int sala) {
+        this.sala = sala;
     }
 
     /**
@@ -49,4 +43,3 @@ public class DisciplinaTimeSlot {
     
     
 }
-

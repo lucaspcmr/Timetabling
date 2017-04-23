@@ -5,18 +5,14 @@
  */
 package objetos;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author HugoEduardo
  */
-public class DocenteRestricao {
-    private int docente; //codigo de docente
-    private ArrayList<Integer> timeslot;//codigo de timeslot
-public DocenteRestricao(){
-    timeslot=new ArrayList<Integer>();
-}
+public class DocenteRestricaoID {
+    private int docente; //indice do vetor de docente
+    private int timeslot;//indice do vetro de timeslot
+
     /**
      * @return the docente
      */
@@ -27,7 +23,7 @@ public DocenteRestricao(){
     /**
      * @return the timeslot
      */
-    public ArrayList getTimeslot() {
+    public int getTimeslot() {
         return timeslot;
     }
 
@@ -42,7 +38,7 @@ public DocenteRestricao(){
      * @param timeslot the timeslot to set
      */
     public void setTimeslot(int timeslot) {
-        this.timeslot.add(timeslot);
+        this.timeslot = timeslot;
     }
     
 }

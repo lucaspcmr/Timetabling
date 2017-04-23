@@ -5,15 +5,13 @@
  */
 package objetos;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author HugoEduardo
  */
-public class AlunoDisciplina {
-    private int aluno;  //codigo  do aluno
-    private ArrayList<Integer> disciplina=new ArrayList<Integer>();//codigo da disciplina
+public class AlunoDisciplinaID {
+    private int aluno;  //indice do vetor do aluno
+    private int disciplina;//indice do vetor da disciplina
 
     /**
      * @return the aluno
@@ -32,7 +30,7 @@ public class AlunoDisciplina {
     /**
      * @return the disciplina
      */
-    public ArrayList getDisciplina() {
+    public int getDisciplina() {
         return disciplina;
     }
 
@@ -40,7 +38,7 @@ public class AlunoDisciplina {
      * @param disciplina the disciplina to set
      */
     public void setDisciplina(int disciplina) {
-        this.disciplina.add(disciplina);
+        this.disciplina = disciplina;
     }
     
     

@@ -9,11 +9,11 @@ package objetos;
  *
  * @author HugoEduardo
  */
-public class DisciplinaTimeSlot {
+public class DisciplinaTimeSlotID {
 
-    public DisciplinaTimeSlot(int disciplina,int timeslot) {
-        this.disciplina = disciplina;//codigo da disciplina
-        this.timeslot = timeslot; //codido do timeslot
+    public DisciplinaTimeSlotID(int disciplina,int timeslot) {
+        this.disciplina = disciplina;//indice do vetor de disciplina
+        this.timeslot = timeslot; //indice do timeslot
     }
     
     private int disciplina;
