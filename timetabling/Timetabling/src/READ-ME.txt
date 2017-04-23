@@ -39,11 +39,11 @@ Lucas:
 
 Será necessario criar  vetores auxiliares. Utilizando algum metodo para preencher esses vetores com os dados do hashMaps.
 
--Criar vetor de professores
+-Criar vetor de professores (criado)
 -criar vetor de disciplinas (criado)
--criar vetor de alunos
--criar vetor de salas
--criar vetor de timeslots
+-criar vetor de alunos      (criado)
+-criar vetor de salas       (criado)
+-criar vetor de timeslots   (criado)
 
 D(1xd) onde d e o numero de disciplinas ofertadas para todos os cursos
 ex:(a disciplina de Calculo 1 tem carga horaria de 96 horas então se fosse colocar ela, no vetor auxiliar ,deveria colocar ela 3 vezes pois 

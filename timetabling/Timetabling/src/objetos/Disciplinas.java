@@ -82,7 +82,7 @@ public class Disciplinas {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-                System.out.println(disciplinacodigo);
+                
 	criaux();
         }
         void criaux(){
@@ -95,7 +95,7 @@ public class Disciplinas {
                 salat=Integer.valueOf(disciplinatipot.get(i));
                 carga=carga+Integer.valueOf(disciplinaCHP.get(i));
                 salap=Integer.valueOf(disciplinatipop.get(i));
-                carga=carga/2;
+                carga=carga;
                 for(int j=0;j<carga;j++){
                     D.add(i);
                     if(salat!=0)
@@ -104,8 +104,6 @@ public class Disciplinas {
                         D2.add(salap);
                 }
             }
-            System.out.println(Arrays.toString(D.toArray()));
-            System.out.println(Arrays.toString(D2.toArray()));
         }
         
     public static void gerarListaDisciplinaRestricao(){

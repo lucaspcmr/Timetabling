@@ -21,7 +21,7 @@ public class FileChooser extends JPanel  {
 	static private final String newline = "\n";
 	JButton openButton, saveButton;
 	JFileChooser fc;
-	
+	private static int i=0;
     public FileChooser() {
     	 
 
@@ -121,8 +121,15 @@ public class FileChooser extends JPanel  {
 					try {
 						TextArea.LOG.append("Opening: " + file.getName() + "." + newline);
 						Main.fileR = new FileReader(file);
-						Filetomem.sort(Main.fileR);
+                                                if(i==0){
+                                                Filetomem.sort(Main.fileR);
+                                                i++;
+                                                TextArea.LOG.append("Abra o arquivo de restrições"+newline);
+                                                }
+                                                else{
 						 
+                                                 Main.fileR=new FileReader(file);
+                                                 Filetomemrest.sort(Main.fileR);}
 	                      
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
