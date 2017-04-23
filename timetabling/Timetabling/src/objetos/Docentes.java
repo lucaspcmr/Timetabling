@@ -18,7 +18,9 @@ public class Docentes {
 	public static Hashtable <String, String> docentedisc4;
 	public static Hashtable <String, String> docentedisc5;
 	BufferedReader buffR=Filetomem.buffR;
-        public static ArrayList<String> P;//lista de professores
+
+        public static ArrayList<String> P;//lista com os nomes dos professores
+
         
        //Lista de docente com restricao
         private static List<DocenteRestricao> docenteRestricao= new ArrayList<DocenteRestricao>();
