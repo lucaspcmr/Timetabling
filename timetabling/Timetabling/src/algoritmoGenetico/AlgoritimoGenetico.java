@@ -89,5 +89,5 @@ public class AlgoritimoGenetico {
          gerarTurmas();
         //do something
         return turmas;
-    }   
+    }
 }
