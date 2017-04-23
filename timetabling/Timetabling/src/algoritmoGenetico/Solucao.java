@@ -1,7 +1,9 @@
-package algoritimoGenetico;
+package algoritmoGenetico;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Random;
 import objetos.AlunoDisciplina;
 import objetos.AlunoDisciplinaID;
 import objetos.DisciplinaRestricao;
@@ -296,6 +298,49 @@ public class Solucao {
          }
         
          return SOFTCONSTRAINT;
+     }
+     
+//retorna um time slot para a professores dado o id do professor na mascara de solucao
+     public static int  timeSlotLivreProfessor(int professor){
+         List<Integer> timeslots = new ArrayList<Integer>();
+         int retorno = -1;
+         for (int i = 0; i < n_timeslots; i++) {
+             if(professores[professor][i] == 0)
+                timeslots.add(i);
+         }
+         
+         Random r = new Random();
+         int ponto = r.nextInt(timeslots.size() + 1);
+         retorno = timeslots.get(ponto);
+         return retorno;
+     }
+//retorna um time slot para a sala dado o id da sala na mascara de solucao
+    public static int timeSlotLivreSala(int sala){
+         List<Integer> timeslots = new ArrayList<Integer>();
+         int retorno = -1;
+         for (int i = 0; i < n_timeslots; i++) {
+             if(salas[sala][i] == 0)
+                timeslots.add(i);
+         }
+         
+         Random r = new Random();
+         int ponto = r.nextInt(timeslots.size() + 1);
+         retorno = timeslots.get(ponto);
+         return retorno;
+     }
+//retorna um time slot para a disciplina dado o id da disciplina na mascara de solucao
+    public static int timeSlotLivreDisciplina(int disciplina){
+         List<Integer> timeslots = new ArrayList<Integer>();
+         int retorno = -1;
+         for (int i = 0; i < n_timeslots; i++) {
+             if(disciplinas[disciplina][i] == 0)
+                timeslots.add(i);
+         }
+         
+         Random r = new Random();
+         int ponto = r.nextInt(timeslots.size() + 1);
+         retorno = timeslots.get(ponto);
+         return retorno;
      }
         
 }
