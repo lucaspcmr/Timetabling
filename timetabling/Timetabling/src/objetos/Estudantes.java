@@ -22,7 +22,7 @@ public class Estudantes {
     public static Hashtable<String, String> estudantedisc9;
     public static Hashtable<String, String> estudantedisc10;
     BufferedReader buffR = Filetomem.buffR;
-    public static ArrayList<String> E;
+    public static ArrayList<String> E;//lista com os nomes dos alunos
     //Lista Alunos Disciplina
     private static List<AlunoDisciplina> listAlunoDisciplina = new ArrayList<AlunoDisciplina>();
     private static int n_estudantes = 0;
