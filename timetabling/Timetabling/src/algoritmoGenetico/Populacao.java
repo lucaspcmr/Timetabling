@@ -63,4 +63,10 @@ public class Populacao {
             
         }
     }
+    
+    public static List<Integer> DisciplinaCursoPeriodoRestricao(List<Integer> disciplinas){
+        
+        
+        return null;
+    }
 }

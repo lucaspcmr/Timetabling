@@ -90,4 +90,6 @@ public class AlgoritimoGenetico {
         //do something
         return turmas;
     }
+     
+     
 }

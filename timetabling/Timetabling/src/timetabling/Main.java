@@ -14,6 +14,7 @@ import timetabling.Window;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+import objetos.Disciplinas;
 import objetos.Timeslot;
 
 public class Main {
@@ -45,6 +46,8 @@ public class Main {
 
             }
         });
+        //Timeslot t = new Timeslot(); ok
         
+       
     }
 }
