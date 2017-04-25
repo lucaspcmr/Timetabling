@@ -8,6 +8,7 @@ import java.util.List;
 import timetabling.FileChooser;
 import timetabling.TextArea;
 
+//testes
 public class Timeslot {
  
     //Lista de timeslot seu codigo (seu id na mascara de solução é seu indice no List)
