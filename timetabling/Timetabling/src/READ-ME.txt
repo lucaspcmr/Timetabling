@@ -80,11 +80,13 @@ Foi criado classe AlunoDisciplina onde coloca o codigo do aluno e a disciplina q
 Raquel:
 implementado
 0-  classe População que tem uma lista de Individuos.
+3-  Esta classe deve conter um metodo de ordenação pela função fitness.
 
 Implementando:
-1-  criar um metodo que retorne uma lista de AlunosDisciplinaID (a variavel aluno deve ser o codigo dele na mascara de aluno cada linha da matriz
-    deve ser o id de cada aluno correspondendo com a lista de alunos ex: o aluno na posição 0 da lista de aluno tem o id 0, quando criar a lista de AlunosDisciplinasID
-    deve setar no valor aluno o valor do id dele, que corresponde a linha 0 da mascara de aluno).
+1-  criar um metodo que retorne uma lista de AlunosDisciplinaID (a variavel aluno deve ser o codigo dele na mascara 
+    de aluno cada linha da matriz deve ser o id de cada aluno correspondendo com a lista de alunos ex: o aluno na 
+    posição 0 da lista de aluno tem o id 0, quando criar a lista de AlunosDisciplinasID deve setar no valor aluno o 
+    valor do id dele, que corresponde a linha 0 da mascara de aluno).
     -criar metodo uma lista de AlunoDisciplinaID
     -Criar metodo uma lista de DisciplinaRestriçaoID
     -criar metodo uma lista de DocentesRestricaoID
@@ -96,8 +98,6 @@ Implementando:
 2 - Fica tambem para criar a geração da população de forma randomica dos individuos (validando as soluçoes criadas com a mascara de solução), ou seja, criar apenas individuos possiveis.
     sempre que for validar uma solução séra necessario iniciar a mascara de solução com o metodo initSolucao(), iniciando para os valores default. Cada gene deve ser testado de forma
     linear (mais facil), ou se preferir usar um metodo randomico (necessario implementar).
-
-3-  Esta classe deve conter um metodo de ordenação pela função fitness.
 
 4-  Criar o Metodo para imprimir o horario cromossomo
 

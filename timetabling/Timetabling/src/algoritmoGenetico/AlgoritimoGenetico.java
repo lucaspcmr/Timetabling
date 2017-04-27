@@ -101,7 +101,7 @@ public class AlgoritimoGenetico {
         float seccao;
         ArrayList<Float> weight;
         Populacao novapop=new Populacao();
-        weight = new ArrayList<Float>();
+        weight = new ArrayList<>();
         for(int j=0;j<tam/2;j++){//escolhe metade dos individuos da população
         fittotal = 0;
         aux = 0.0;

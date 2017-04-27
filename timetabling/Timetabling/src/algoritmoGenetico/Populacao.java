@@ -12,6 +12,8 @@ package algoritmoGenetico;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import objetos.AlunoDisciplina;
+import objetos.AlunoDisciplinaID;
 
 public class Populacao {
         public static ArrayList<Individuo> populacao = new ArrayList<>();
@@ -62,5 +64,23 @@ public class Populacao {
         }
     }
     
+    public static AlunoDisciplinaID criaListAlunoDisciplinaID (List<AlunoDisciplina> alunoDisc, ArrayList<Integer> codDisc){
+    
+        int sizeAlunoDisc = alunoDisc.size();
+        int sizeDisc = codDisc.size();
+        
+        for(int i = 0; i < sizeAlunoDisc; i++){
+            for (int j = 0; j < sizeDisc ; j++){
+                
+            }
+        }
+        
+        return null;
+    }
+
+    public static int getampopulacao(){//tamanho da população
+return populacao.size();
 }
+    
+
 }
