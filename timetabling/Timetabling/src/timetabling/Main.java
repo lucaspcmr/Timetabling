@@ -46,7 +46,7 @@ public class Main {
 
             }
         });
-        //Timeslot t = new Timeslot(); ok
+        Timeslot t = new Timeslot(); 
         
        
     }

@@ -21,6 +21,9 @@ Implementado o operado crossover tipo one-point, de forma randomica no individuo
 implementado a função de fitness para as hardconstraints de professor, sala, disciplina, 
 e metodos para de inserção das restriçoes dos professores, salas, e disciplinas na mascara de solução.
 
+implementado restrição disciplina - turno do curso- timeslot
+-estrutura codigo da tabela de horarios
+
 ****SoftConstraints       - (choque de alunos, não matriculando na disciplina e função fitnes) 
                         - (capacidade da sala: quando a capacidade for estourada não matricular o aluno, função fitnees) 
 criado classes auxiliares  DocenteRestricao,SalaRestricao,DisciplinaRestricao para auxiliar na estrutura da soluçao
@@ -33,7 +36,7 @@ Implementado metodos de validação de solução
 **Implementando 
 a validacoes das soluções
 softconstraints
--estrutura codigo da tabela de horarios
+restrição sala
 
 ####################################################Implementar###################################################################################
 
