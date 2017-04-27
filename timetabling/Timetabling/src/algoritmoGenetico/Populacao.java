@@ -14,8 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Populacao {
-    
-    public static ArrayList<Individuo> populacao = new ArrayList<>();
+        public static ArrayList<Individuo> populacao = new ArrayList<>();
     
     public static Individuo criaIndividuo(List<Integer> disciplinas, List<Integer> salas, List<String> docentes, List<String> timeslot) {
     
@@ -51,8 +50,7 @@ public class Populacao {
         }
         
         Individuo individuo = new Individuo(genes,Individuo.NO_MUTATION);
-        
-        return individuo;
+                return individuo;
     }
     
     public static void criaPopulacao(int sizeIndividuo, List<Integer> disciplinas, List<Integer> salas, List<String> docentes, List<String> timeslot){
@@ -64,4 +62,5 @@ public class Populacao {
         }
     }
     
+}
 }
