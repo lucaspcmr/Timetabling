@@ -85,6 +85,14 @@ public class Disciplinas {
 		}
                 
 	criaux();
+            System.out.println("Disciplinas");
+             for (int i = 0; i < D.size(); i++) {
+                 System.out.print(D.get(i)+" ");
+            }
+            System.out.println("Tipo Salas");
+            for (int i = 0; i < D2.size(); i++) {
+                 System.out.print(D2.get(i)+" ");
+            }
         }
         void criaux(){
             int carga;

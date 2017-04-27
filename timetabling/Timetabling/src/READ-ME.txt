@@ -48,6 +48,8 @@ Será necessario criar  vetores auxiliares. Utilizando algum metodo para preench
 -criar vetor de salas       (criado)
 -criar vetor de timeslots   (criado)
 
+- Terminar a estrutura  para as hardsconstraits (criado)
+
 D(1xd) onde d e o numero de disciplinas ofertadas para todos os cursos
 ex:(a disciplina de Calculo 1 tem carga horaria de 96 horas então se fosse colocar ela, no vetor auxiliar ,deveria colocar ela 3 vezes pois 
 dividiremos cada aula correspondento em 2 timeslots disponiveis, logo D = [C1,C1,C1,...]). Esse vetor sera usado para a estrutura
@@ -92,10 +94,7 @@ Implementando:
     sempre que for validar uma solução séra necessario iniciar a mascara de solução com o metodo initSolucao(), iniciando para os valores default. Cada gene deve ser testado de forma
     linear (mais facil), ou se preferir usar um metodo randomico (necessario implementar).
 
+3-  Esta classe deve conter um metodo de ordenação pela função fitness.
 
-3-  Terminar a estrutura de hashMap para as hardsconstraits.
-
-4-  Esta classe deve conter um metodo de ordenação pela função fitness.
-
-5-  Criar o Metodo para imprimir o horario cromossomo
+4-  Criar o Metodo para imprimir o horario cromossomo
 

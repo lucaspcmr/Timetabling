@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author Aluno
  */
-public class Individuo {
+public class Individuo implements Comparable<Individuo>{
     
     //
     // Tipos de mutaÃ§Ãµes (mutation) que estÃ£o disponÃ­veis:
@@ -52,5 +52,17 @@ public class Individuo {
     
     public int size(){
         return chromossomo.length;
+    }
+
+    @Override
+    public int compareTo(Individuo ind1) {//metodo de comparação do fitness
+        if (this.getFitness() > ind1.getFitness()) {
+            return 1;
+        } else if (this.getFitness() < ind1.getFitness()) {
+            return -1;
+        } else {
+            return 0;
+        }
+
     }
 }
