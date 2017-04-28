@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import objetos.AlunoDisciplina;
+import objetos.Disciplinas;
 
 public class Populacao {
         public static ArrayList<Individuo> populacao = new ArrayList<>();
@@ -34,9 +35,8 @@ public class Populacao {
         int sorteioSala;
         int sorteioTimeslot;
         
-        Gene gene = new Gene();
-        
         for (int i = 0; i < sizeGene; i++){
+            Gene gene = new Gene();
             
             sorteioDocente = random.nextInt(sizeDocentes);
             sorteioSala = random.nextInt(sizeSalas);
@@ -49,6 +49,7 @@ public class Populacao {
             
             genes[i] = gene;
         }
+        Solucao.validaGene(genes);
         
         Individuo individuo = new Individuo(genes,Individuo.NO_MUTATION);
                 return individuo;

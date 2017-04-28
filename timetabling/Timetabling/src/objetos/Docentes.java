@@ -10,7 +10,7 @@ import timetabling.Filetomem;
 
 public class Docentes {
         //maximo de disciplinas por professores
-        public static int MAXIMO_DISCIPLINAS_PROFESSOR = 5;
+        public static int MAXIMO_DISCIPLINAS_PROFESSOR = 10; //10 timeslots ou 5 disciplinas de 64
         //numero professores 
         private static int numeroProfessores;
         

@@ -1,5 +1,6 @@
 package algoritmoGenetico;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -54,6 +55,7 @@ public class Solucao {
    public static Hashtable <Integer, Integer> disciplinaTimeSlot ;
    public static Hashtable <Integer, Integer> professorQuantidadeDisciplina ;
    public static Hashtable <Integer, Integer> timeSlotSala ;
+   public static Hashtable <Integer, List<Integer>> disciplinaProfessor;
    
     private static List<Integer> salaComum;
     private static List<Integer> laboratorioInformatica;
@@ -72,6 +74,7 @@ public class Solucao {
         disciplinaTimeSlot = new Hashtable <Integer,Integer>();
         professorQuantidadeDisciplina = new Hashtable <Integer,Integer>();
         timeSlotSala = new Hashtable <Integer,Integer>();
+        disciplinaProfessor = new Hashtable <Integer,List<Integer>>();
         
         //tamanho da matriz
         Solucao.n_timeslots            = n_timeslots; 
@@ -101,6 +104,7 @@ public class Solucao {
          
          preencherMascaraRestricoes();
          tipoSalaSalaDisciplina();
+         
     }
     
   //colocar as restrições dos professores, salas, disciplinas e cursos
@@ -556,7 +560,7 @@ public class Solucao {
     }
     
     //retorna todas as possiveis salas que pode ser usada para dado o tipo da sala
-    private List<Integer>  getSalaDisciplina(int tipoSala){
+    public static List<Integer>  getSalaDisciplina(int tipoSala){
         
         if(tipoSala == Salas.SALA_COMUM)
             return salaComum;
@@ -576,6 +580,76 @@ public class Solucao {
         return null;
     }
     
+    //preenche a lista de professores disciplinas
+    private void professorDisciplina(){
+        
+        //inicializar o hashMap
+        for (int i = 0; i < n_disciplinas; i++) {
+            disciplinaProfessor.put(i, new ArrayList<Integer>());
+        }
+        
+        for (int i = 0; i < Docentes.docentedisc1.size(); i++) {
+         String disciplina =    Docentes.docentedisc1.get((i+1)+"");
+            List<Integer> ids = getRestricoesDisciplinasIds(Integer.valueOf(disciplina));
+            for (int j = 0; j < ids.size(); j++) {
+                Integer id = new Integer(ids.get(j));
+                List<Integer> aux = disciplinaProfessor.get(id);
+                aux.add(i);
+                disciplinaProfessor.put(ids.get(j), aux);
+            }
+        }
+        
+        for (int i = 0; i < Docentes.docentedisc2.size(); i++) {
+         String disciplina =    Docentes.docentedisc2.get((i+1)+"");
+            List<Integer> ids = getRestricoesDisciplinasIds(Integer.valueOf(disciplina));
+            for (int j = 0; j < ids.size(); j++) {
+                Integer id = new Integer(ids.get(j));
+                List<Integer> aux = disciplinaProfessor.get(id);
+                aux.add(i);
+                disciplinaProfessor.put(ids.get(j), aux);
+            }
+        }
+        
+        for (int i = 0; i < Docentes.docentedisc3.size(); i++) {
+         String disciplina =    Docentes.docentedisc3.get((i+1)+"");
+            List<Integer> ids = getRestricoesDisciplinasIds(Integer.valueOf(disciplina));
+            for (int j = 0; j < ids.size(); j++) {
+                Integer id = new Integer(ids.get(j));
+                List<Integer> aux = disciplinaProfessor.get(id);
+                aux.add(i);
+                disciplinaProfessor.put(ids.get(j), aux);
+            }
+        }
+        
+        for (int i = 0; i < Docentes.docentedisc4.size(); i++) {
+         String disciplina =    Docentes.docentedisc4.get((i+1)+"");
+            List<Integer> ids = getRestricoesDisciplinasIds(Integer.valueOf(disciplina));
+            for (int j = 0; j < ids.size(); j++) {
+                Integer id = new Integer(ids.get(j));
+                List<Integer> aux = disciplinaProfessor.get(id);
+                aux.add(i);
+                disciplinaProfessor.put(ids.get(j), aux);
+            }
+        }
+        
+        for (int i = 0; i < Docentes.docentedisc5.size(); i++) {
+         String disciplina =    Docentes.docentedisc5.get((i+1)+"");
+            List<Integer> ids = getRestricoesDisciplinasIds(Integer.valueOf(disciplina));
+            for (int j = 0; j < ids.size(); j++) {
+                Integer id = new Integer(ids.get(j));
+                List<Integer> aux = disciplinaProfessor.get(id);
+                aux.add(i);
+                disciplinaProfessor.put(ids.get(j), aux);
+            }
+        }
+    
+    }
+    
+    //retorna a lista de professores que podem dar aquela disciplina dado o id da disciplina
+    public static List<Integer> professorDisciplina(int disciplina){
+        Integer id = new Integer(disciplina);
+        return disciplinaProfessor.get(id);
+    }
     //verifica o tipo de curso que é a disciplina 
     //colocando na mascara de solução os horarios que não pode ser ofertadas as disciplinas
     //exemplo o curso de Eng COmputação matutino so pode ofertar disciplinas
@@ -659,6 +733,34 @@ public class Solucao {
                 disciplinas[i][aux.get(j)] = -1;
             }  
         }
+    }
+    
+    public static void validaGene(Gene[] genes){
+        Random random = new Random();
+        
+        int sizeGene = genes.length;
+            
+        int sizeDocentes = 0;
+        int sizeSalas    = 0;
+        int sizeTimeslot = 0;
+        
+        int sorteioDocente;
+        int sorteioSala;
+        int sorteioTimeslot;
+                
+        for (int i = 0; i < sizeGene; i++){
+            Gene gene = genes[i];
+            
+            //sorteioDocente = random.nextInt(sizeDocentes);
+            //sorteioSala = random.nextInt(sizeSalas);
+            //sorteioTimeslot = random.nextInt(sizeTimeslot);
+            
+            //gene.setProfessor(sorteioDocente);
+            //gene.setSala(sorteioSala);
+            //gene.setTimeslot(sorteioTimeslot);
+            //gene.setDisciplina(i);
+            
+        } 
     }
         
 }
