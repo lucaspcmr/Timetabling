@@ -31,7 +31,7 @@ public class Estudantes {
 
     //Lista Alunos Disciplina
     private static List<AlunoDisciplina> listAlunoDisciplina = new ArrayList<AlunoDisciplina>();
-    private static int n_estudantes = 0;
+    
 
     public Estudantes() {
         estudantenome = new Hashtable<String, String>();
@@ -150,6 +150,6 @@ public class Estudantes {
 
     public static int getNumeroAlunos() {
 
-        return n_estudantes;
+        return numeroAlunos;
     }
 }

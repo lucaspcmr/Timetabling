@@ -54,6 +54,14 @@ public class Solucao {
    public static Hashtable <Integer, Integer> disciplinaTimeSlot ;
    public static Hashtable <Integer, Integer> professorQuantidadeDisciplina ;
    public static Hashtable <Integer, Integer> timeSlotSala ;
+   
+    private static List<Integer> salaComum;
+    private static List<Integer> laboratorioInformatica;
+    private static List<Integer> laboratorioEspecificoEC;
+    private static List<Integer> laboratorioEspecificoEE;
+    private static List<Integer> laboratorioEspecificoEM;
+    private static List<Integer> laboratorioEspecificoEG;
+    private static List<Integer> laboratorioOutro;
     
     //Mascara de soluÃ§oes estrutura que contrem todas as mascaras 
     private static Object solucao[];
@@ -83,8 +91,16 @@ public class Solucao {
          solucao[1] = professores;
          solucao[2] = disciplinas;
          
-         preencherMascaraRestricoes();
+        salaComum               = new ArrayList<Integer>();
+        laboratorioInformatica  = new ArrayList<Integer>();
+        laboratorioEspecificoEC = new ArrayList<Integer>();
+        laboratorioEspecificoEE = new ArrayList<Integer>();
+        laboratorioEspecificoEM = new ArrayList<Integer>();
+        laboratorioEspecificoEG = new ArrayList<Integer>();
+        laboratorioOutro        = new ArrayList<Integer>();
          
+         preencherMascaraRestricoes();
+         tipoSalaSalaDisciplina();
     }
     
   //colocar as restrições dos professores, salas, disciplinas e cursos
@@ -262,11 +278,12 @@ public class Solucao {
     public static int calculaFitnees(Gene genes[]){
         int fitness = 0;
         initSolucao();
+        //Hardconstraits
         for (int i = 0; i < genes.length; i++) {
             fitness = fitness + VerificaPonto(genes[i]);
         }
         //Softconstraits
-        //fitness = fitness +softConstraints(Populacao.getAlunosDisciplinas(),Populacao.getNumeroAlunos());
+        fitness = fitness +softConstraints(Estudantes.getAlunosDisciplinas(),Estudantes.getNumeroAlunos());
         
         return fitness;
     }
@@ -402,7 +419,7 @@ public class Solucao {
             fitness = fitness + calculaSoftConstraintsAluno(alunosTimeslot,alunos.get(i));
          }
          
-         //fitness = fitness + calculaSoftConstraintsCapacidadeSala(n_alunos,alunosTimeslot);
+         fitness = fitness + calculaSoftConstraintsCapacidadeSala(n_alunos,alunosTimeslot);
          
          return fitness;
      }
@@ -413,25 +430,34 @@ public class Solucao {
      public static int calculaSoftConstraintsAluno(int[][] mascara, AlunoDisciplina aluno){
          
          //retorna a disciplina que o aluno quer cursar e o seu timeslot
-         Integer disc = disciplinaTimeSlot.get(aluno.getDisciplina());
-         int timeslot = disc.intValue();
+         int fitness = 0;
          List<Integer> ids = new ArrayList<Integer>();
-         List<Integer> disca = aluno.getDisciplina();
+         List<Integer> disciplinasAluno = aluno.getDisciplina();
          
-         for (int i = 0; i < disca.size(); i++) {
+         for (int i = 0; i < disciplinasAluno.size(); i++) {
+             List<Integer> aux = getRestricoesDisciplinasIds(disciplinasAluno.get(i));
+             for (int j = 0; j < aux.size(); j++) {
+                 ids.add(aux.get(j));
+             }
+         }
+         
+         for (int i = 0; i < ids.size(); i++) {
+             Integer disc = disciplinaTimeSlot.get(ids.get(i));
+             int timeslot = disc.intValue();
+         
+            //verifica se o aluno esta disponivel naquele horario e 
+            //verifica se tem vaga na disciplina
+            int alunoID = aluno.getAluno() - 1;
             
+            if(mascara[alunoID][timeslot]  != 1 ){//aluno esta disponivel naquele horario
+                   mascara[aluno.getAluno()][timeslot] = 1;   
+            }
+            else
+                 fitness = fitness + SOFTCONSTRAINT;
+         
          }
-         
-         
-         //verifica se o aluno esta disponivel naquele horario e 
-         //verifica se tem vaga na disciplina
-         if(mascara[aluno.getAluno()][timeslot]  != 1 ){//aluno esta disponivel naquele horario
-                mascara[aluno.getAluno()][timeslot] = 1;
-                return 0;
-         }
-         
-        
-         return SOFTCONSTRAINT;
+
+         return fitness;
      }
      
      
@@ -440,20 +466,22 @@ public class Solucao {
          int fitness = 0;
          int quantidade = 0;
          
+         
          for (int i = 0; i < n_timeslots; i++) {
              quantidade = 0;
-             for (int j = 0; j < n_alunos; j++) {
-                 if(alunosTimeslot[j][i] == 1)
-                     quantidade ++;
-             }
-             
-             int idSala = timeSlotSala.get(i);
-             String sala = Salas.S.get(idSala);
-             String capacidade = Salas.salacap.get(sala);
-             
-             if(quantidade > Integer.valueOf(capacidade) ){
-                 fitness = fitness + SOFTCONSTRAINT;
-             }
+         if(timeSlotSala.get(i) !=null){//verifica sala no timeslot i     
+                for (int j = 0; j < n_alunos; j++) {//quantidade de alunos naquele timeslot
+                    if(alunosTimeslot[j][i] == 1)
+                        quantidade ++;
+                }
+
+                int idSala = timeSlotSala.get(i);//ve o id da sala no timeslot
+                String capacidade = Salas.salacap.get((idSala+1)+"");//pega a capacidade da sala
+
+                if(quantidade > Integer.valueOf(capacidade) ){//se a quantidade for maior que a capacidade
+                    fitness = fitness + SOFTCONSTRAINT;
+                }
+            }
          }
          
          return fitness;
@@ -501,6 +529,52 @@ public class Solucao {
          retorno = timeslots.get(ponto);
          return retorno;
      }
+    
+    //cria listas auxiliares para separar todas as salas pelo seu tipo
+    private static void tipoSalaSalaDisciplina(){
+        
+        for (int i = 0; i < n_salas; i++) {
+            
+        String tipoSalaStr = Salas.salatipo.get((i+1)+"");
+        int tipoSala = Integer.valueOf(tipoSalaStr);
+        
+        if(tipoSala == Salas.SALA_COMUM)
+             salaComum.add(i);
+        else if(tipoSala == Salas.LABORATORIO_DE_INFORMATICA)
+             laboratorioInformatica.add(i);
+        else if(tipoSala == Salas.LABORATORIO_ESPECIFICO_EC)
+             laboratorioEspecificoEC.add(i);
+        else if(tipoSala == Salas.LABORATORIO_ESPECIFICO_EE)
+             laboratorioEspecificoEE.add(i);
+        else if (tipoSala == Salas.LABORATORIO_ESPECIFICO_EM)
+             laboratorioEspecificoEM.add(i);
+        else if( tipoSala == Salas.LABORATORIO_ESPECIFICO_GERAL)
+             laboratorioEspecificoEG.add(i);
+        else if( tipoSala == Salas.LABORATORIO_OUTRO)
+             laboratorioOutro.add(i);
+        }    
+    }
+    
+    //retorna todas as possiveis salas que pode ser usada para dado o tipo da sala
+    private List<Integer>  getSalaDisciplina(int tipoSala){
+        
+        if(tipoSala == Salas.SALA_COMUM)
+            return salaComum;
+        else if(tipoSala == Salas.LABORATORIO_DE_INFORMATICA)
+            return laboratorioInformatica;
+        else if(tipoSala == Salas.LABORATORIO_ESPECIFICO_EC)
+            return laboratorioEspecificoEC;
+        else if(tipoSala == Salas.LABORATORIO_ESPECIFICO_EE)
+            return laboratorioEspecificoEE;
+        else if (tipoSala == Salas.LABORATORIO_ESPECIFICO_EM)
+            return laboratorioEspecificoEM;
+        else if( tipoSala == Salas.LABORATORIO_ESPECIFICO_GERAL)
+            return laboratorioEspecificoEG;
+        else if( tipoSala == Salas.LABORATORIO_OUTRO)
+            return laboratorioOutro;
+        
+        return null;
+    }
     
     //verifica o tipo de curso que é a disciplina 
     //colocando na mascara de solução os horarios que não pode ser ofertadas as disciplinas
