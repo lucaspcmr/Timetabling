@@ -62,12 +62,5 @@ public class Populacao {
         }
     }
     
-    public static List<Integer> DisciplinaCursoPeriodoRestricao(List<Integer> disciplinas){
-        
-        
-        return null;
-    }
-    public static int getampopulacao(){//tamanho da população
-return populacao.size();
 }
 }
