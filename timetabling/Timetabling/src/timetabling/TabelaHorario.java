@@ -27,7 +27,6 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import objetos.DisciplinaTimeSlotID;
 import objetos.Turma;
 /**
  *

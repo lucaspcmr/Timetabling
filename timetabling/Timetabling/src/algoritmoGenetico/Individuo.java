@@ -30,13 +30,13 @@ public class Individuo implements Comparable<Individuo>{
         switch (mutacaoEscolhida) {
             case  NO_MUTATION:
                 Solucao.initSolucao();
-                fitness = Solucao.CalculaFitnees(genes);
+                fitness = Solucao.calculaFitnees(genes);
                 chromossomo = genes;
             break;
                 //implementar mutação escolhida
             default:
                 Solucao.initSolucao();
-                fitness = Solucao.CalculaFitnees(genes);
+                fitness = Solucao.calculaFitnees(genes);
                 chromossomo = genes;
         }
         

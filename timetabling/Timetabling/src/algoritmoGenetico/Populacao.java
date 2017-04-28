@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import objetos.AlunoDisciplina;
-import objetos.AlunoDisciplinaID;
+import objetos.Disciplinas;
 
 public class Populacao {
         public static ArrayList<Individuo> populacao = new ArrayList<>();
@@ -35,9 +35,8 @@ public class Populacao {
         int sorteioSala;
         int sorteioTimeslot;
         
-        Gene gene = new Gene();
-        
         for (int i = 0; i < sizeGene; i++){
+            Gene gene = new Gene();
             
             sorteioDocente = random.nextInt(sizeDocentes);
             sorteioSala = random.nextInt(sizeSalas);
@@ -50,6 +49,7 @@ public class Populacao {
             
             genes[i] = gene;
         }
+        Solucao.validaGene(genes);
         
         Individuo individuo = new Individuo(genes,Individuo.NO_MUTATION);
                 return individuo;
@@ -64,22 +64,22 @@ public class Populacao {
         }
     }
     
-    public static AlunoDisciplinaID criaListAlunoDisciplinaID (List<AlunoDisciplina> alunoDisc, ArrayList<Integer> codDisc){
-    
-        int sizeAlunoDisc = alunoDisc.size();
-        int sizeDisc = codDisc.size();
-        
-        for(int i = 0; i < sizeAlunoDisc; i++){
-            for (int j = 0; j < sizeDisc ; j++){
-                
-            }
-        }
-        
-        return null;
-    }
+//    public static AlunoDisciplinaID criaListAlunoDisciplinaID (List<AlunoDisciplina> alunoDisc, ArrayList<Integer> codDisc){
+//    
+//        int sizeAlunoDisc = alunoDisc.size();
+//        int sizeDisc = codDisc.size();
+//        
+//        for(int i = 0; i < sizeAlunoDisc; i++){
+//            for (int j = 0; j < sizeDisc ; j++){
+//                
+//            }
+//        }
+//        
+//        return null;
+//    }
 
     public static int getampopulacao(){//tamanho da população
-return populacao.size();
-}
+        return populacao.size();
+    }
     
 }

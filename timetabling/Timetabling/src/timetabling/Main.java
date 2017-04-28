@@ -46,8 +46,17 @@ public class Main {
 
             }
         });
-        Timeslot t = new Timeslot(); 
         
-       
+        //Hashtable <Integer, Integer> teste ;
+       // teste = new Hashtable<Integer,Integer>();
+       // Integer key = new Integer(0);
+       // Integer valor = new Integer(5);
+        //teste.put(key, valor);
+       // if(teste.get(key) != null)
+        //    teste.put(key, teste.get(key) +1);
+        
+        //System.out.println("valor:"+ teste.get(key));
+        
+        
     }
 }

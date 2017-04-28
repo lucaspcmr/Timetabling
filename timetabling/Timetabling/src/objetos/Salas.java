@@ -17,6 +17,15 @@ import static objetos.Disciplinas.quantidade;
 import timetabling.Filetomem;
 
 public class Salas {
+        //Tipos de sala da aplicação
+        public static int SALA_COMUM                   = 1;
+        public static int LABORATORIO_DE_INFORMATICA   = 2;
+        public static int LABORATORIO_ESPECIFICO_EC    = 3;
+        public static int LABORATORIO_ESPECIFICO_EE    = 4;
+        public static int LABORATORIO_ESPECIFICO_EM    = 5;
+        public static int LABORATORIO_ESPECIFICO_GERAL = 6;
+        public static int LABORATORIO_OUTRO            = 7;
+                
         private static int numeroSala;
 	public static Hashtable<String, String> salasigla;
 	public static Hashtable<String, String> saladesc;
