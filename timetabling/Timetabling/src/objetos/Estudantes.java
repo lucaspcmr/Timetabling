@@ -9,7 +9,7 @@ import java.util.List;
 import timetabling.Filetomem;
 
 public class Estudantes {
-
+    private static int numeroAlunos;
     public static Hashtable<String, String> estudantenome;
     public static Hashtable<String, String> estudantedisc1;
     public static Hashtable<String, String> estudantedisc2;
@@ -117,6 +117,7 @@ public class Estudantes {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        numeroAlunos = estudantenome.size();
 //        criaux();
     }
 

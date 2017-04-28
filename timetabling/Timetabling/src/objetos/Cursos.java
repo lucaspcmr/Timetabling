@@ -7,6 +7,7 @@ import java.util.Hashtable;
 import timetabling.Filetomem;
 
 public class Cursos {
+        private static int numeroCursos;
 	public static Hashtable<String, String> cursodesc;
 	public static Hashtable<String, String> cursoperiodos;
 	public static Hashtable<String, String> cursoturnos;
@@ -40,6 +41,14 @@ public class Cursos {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+                numeroCursos = cursodesc.size();
 	}
+
+    /**
+     * @return the numeroCursos
+     */
+    public static int getNumeroCursos() {
+        return numeroCursos;
+    }
 	
 }

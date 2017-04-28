@@ -10,6 +10,7 @@ import java.util.List;
 import timetabling.Filetomem;
 
 public class Disciplinas {
+        private static int numeroDisciplinas;
         public static Hashtable <Integer,String> disciplinacodigo;
 	public static Hashtable <Integer,String> disciplinacurso;
 	public static Hashtable <Integer,String> disciplinaperiodo;
@@ -85,6 +86,8 @@ public class Disciplinas {
 		}
                 
 	criaux();
+        numeroDisciplinas = disciplinacodigo.size();
+        
             System.out.println("Disciplinas");
              for (int i = 0; i < D.size(); i++) {
                  System.out.print(D.get(i)+" ");
@@ -121,6 +124,13 @@ public class Disciplinas {
     
     public static List<DisciplinaRestricao> getDisciplinaRestricao(){
         return disciplinaRestricao;
+    }
+
+    /**
+     * @return the numeroDisciplinas
+     */
+    public static int getNumeroDisciplinas() {
+        return numeroDisciplinas;
     }
    
 }

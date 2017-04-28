@@ -61,6 +61,7 @@ public class Populacao {
             
         }
     }
-    
-}
+    public static int getampopulacao(){//tamanho da população
+        return populacao.size();
+    }
 }

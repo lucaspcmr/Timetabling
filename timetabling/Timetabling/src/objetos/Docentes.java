@@ -9,7 +9,7 @@ import java.util.List;
 import timetabling.Filetomem;
 
 public class Docentes {
-    
+        private static int numeroProfessores;
 	public static Hashtable <String, String> docentesigla;
 	public static Hashtable <String, String> docentenome;
 	public static Hashtable <String, String> docentedisc1;
@@ -85,7 +85,7 @@ public class Docentes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+                numeroProfessores = docentenome.size();
 //	criaux();
 	}
 //       void criaux(){
@@ -104,5 +104,12 @@ public class Docentes {
         
     public static List<DocenteRestricao> getDocenteRestricao(){
         return docenteRestricao;
+    }
+
+    /**
+     * @return the numeroProfessores
+     */
+    public static int getNumeroProfessores() {
+        return numeroProfessores;
     }
 }
