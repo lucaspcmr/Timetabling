@@ -10,6 +10,7 @@ package objetos;
  * @author HOME
  */
 public class Turma {
+    //Classe usada para gerar a tabela de horarios
     private String disciplina;
     private String professor;
     private String sala;

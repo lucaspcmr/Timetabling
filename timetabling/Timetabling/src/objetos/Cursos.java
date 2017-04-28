@@ -7,7 +7,23 @@ import java.util.Hashtable;
 import timetabling.Filetomem;
 
 public class Cursos {
+        //codigo dos quatro cursos que a aplicação deve manipular
+        public static int ENGENHARIA_COMPUTACAO_MATUTINO = 1; //diurno manha e a tarde
+        public static int ENGENHARIA_COMPUTACAO_NOTURNO  = 2;
+        public static int ENGENHARIA_ELETRICA            = 3;
+        public static int ENGENHARIA_MECANICA            = 4;
+        
+        // codigo Turnos que identifica em quais turnos do dia o curso oferece disciplinas
+        public static int MATUTINO                    = 1;
+        public static int VESPERTINO                  = 2;
+        public static int MATUTINO_VESPERTINO         = 3;
+        public static int NOTURNO                     = 4;
+        public static int MATUTINO_NOTURNO            = 5;
+        public static int VESPERTINO_NOTURNO          = 6;
+        public static int MATUTINO_VESPERTINO_NOTURNO = 7;
+    
         private static int numeroCursos;
+        
 	public static Hashtable<String, String> cursodesc;
 	public static Hashtable<String, String> cursoperiodos;
 	public static Hashtable<String, String> cursoturnos;

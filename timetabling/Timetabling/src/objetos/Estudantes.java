@@ -9,7 +9,11 @@ import java.util.List;
 import timetabling.Filetomem;
 
 public class Estudantes {
+    //maximo de disciplinas por por aluno
+    private static int MAXIMO_DISCIPLINAS_ALUNOS = 10;
+    //numero de alunos
     private static int numeroAlunos;
+    
     public static Hashtable<String, String> estudantenome;
     public static Hashtable<String, String> estudantedisc1;
     public static Hashtable<String, String> estudantedisc2;

@@ -10,37 +10,52 @@ import timetabling.TextArea;
 
 //testes
 public class Timeslot {
- 
-    private static int numeroTimeslots = 168;
-    //Lista de timeslot seu codigo (seu id na mascara de solução é seu indice no List)
-    public static ArrayList<String> T;
+    /*
+    matutino: das 07h as 12h, de segunda a sexta-feira, e aos s´abados das 07h as 12h. 
+    Este turno possui codigo igual a 1(um);
+    vespertino: das 13h as 18h, de segunda a sexta-feira, e aos s´abados das 07h as 12h. 
+    Turno cujo codigo e igual a 2 dois);
+    noturno: das 18h as 22h, de segunda a sexta-feira, e aos s´abados das 07h as 12h. 
+    Turno cujo codigo e igual a 4(quatro).
+    */
     
-    //Listas de ids para os timeslots
-    public static List<Integer> matutino ;
-    public static List<Integer> vespertino;
-    public static List<Integer> noturno;
-    public static List<Integer> sabado;
-    public static Hashtable <String,Integer> timeslotID;    
+    // codigo do dia da semana ao qual o timeslot corresponde
+    public static int DOMINGO = 1;
+    public static int SEGUNDA = 2;
+    public static int TERCA   = 3;
+    public static int QUARTA  = 4;
+    public static int QUINTA  = 5;
+    public static int SEXTA   = 6;
+    public static int SABADO  = 7;
     
+    
+    private static int numeroTimeslots = 168;//quantidade de timeslots total
+
+    public static ArrayList<String> T;//Array de timeslots valores reais sua posição no array
+    
+    //Listas de codigos para os timeslots usado para as restrições dos cursos
+    public static List<Integer> matutino ;//codigo dos timeslots
+    public static List<Integer> vespertino;//codigo dos timeslots
+    public static List<Integer> noturno;//codigo dos timeslots
+    public static List<Integer> sabado;//codigo dos timeslots
+    public static List<Integer> almoco;//codigo dos almoco
     
     public Timeslot(){
-    T=new ArrayList<String>();//Array de timeslots valores reais sua posição no array e seu id de indentificação
+    T=new ArrayList<String>();
     
-    matutino = new ArrayList<Integer>();//id do timeslots
-    vespertino = new ArrayList<Integer>();//ids do timeslots
-    noturno = new ArrayList<Integer>();//id dos timeslots
-    sabado = new ArrayList<Integer>();//id dos timeslots
-    timeslotID = new Hashtable <String,Integer>();//id dos timeslots facilitar as buscas
+    matutino = new ArrayList<Integer>();
+    vespertino = new ArrayList<Integer>();
+    noturno = new ArrayList<Integer>();
+    sabado = new ArrayList<Integer>();
     
     criaux();//Cria o array T
     
-    gerarTimeSlotID(timeslotID);
+    //gerarTimeSlotID(timeslotID);
     gerarTimeslotMatutino();
     gerarTimeslotMatutinoSabado();
     gerarTimeslotVespertino();
     gerarTimeslotNoturno();
-    
-    
+    gerarTimeslotAlmoco();
     
 }
    void criaux() {
@@ -58,7 +73,7 @@ public class Timeslot {
                                     }
             }
         }
-   System.out.println(T); 
+   //System.out.println(T); 
    }
    
    public static void gerarTimeSlotID(Hashtable <String,Integer> timeslot){
@@ -67,16 +82,16 @@ public class Timeslot {
        }
    }
 
-   //gerar o map para dado um codigo do timeslot mostrar qual slot no horario ele corresponde
+   //gerar timeslot para o periodo matutino de sabado
     public void gerarTimeslotMatutinoSabado( ){
         int sab[] = {152,156};
             
         for (int i = sab[0]; i <= sab[1]; i++) {
-            sabado.add(timeslotID.get(i));
+            sabado.add(i);
         }
     }
    
-   //gerar o map para dado um codigo do timeslot mostrar qual slot no horario ele corresponde
+   //gerar timeslot para o periodo matutino
     public void gerarTimeslotMatutino( ){
         int seg[] = {32,36};
         int ter[] = {56,60};
@@ -86,34 +101,34 @@ public class Timeslot {
         int sab[] = {152,156};
         
         for (int i = seg[0]; i <= seg[1]; i++) {
-            matutino.add(timeslotID.get(i));
+            matutino.add(i);
         }
         
         for (int i = ter[0]; i <= ter[1]; i++) {
-          matutino.add(timeslotID.get(i));
+          matutino.add(i);
         }
         
         
         for (int i = qua[0]; i <= qua[1]; i++) {
-            matutino.add(timeslotID.get(i));
+            matutino.add(i);
         }
         
         
         for (int i = qui[0]; i <= qui[1]; i++) {
-            matutino.add(timeslotID.get(i));
+            matutino.add(i);
         }
         
         
         for (int i = sex[0]; i <= sex[1]; i++) {
-           matutino.add(timeslotID.get(i));
+           matutino.add(i);
         }
         
         for (int i = sab[0]; i <= sab[1]; i++) {
-            matutino.add(timeslotID.get(i));
+            matutino.add(i);
         }
     }
     
-    //gerar o map para dado um codigo do timeslot mostrar qual slot no horario ele corresponde
+    //gerar timeslot para o periodo vespertino
     public void gerarTimeslotVespertino( ){
         int seg[] = {38,42};
         int ter[] = {62,66};
@@ -123,34 +138,34 @@ public class Timeslot {
         int sab[] = {158,162};
         
         for (int i = seg[0]; i <= seg[1]; i++) {
-            vespertino.add(timeslotID.get(i));
+            vespertino.add(i);
         }
         
         for (int i = ter[0]; i <= ter[1]; i++) {
-          vespertino.add(timeslotID.get(i));
+          vespertino.add(i);
         }
         
         
         for (int i = qua[0]; i <= qua[1]; i++) {
-            vespertino.add(timeslotID.get(i));
+            vespertino.add(i);
         }
         
         
         for (int i = qui[0]; i <= qui[1]; i++) {
-            vespertino.add(timeslotID.get(i));
+            vespertino.add(i);
         }
         
         
         for (int i = sex[0]; i <= sex[1]; i++) {
-           vespertino.add(timeslotID.get(i));
+           vespertino.add(i);
         }
         
         for (int i = sab[0]; i <= sab[1]; i++) {
-            vespertino.add(timeslotID.get(i));
+            vespertino.add(i);
         }
     }
     
-     //gerar o map para dado um codigo do timeslot mostrar qual slot no horario ele corresponde
+     //gerar timeslot para o periodo noturno
     public void gerarTimeslotNoturno( ){
         int seg[] = {43,46};
         int ter[] = {67,70};
@@ -159,29 +174,60 @@ public class Timeslot {
         int sex[] = {139,142};
         
         for (int i = seg[0]; i <= seg[1]; i++) {
-            noturno.add(timeslotID.get(i));
+            noturno.add(i);
         }
         
         for (int i = ter[0]; i <= ter[1]; i++) {
-          noturno.add(timeslotID.get(i));
+          noturno.add(i);
         }
         
         
         for (int i = qua[0]; i <= qua[1]; i++) {
-            noturno.add(timeslotID.get(i));
+            noturno.add(i);
         }
         
         
         for (int i = qui[0]; i <= qui[1]; i++) {
-            noturno.add(timeslotID.get(i));
+            noturno.add(i);
         }
         
         
         for (int i = sex[0]; i <= sex[1]; i++) {
-           noturno.add(timeslotID.get(i));
+           noturno.add(i);
         }
     }
 
+    //gerar timeslot para o horario de almoço
+    public void gerarTimeslotAlmoco( ){
+        int seg[] = {37};
+        int ter[] = {61};
+        int qua[] = {85};
+        int qui[] = {109};
+        int sex[] = {133};
+        
+        for (int i = seg[0]; i <= seg[1]; i++) {
+            almoco.add(i);
+        }
+        
+        for (int i = ter[0]; i <= ter[1]; i++) {
+          almoco.add(i);
+        }
+        
+        
+        for (int i = qua[0]; i <= qua[1]; i++) {
+            almoco.add(i);
+        }
+        
+        
+        for (int i = qui[0]; i <= qui[1]; i++) {
+            almoco.add(i);
+        }
+        
+        
+        for (int i = sex[0]; i <= sex[1]; i++) {
+           almoco.add(i);
+        }
+    }
     /**
      * @return the numeroTimeslots
      */
