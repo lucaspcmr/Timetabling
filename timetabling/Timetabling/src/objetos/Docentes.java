@@ -9,7 +9,7 @@ import java.util.List;
 import timetabling.Filetomem;
 
 public class Docentes {
-    
+        private static int numeroProfessores;
 	public static Hashtable <String, String> docentesigla;
 	public static Hashtable <String, String> docentenome;
 	public static Hashtable <String, String> docentedisc1;
@@ -45,6 +45,7 @@ public class Docentes {
 			str=buffR.readLine();
 			if(str.charAt(0)!='/'){
 			str1=str.substring(0,str.indexOf(","));
+                        P.add(str1);
 			str2=str.substring(str.indexOf(",")+1,str.length());
 			str3=str2.substring(0,str2.indexOf(","));
 			docentesigla.put(str1, str3);
@@ -84,18 +85,18 @@ public class Docentes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-	criaux();
+                numeroProfessores = docentenome.size();
+//	criaux();
 	}
-       void criaux(){
-            int quantidade;
-            quantidade=docentenome.size();
-            
-            for(int i=1;i<quantidade;i++){
-                P.add(docentenome.get(Integer.toString(i)));
-                }
-            
-            }
+//       void criaux(){
+//            int quantidade;
+//            quantidade=docentenome.size();
+//            
+//            for(int i=1;i<quantidade;i++){
+//                P.add(docentenome.get(Integer.toString(i)));
+//                }
+//            
+//            }
     
     public static void gerarListaDocenteRestricao(){
         //do something
@@ -103,5 +104,12 @@ public class Docentes {
         
     public static List<DocenteRestricao> getDocenteRestricao(){
         return docenteRestricao;
+    }
+
+    /**
+     * @return the numeroProfessores
+     */
+    public static int getNumeroProfessores() {
+        return numeroProfessores;
     }
 }

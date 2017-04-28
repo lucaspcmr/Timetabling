@@ -17,6 +17,7 @@ import static objetos.Disciplinas.quantidade;
 import timetabling.Filetomem;
 
 public class Salas {
+        private static int numeroSala;
 	public static Hashtable<String, String> salasigla;
 	public static Hashtable<String, String> saladesc;
 	public static Hashtable<String, String> salatipo;
@@ -62,6 +63,7 @@ public Salas(){
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+        numeroSala = salasigla.size();
         criaux();
 }
 void criaux(){
@@ -83,6 +85,13 @@ void criaux(){
 
     public static List<SalaRestricao> getSalaRestricao(){
         return salaRestricao;
+    }
+
+    /**
+     * @return the numeroSala
+     */
+    public static int getNumeroSala() {
+        return numeroSala;
     }
 
 }

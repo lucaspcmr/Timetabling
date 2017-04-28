@@ -11,6 +11,7 @@ import timetabling.TextArea;
 //testes
 public class Timeslot {
  
+    private static int numeroTimeslots = 168;
     //Lista de timeslot seu codigo (seu id na mascara de solução é seu indice no List)
     public static ArrayList<String> T;
     
@@ -179,6 +180,13 @@ public class Timeslot {
         for (int i = sex[0]; i <= sex[1]; i++) {
            noturno.add(timeslotID.get(i));
         }
+    }
+
+    /**
+     * @return the numeroTimeslots
+     */
+    public static int getNumeroTimeslots() {
+        return numeroTimeslots;
     }
     
      

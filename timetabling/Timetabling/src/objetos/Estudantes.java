@@ -9,7 +9,7 @@ import java.util.List;
 import timetabling.Filetomem;
 
 public class Estudantes {
-
+    private static int numeroAlunos;
     public static Hashtable<String, String> estudantenome;
     public static Hashtable<String, String> estudantedisc1;
     public static Hashtable<String, String> estudantedisc2;
@@ -53,6 +53,7 @@ public class Estudantes {
                 if (str.charAt(0) != '/') {
                     listAlunoDisciplina.add(new AlunoDisciplina());
                     str1 = str.substring(0, str.indexOf(","));
+                    E.add(str1);
                     str2 = str.substring(str.indexOf(",") + 1, str.length());
                     str3 = str2.substring(0, str2.indexOf(","));
                     estudantenome.put(str1, str3);
@@ -116,18 +117,19 @@ public class Estudantes {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        criaux();
+        numeroAlunos = estudantenome.size();
+//        criaux();
     }
 
-    void criaux() {
-        int quantidade;
-        quantidade = estudantenome.size();
-
-        for (int i = 1; i < quantidade; i++) {
-            E.add(estudantenome.get(Integer.toString(i)));
-        }
-
-    }
+//    void criaux() {
+//        int quantidade;
+//        quantidade = estudantenome.size();
+//
+//        for (int i = 1; i < quantidade; i++) {
+//            E.add(estudantenome.get(Integer.toString(i)));
+//        }
+//
+//    }
 
     public static void gerarListaAlunosDisciplina() {
         //do something

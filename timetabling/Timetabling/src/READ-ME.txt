@@ -73,7 +73,7 @@ Foi criado classe tipo DisciplinaRestricao onde coloca o codigo da disciplina e 
 Foi criado classe tipo SalaRestricao onde coloca o codigo da sala e o timeslot que ela não pode, criar   lista na classe Salas
 Foi criado classe AlunoDisciplina onde coloca o codigo do aluno e a disciplina que pode fazer, criar   lista na classe Estudantes
 - criar o metodo de mutação
-- Criar o Metodo de seleção tipo Roleta
+- Criar o Metodo de seleção tipo Roleta (criado)
 -salvar o arquivo
 
 *********************************************************************************************************************************************
