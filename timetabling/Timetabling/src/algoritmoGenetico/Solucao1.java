@@ -33,7 +33,7 @@ os valores de sala,professor,horario,disciplina corresponde ao indice da matrix 
 os indices como id unicos uma e um vetor desses ids [s,p,h,d]
 */
 // valores na mascara de solução 1 = alocado, 0 disponivel, -1 horario invalido
-public class Solucao {
+public class Solucao1 {
     
    private static int HARDCONSTRAINT = -10;//penalidade hardconstraint
    private static int SOFTCONSTRAINT = -1;//penalidade softconstraint
@@ -50,12 +50,11 @@ public class Solucao {
    
    //Hashtable, usada para verificar softconstrants de aluno horario
    //e capacidade de sala
-   public static Hashtable <Integer, Integer> disciplinaTimeSlot ;//HashMap para pegar o timeslot de uma determinada disciplina
-   public static Hashtable <Integer, Integer> professorQuantidadeDisciplina ;//HashMap para validar a quantidade de disciplinas por professor
-   public static Hashtable <Integer, Integer> timeSlotSala ;//timeslot para verificar o a sala em um determinado timeslot
+   public static Hashtable <Integer, Integer> disciplinaTimeSlot ;
+   public static Hashtable <Integer, Integer> professorQuantidadeDisciplina ;
+   public static Hashtable <Integer, Integer> timeSlotSala ;
+   public static Hashtable <Integer, List<Integer>> disciplinaProfessor;
    
-   
-   //Lista das salas para cada tipo
     private static List<Integer> salaComum;
     private static List<Integer> laboratorioInformatica;
     private static List<Integer> laboratorioEspecificoEC;
@@ -64,16 +63,22 @@ public class Solucao {
     private static List<Integer> laboratorioEspecificoEG;
     private static List<Integer> laboratorioOutro;
     
-    public static Hashtable <Integer, List<Integer>> disciplinaProfessor;//retorna os professores que pode ministrar uma determinada disciplina
-       
+    //Mascara de soluÃ§oes estrutura que contrem todas as mascaras 
+    private static Object solucao[];
+    
     //inicializa com timeslots, numero de salas e numero de professores
    public static void construirMapSolucao(int n_timeslots,int n_salas,int n_professores,int n_disciplinas){
        
+        disciplinaTimeSlot = new Hashtable <Integer,Integer>();
+        professorQuantidadeDisciplina = new Hashtable <Integer,Integer>();
+        timeSlotSala = new Hashtable <Integer,Integer>();
+        disciplinaProfessor = new Hashtable <Integer,List<Integer>>();
+        
         //tamanho da matriz
-        Solucao.n_timeslots            = n_timeslots; 
-        Solucao.n_salas                = n_salas;
-        Solucao.n_professores          = n_professores;
-        Solucao.n_disciplinas          = n_disciplinas;
+        Solucao1.n_timeslots            = n_timeslots; 
+        Solucao1.n_salas                = n_salas;
+        Solucao1.n_professores          = n_professores;
+        Solucao1.n_disciplinas          = n_disciplinas;
              
         //matrizes
          salas        = new byte[n_salas][n_timeslots];        //sala - horario
@@ -81,7 +86,12 @@ public class Solucao {
          disciplinas  = new byte[n_disciplinas][n_timeslots];  //disciplinas - timeslot
          
          initSolucao();
-           
+         
+         solucao = new Object[3];
+         solucao[0] = salas;
+         solucao[1] = professores;
+         solucao[2] = disciplinas;
+         
         salaComum               = new ArrayList<Integer>();
         laboratorioInformatica  = new ArrayList<Integer>();
         laboratorioEspecificoEC = new ArrayList<Integer>();
@@ -89,14 +99,8 @@ public class Solucao {
         laboratorioEspecificoEM = new ArrayList<Integer>();
         laboratorioEspecificoEG = new ArrayList<Integer>();
         laboratorioOutro        = new ArrayList<Integer>();
-        
-        disciplinaTimeSlot            = new Hashtable <Integer,Integer>();
-        professorQuantidadeDisciplina = new Hashtable <Integer,Integer>();
-        timeSlotSala                  = new Hashtable <Integer,Integer>();
-        disciplinaProfessor           = new Hashtable <Integer,List<Integer>>();
-        
          
-         preencherMascaraRestricoes();//preecher timeslots com as retriçoes apenas de horarios
+         preencherMascaraRestricoes();
          tipoSalaSalaDisciplina();
          
     }
@@ -128,6 +132,9 @@ public class Solucao {
         setRestricoesSalas(Filetomemrest.salarest); 
 
         restricaoHorarioCurso();
+        disciplinaTimeSlot.clear();//limpar HashTable
+        timeSlotSala.clear();;//limpar hashtable
+        professorQuantidadeDisciplina.clear();//limpar hashtable      
     }
    
     //iniciar a marcara de validaÃ§Ã£o de schedule todos as matrizes
@@ -269,7 +276,7 @@ public class Solucao {
         return retorno;
     }
     
-    //Função que calcula a função fitnees verificar choque de horarios
+    //Função que calcula a função fitnees
     public static int calculaFitnees(Gene genes[]){
         int fitness = 0;
         initSolucao();
@@ -319,7 +326,7 @@ public class Solucao {
     //de soluÃ§oes, setando -1 no espaÃ§o de soluÃ§oes
     //mostarndo uma soluÃ§Ã£o impossivel
     //recebe a lista de docentes e uma lista de restriçoes
-    private static void setRestricoesProfessores(List<DocenteRestricao> docente){
+    public static void setRestricoesProfessores(List<DocenteRestricao> docente){
         
         for (int i = 0; i < docente.size(); i++) {
             DocenteRestricao aux = docente.get(i);//get codigo Objeto
@@ -341,7 +348,7 @@ public class Solucao {
     //implementar restriÃ§oes as disciplinas setando ja na mascara 
     //de soluÃ§oes, setando -1 no espaÃ§o de soluÃ§oes
     //mostarndo uma soluÃ§Ã£o impossivel
-    private static void setRestricoesDisciplinas(List<DisciplinaRestricao> disciplina){
+    public static void setRestricoesDisciplinas(List<DisciplinaRestricao> disciplina){
         
         for (int j = 0; j < disciplina.size(); j++) {
                 
@@ -367,7 +374,7 @@ public class Solucao {
     }
     
     //retorna os ids das disciplinas o codigo da disciplina disciplina restrição
-     private static List<Integer> getRestricoesDisciplinasIds(int codigoRestricao){
+     public static List<Integer> getRestricoesDisciplinasIds(int codigoRestricao){
          
          List<Integer> ids = new ArrayList<Integer>();//lista dos ids das disciplinas
         
@@ -385,7 +392,7 @@ public class Solucao {
     //implementar restriÃ§oes para as salas setando ja na mascara 
     //de soluÃ§oes, setando -1 no espaÃ§o de soluÃ§oes
     //mostarndo uma soluÃ§Ã£o impossivel
-     private static void setRestricoesSalas(List<SalaRestricao> _salas){
+     public static void setRestricoesSalas(List<SalaRestricao> _salas){
          for (int i = 0; i < _salas.size(); i++) {
             SalaRestricao aux = _salas.get(i);//get codigo Objeto
             List timeslot = aux.getTimeslot();//codigos do timeslot
@@ -836,5 +843,54 @@ public class Solucao {
         
         return timeslot;
     }
-   
+    
+    
+  //Teste para uma segunda solução sem tanta validação  
+    public static void validaSolucao(Gene[] genes){
+        
+        for (int i = 0; i < genes.length; i++) {
+            Gene gene = genes[i];
+            
+            int disciplina = gene.getDisciplina();
+            int professor  = gene.getProfessor();
+            int timeslot   = gene.getTimeslot();
+            int sala       = gene.getSala();
+            
+            boolean turno = validaTurno(disciplina,timeslot);
+            
+            
+            
+        }
+    }
+    
+    //verifica se o turno da disciplina esta corrento
+    public static boolean validaTurno(int disciplina,int timeslot){
+        
+        Integer keyDisciplina = Disciplinas.D.get(disciplina+1);//pega a key da disciplina
+        String curso = Disciplinas.disciplinacurso.get(keyDisciplina+"");//pega a key do curso
+        String turno = Cursos.cursoturnos.get(curso);//pega o turno do curso
+        int turnoInt = Integer.valueOf(turno);
+        
+        int timeslotTurno = Timeslot.timeSlotTurno.get(timeslot);
+        if(timeslotTurno == Cursos.MATUTINO){
+            
+            if(turnoInt == Cursos.MATUTINO || turnoInt == Cursos.MATUTINO_NOTURNO || turnoInt == Cursos.MATUTINO_VESPERTINO || turnoInt == Cursos.MATUTINO_VESPERTINO_NOTURNO )
+                return true;
+        }
+        else if(timeslotTurno == Cursos.VESPERTINO || turnoInt == Cursos.VESPERTINO_NOTURNO || turnoInt == Cursos.MATUTINO_VESPERTINO || turnoInt == Cursos.MATUTINO_VESPERTINO_NOTURNO){
+            return true;
+        }
+        else if (timeslotTurno == Cursos.NOTURNO || turnoInt == Cursos.MATUTINO_NOTURNO || turnoInt == Cursos.MATUTINO_VESPERTINO_NOTURNO || turnoInt == Cursos.VESPERTINO_NOTURNO){
+            return true;
+        }
+            
+        return false;
+    }
+    
+    public static boolean validaDisciplinaRestricao(int disciplina,int timeslot){
+            
+        return false;
+    }
+    
+    
 }

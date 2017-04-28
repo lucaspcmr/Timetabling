@@ -49,7 +49,7 @@ public class Populacao {
             
             genes[i] = gene;
         }
-        Solucao.validaGene(genes);
+        //Solucao.validaGene(genes); //criar genes validos ???
         
         Individuo individuo = new Individuo(genes,Individuo.NO_MUTATION);
                 return individuo;

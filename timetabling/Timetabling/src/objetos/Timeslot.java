@@ -2,6 +2,7 @@ package objetos;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -40,6 +41,8 @@ public class Timeslot {
     public static List<Integer> sabado;//codigo dos timeslots
     public static List<Integer> almoco;//codigo dos almoco
     
+    public static Hashtable <Integer, Integer> timeSlotTurno ;//codigo dos timeslots
+    
     public Timeslot(){
     T=new ArrayList<String>();
     
@@ -48,6 +51,8 @@ public class Timeslot {
     noturno = new ArrayList<Integer>();
     sabado = new ArrayList<Integer>();
     
+    timeSlotTurno   = new Hashtable<Integer,Integer>();
+     
     criaux();//Cria o array T
     
     //gerarTimeSlotID(timeslotID);
@@ -74,6 +79,26 @@ public class Timeslot {
             }
         }
    //System.out.println(T); 
+   }
+   
+   //dado um id de timeslot retorna o turno desse timeslot
+   public static void gerarHashMatutino(){
+       for (int i = 0; i < numeroTimeslots; i++) {
+           timeSlotTurno.put(i, i);
+       }
+       
+       for (int i = 0; i < matutino.size(); i++) {
+           timeSlotTurno.put(matutino.get(i) -1, Cursos.MATUTINO);
+       }
+       
+       for (int i = 0; i < vespertino.size(); i++) {
+           timeSlotTurno.put(vespertino.get(i) -1, Cursos.VESPERTINO);
+       }
+       
+       for (int i = 0; i < noturno.size(); i++) {
+           timeSlotTurno.put(noturno.get(i) -1, Cursos.NOTURNO);
+       }
+       
    }
    
    public static void gerarTimeSlotID(Hashtable <String,Integer> timeslot){
