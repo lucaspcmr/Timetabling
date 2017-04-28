@@ -142,10 +142,10 @@ public class Button {
                  }                    
                }
                  
-                 button.setEnabled(false);
+               //  button.setEnabled(false);
                  AlgoritimoGenetico.startAG();
-                 button.setEnabled(true);
-                 horario.setEnabled(true);
+                 //button.setEnabled(true);
+                 //horario.setEnabled(true);
              }
           });	  
     }
