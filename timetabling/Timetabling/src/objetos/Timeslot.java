@@ -41,7 +41,7 @@ public class Timeslot {
     public static List<Integer> sabado;//codigo dos timeslots
     public static List<Integer> almoco;//codigo dos almoco
     
-    public static Hashtable <Integer, Integer> timeSlotTurno ;//codigo dos timeslots
+    
     
     public Timeslot(){
     T=new ArrayList<String>();
@@ -51,7 +51,7 @@ public class Timeslot {
     noturno = new ArrayList<Integer>();
     sabado = new ArrayList<Integer>();
     
-    timeSlotTurno   = new Hashtable<Integer,Integer>();
+    
      
     criaux();//Cria o array T
     
@@ -82,9 +82,13 @@ public class Timeslot {
    }
    
    //dado um id de timeslot retorna o turno desse timeslot
-   public static void gerarHashMatutino(){
+   public static Hashtable <Integer, Integer> gerarHashTimeSlotTurno(){
+        
+       Hashtable <Integer, Integer> timeSlotTurno  = new Hashtable<Integer,Integer>();;//codigo dos timeslots
+       
+       //iniciar hash
        for (int i = 0; i < numeroTimeslots; i++) {
-           timeSlotTurno.put(i, i);
+           timeSlotTurno.put(i, 0);
        }
        
        for (int i = 0; i < matutino.size(); i++) {
@@ -98,6 +102,8 @@ public class Timeslot {
        for (int i = 0; i < noturno.size(); i++) {
            timeSlotTurno.put(noturno.get(i) -1, Cursos.NOTURNO);
        }
+       
+       return timeSlotTurno;
        
    }
    

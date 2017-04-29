@@ -62,12 +62,13 @@ public class Solucao1 {
     private static List<Integer> laboratorioEspecificoEM;
     private static List<Integer> laboratorioEspecificoEG;
     private static List<Integer> laboratorioOutro;
-    
-    //Mascara de soluÃ§oes estrutura que contrem todas as mascaras 
-    private static Object solucao[];
+      
+    private static Hashtable <Integer, Integer> timeSlotTurno;//Hashtable para validar timeslot turno
+    private static Hashtable <Integer, Integer> salaTipoSala;//Hashtable para validar timeslot turno
     
     //inicializa com timeslots, numero de salas e numero de professores
    public static void construirMapSolucao(int n_timeslots,int n_salas,int n_professores,int n_disciplinas){
+       
        
         disciplinaTimeSlot = new Hashtable <Integer,Integer>();
         professorQuantidadeDisciplina = new Hashtable <Integer,Integer>();
@@ -86,12 +87,7 @@ public class Solucao1 {
          disciplinas  = new byte[n_disciplinas][n_timeslots];  //disciplinas - timeslot
          
          initSolucao();
-         
-         solucao = new Object[3];
-         solucao[0] = salas;
-         solucao[1] = professores;
-         solucao[2] = disciplinas;
-         
+          
         salaComum               = new ArrayList<Integer>();
         laboratorioInformatica  = new ArrayList<Integer>();
         laboratorioEspecificoEC = new ArrayList<Integer>();
@@ -100,8 +96,10 @@ public class Solucao1 {
         laboratorioEspecificoEG = new ArrayList<Integer>();
         laboratorioOutro        = new ArrayList<Integer>();
          
-         preencherMascaraRestricoes();
-         tipoSalaSalaDisciplina();
+        timeSlotTurno = Timeslot.gerarHashTimeSlotTurno();
+        
+        preencherMascaraRestricoes();
+        tipoSalaSalaDisciplina();
          
     }
     
@@ -684,7 +682,9 @@ public class Solucao1 {
         Integer id = new Integer(disciplina);
         return disciplinaProfessor.get(id);
     }
-    //verifica o tipo de curso que é a disciplina 
+    
+    
+//verifica o tipo de curso que é a disciplina 
     //colocando na mascara de solução os horarios que não pode ser ofertadas as disciplinas
     //exemplo o curso de Eng COmputação matutino so pode ofertar disciplinas
     //no horarios de seg - sab das 7:00 as 12:00
@@ -769,81 +769,6 @@ public class Solucao1 {
         }
     }
     
-    public static boolean validaGene(Gene[] genes){
-        Random random = new Random();
-        
-        int sizeGene = genes.length;
-            
-        int sizeDocentes = 0;
-        int sizeSalas    = 0;
-        int sizeTimeslot = 0;
-        
-        int sorteioDocente;
-        int sorteioSala;
-        int sorteioTimeslot;
-                
-        for (int i = 0; i < sizeGene; i++){
-            Gene gene = genes[i];
-            
-            boolean valor = isValorValido(gene);
-            if(valor == false){
-                
-                //lista dos professores que podem ministrar aquela disciplina
-                List<Integer> listaProfessores = disciplinaProfessor.get(0);
-                Integer tipoSala = Disciplinas.D2.get(i);
-                //Lista de salas que aquela disciplina pode ser ministrada
-                List<Integer> listaSalas      = getSalaDisciplina(tipoSala);
-
-                sizeDocentes = listaProfessores.size();
-                sizeSalas    = listaSalas.size();
-                
-                for (int j = 0; j < sizeDocentes; j++) {
-                    for (int k = 0; k < sizeSalas; k++) {
-                        
-                        sorteioDocente = j;
-                        sorteioSala = k;
-                        sorteioTimeslot = getTimeslotProfessorSala(j,k,i);
-                        
-                        gene.setProfessor(sorteioDocente);
-                        gene.setSala(sorteioSala);
-                        gene.setTimeslot(sorteioTimeslot);
-                        gene.setDisciplina(i);
-                        
-                        valor = isValorValido(gene);
-                        
-                        if(valor == true)
-                            return true;
-                    }
-                }        
-            }
-              
-        } 
-        
-        return false;
-        
-    }
-    
-    private static int getTimeslotProfessorSala(int professor,int sala,int disciplina){
-        List<Integer> listaProfessores = timeSlotLivreProfessorList(professor);
-        List<Integer> listaSalas       = timeSlotLivreSalaList(sala);
-        List<Integer> listaDisciplinas = timeSlotLivreDisciplinaList(disciplina);
-        
-        int timeslot = -1;
-        for (int k = 0; k < listaDisciplinas.size(); k++) {
-             for (int i = 0; i < listaProfessores.size(); i++) {
-                for (int j = 0; j < listaSalas.size(); j++) {
-                    if(listaProfessores.get(i) == listaSalas.get(j) && listaProfessores.get(i) == listaDisciplinas.get(j) && listaSalas.get(i) == listaDisciplinas.get(j) ){
-                        timeslot = listaDisciplinas.get(k);
-                        return timeslot;
-                    }
-                        
-                }
-        }
-        }
-        
-        return timeslot;
-    }
-    
     
   //Teste para uma segunda solução sem tanta validação  
     public static void validaSolucao(Gene[] genes){
@@ -857,7 +782,7 @@ public class Solucao1 {
             int sala       = gene.getSala();
             
             boolean turno = validaTurno(disciplina,timeslot);
-            
+            boolean disciplinaRestricao = validaDisciplinaRestricao(disciplina,timeslot);
             
             
         }
@@ -871,7 +796,7 @@ public class Solucao1 {
         String turno = Cursos.cursoturnos.get(curso);//pega o turno do curso
         int turnoInt = Integer.valueOf(turno);
         
-        int timeslotTurno = Timeslot.timeSlotTurno.get(timeslot);
+        int timeslotTurno = timeSlotTurno.get(timeslot);
         if(timeslotTurno == Cursos.MATUTINO){
             
             if(turnoInt == Cursos.MATUTINO || turnoInt == Cursos.MATUTINO_NOTURNO || turnoInt == Cursos.MATUTINO_VESPERTINO || turnoInt == Cursos.MATUTINO_VESPERTINO_NOTURNO )
