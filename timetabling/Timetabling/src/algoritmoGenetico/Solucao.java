@@ -859,7 +859,7 @@ public class Solucao {
     //O timeslot sera gerado aleatoriamente para um horario disponivel da disciplina
     //para um horario disponivel daquela disciplina
     //a mutação pode trocar o professor, sala ou a logica do timeslot
-    public static boolean validaGene(Gene[] genes){
+    public static boolean validaGene(Gene[] genes,int teste){
         Random random = new Random();
         
         int sizeGene = genes.length;
@@ -888,16 +888,23 @@ public class Solucao {
 
                 sizeDocentes = listaProfessores.size();
                 sizeSalas    = listaSalas.size();
-                sizeTimeslot = listaTimeslotDisciplina.size();
+                //sizeTimeslot = listaTimeslotDisciplina.size();//pega os timeslots disponivel da disciplina
                 
                 sorteioDocente = random.nextInt(sizeDocentes);
                 sorteioSala = random.nextInt(sizeSalas);
-                sorteioTimeslot = random.nextInt(sizeTimeslot);
-                        
+    
                 gene.setProfessor(listaProfessores.get(sorteioDocente));
                 gene.setSala(listaSalas.get(sorteioSala));
-                gene.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
                 gene.setDisciplina(i);
+                
+                if(teste == 1){//tentar encontrar um timeslot disponivel para disciplina,professor,sala
+                    sorteioTimeslot = getTimeslotProfessorSala(listaProfessores.get(sorteioDocente),listaSalas.get(sorteioSala),i);
+                     gene.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
+                }
+                else{//seta um timeslot disponivel da disciplina
+                    sorteioTimeslot = random.nextInt(sizeTimeslot);//seleciona um timeslot aleatoria da disciplina
+                    gene.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));//timeslot da disciplina
+                }
                                                         
             }
               
@@ -907,25 +914,49 @@ public class Solucao {
         
     }
     
-//    private static int getTimeslotProfessorSala(int professor,int sala,int disciplina){
-//        List<Integer> listaProfessores = timeSlotLivreProfessorList(professor);
-//        List<Integer> listaSalas       = timeSlotLivreSalaList(sala);
-//        List<Integer> listaDisciplinas = timeSlotLivreDisciplinaList(disciplina);
-//        
-//        int timeslot = -1;
-//        for (int k = 0; k < listaDisciplinas.size(); k++) {
-//             for (int i = 0; i < listaProfessores.size(); i++) {
-//                for (int j = 0; j < listaSalas.size(); j++) {
-//                    if(listaProfessores.get(i) == listaSalas.get(j) && listaProfessores.get(i) == listaDisciplinas.get(j) && listaSalas.get(i) == listaDisciplinas.get(j) ){
-//                        timeslot = listaDisciplinas.get(k);
-//                        return timeslot;
-//                    }
-//                        
-//                }
-//        }
-//        }
-//        
-//        return timeslot;
-//    }
+    private static int getTimeslotProfessorSala(int professor,int sala,int disciplina){
+        List<Integer> listaProfessores = timeSlotLivreProfessorList(professor);
+        List<Integer> listaSalas       = timeSlotLivreSalaList(sala);
+        List<Integer> listaDisciplinas = timeSlotLivreDisciplinaList(disciplina);
+        
+        Hashtable <Integer, Integer> timeslotProfessor = new Hashtable<Integer,Integer>() ;
+        Hashtable <Integer, Integer> timeslotSala = new Hashtable<Integer,Integer>();
+        
+        for (int i = 0; i < listaProfessores.size(); i++) {
+            timeslotProfessor.put(listaProfessores.get(i), 1);
+        }
+        
+        for (int i = 0; i < listaSalas.size(); i++) {
+           timeslotProfessor.put(listaSalas.get(i), 1);
+        }
+        
+        for (int i = 0; i < listaDisciplinas.size();i++) {
+            int timeslot = listaDisciplinas.get(i);
+            
+            Integer p = timeslotProfessor.get(timeslot);
+            Integer s = timeslotSala.get(timeslot);
+            
+            if(p !=null && s !=null)
+                return timeslot;
+        }
+        
+        if(listaDisciplinas.size() !=0){
+            Random random = new Random();
+            int retorno = random.nextInt(listaDisciplinas.size());
+            return retorno;
+        }
+        else if(listaProfessores.size() !=0){
+            Random random = new Random();
+            int retorno = random.nextInt(listaProfessores.size());
+            return retorno;
+        }
+        else if(listaSalas.size() !=0){
+            Random random = new Random();
+            int retorno = random.nextInt(listaSalas.size());
+            return retorno;
+        }
+          
+        return -1;
+    }
    
 }

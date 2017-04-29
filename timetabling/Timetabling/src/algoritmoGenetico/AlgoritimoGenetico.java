@@ -20,6 +20,7 @@ public class AlgoritimoGenetico {
 
     private static List<Turma> turmas;//turma
     private static List<Gene> cromossomo;//solução melhor individuo do AG
+    private static Solucao solucao;
 
     AlgoritimoGenetico() {
         turmas = new ArrayList<Turma>();
