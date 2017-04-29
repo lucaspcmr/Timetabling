@@ -18,18 +18,18 @@ import objetos.Disciplinas;
 public class Populacao {
         public static ArrayList<Individuo> populacao = new ArrayList<>();
     
-    public static Individuo criaIndividuo(List<Integer> disciplinas, List<Integer> salas, List<String> docentes, List<String> timeslot) {
+    public static Individuo criaIndividuo(int n_disciplinas, int n_salas, int n_docentes, int n_timeslot) {
     
         Random random = new Random();
         
         int sizeGene;
-        sizeGene = disciplinas.size();
+        sizeGene = n_disciplinas;
         
         Gene genes[] = new Gene[sizeGene];
         
-        int sizeDocentes = docentes.size();
-        int sizeSalas = salas.size();
-        int sizeTimeslot = timeslot.size();
+        int sizeDocentes = n_docentes;
+        int sizeSalas = n_salas;
+        int sizeTimeslot = n_timeslot;
         
         int sorteioDocente;
         int sorteioSala;
@@ -50,17 +50,17 @@ public class Populacao {
             genes[i] = gene;
         }
         
-        Solucao.validaGene(genes,1); //criar genes validos para professor, sala inicial
+        //Solucao.validaGene(genes,1); //criar genes validos para professor, sala inicial
         
         Individuo individuo = new Individuo(genes,Individuo.NO_MUTATION);
                 return individuo;
     }
     
-    public static void criaPopulacao(int sizeIndividuo, List<Integer> disciplinas, List<Integer> salas, List<String> docentes, List<String> timeslot){
+    public static void criaPopulacao(int n_disciplinas, int n_salas, int n_docentes, int n_timeslot){
     
-        for (int i = 0 ; i < sizeIndividuo ; i++){
+        for (int i = 0 ; i < n_disciplinas ; i++){
         
-            populacao.add(criaIndividuo(disciplinas, salas, docentes, timeslot));
+            populacao.add(criaIndividuo(n_disciplinas, n_salas, n_docentes, n_timeslot));
             
         }
     }

@@ -27,6 +27,11 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import static objetos.Cursos.ENGENHARIA_COMPUTACAO_MATUTINO;
+import static objetos.Cursos.ENGENHARIA_COMPUTACAO_NOTURNO;
+import static objetos.Cursos.ENGENHARIA_ELETRICA;
+import static objetos.Cursos.ENGENHARIA_MECANICA;
+import objetos.Disciplinas;
 import objetos.Turma;
 /**
  *
@@ -36,9 +41,7 @@ public class TabelaHorario {
 private static  int Linha;
 private static  int Coluna;
 
-private static List<Turma> turmas;
-private Hashtable <Integer, Integer[]> ponto;//hash map para retornar o timeslot na tabela de horarios
-
+private static Hashtable <Integer, Integer[]> ponto;//hash map para retornar o timeslot na tabela de horarios
 Object obj[];//lista horario de cada curso tamanho 4
 
 TabelaHorario(){
@@ -51,8 +54,7 @@ TabelaHorario(){
     
     ponto =  new Hashtable <Integer,Integer[]>();
     gerarHashTimeslot(ponto);
-    turmas = AlgoritimoGenetico.getTurmas();
-    
+   
 //    Integer i [] = ponto.get(34);
 //    System.out.println("L: "+i[0]+" C: "+i[1]);
 }   
@@ -69,54 +71,54 @@ TabelaHorario(){
         f.add(scrollPane, BorderLayout.CENTER);
         
         List<JTable> table = (List<JTable>) obj[0];
-        table.add(addTable(p,0,0,"ECM","1 Periodo",0,0));
-        table.add(addTable(p,10,0,"ECM","2 Periodo",0,1));
-        table.add(addTable(p,20,0,"ECM","3 Periodo",0,2));
-        table.add(addTable(p,30,0,"ECM","4 Periodo",0,3));
-        table.add(addTable(p,40,0,"ECM","5 Periodo",0,4));
-        table.add(addTable(p,50,0,"ECM","6 Periodo",0,5));
-        table.add(addTable(p,60,0,"ECM","7 Periodo",0,6));
-        table.add(addTable(p,70,0,"ECM","8 Periodo",0,7));
-        table.add(addTable(p,80,0,"ECM","9 Periodo",0,8));
-        table.add(addTable(p,90,0,"ECM","10 Periodo",0,9));
+        table.add(addTable(p,0,0,"ECM","1 Periodo",ENGENHARIA_COMPUTACAO_MATUTINO,1));
+        table.add(addTable(p,10,0,"ECM","2 Periodo",ENGENHARIA_COMPUTACAO_MATUTINO,2));
+        table.add(addTable(p,20,0,"ECM","3 Periodo",ENGENHARIA_COMPUTACAO_MATUTINO,3));
+        table.add(addTable(p,30,0,"ECM","4 Periodo",ENGENHARIA_COMPUTACAO_MATUTINO,4));
+        table.add(addTable(p,40,0,"ECM","5 Periodo",ENGENHARIA_COMPUTACAO_MATUTINO,5));
+        table.add(addTable(p,50,0,"ECM","6 Periodo",ENGENHARIA_COMPUTACAO_MATUTINO,6));
+        table.add(addTable(p,60,0,"ECM","7 Periodo",ENGENHARIA_COMPUTACAO_MATUTINO,7));
+        table.add(addTable(p,70,0,"ECM","8 Periodo",ENGENHARIA_COMPUTACAO_MATUTINO,8));
+        table.add(addTable(p,80,0,"ECM","9 Periodo",ENGENHARIA_COMPUTACAO_MATUTINO,9));
+        table.add(addTable(p,90,0,"ECM","10 Periodo",ENGENHARIA_COMPUTACAO_MATUTINO,10));
         
         table = (List<JTable>) obj[1];
-        table.add(addTable(p,0,10,"ECN","1 Periodo",1,0));
-        table.add(addTable(p,10,10,"ECN","2 Periodo",1,1));
-        table.add(addTable(p,20,10,"ECN","3 Periodo",1,2));
-        table.add(addTable(p,30,10,"ECN","4 Periodo",1,3));
-        table.add(addTable(p,40,10,"ECN","5 Periodo",1,4));
-        table.add(addTable(p,50,10,"ECN","6 Periodo",1,5));
-        table.add(addTable(p,60,10,"ECN","7 Periodo",1,6));
-        table.add(addTable(p,70,10,"ECN","8 Periodo",1,7));
-        table.add(addTable(p,80,10,"ECN","9 Periodo",1,8));
-        table.add(addTable(p,90,10,"ECN","10 Periodo",1,9));
-        table.add(addTable(p,100,10,"ECN","11 Periodo",1,10));
-        table.add(addTable(p,120,10,"ECN","12 Periodo",1,11));
+        table.add(addTable(p,0,10,"ECN","1 Periodo",ENGENHARIA_COMPUTACAO_NOTURNO,1));
+        table.add(addTable(p,10,10,"ECN","2 Periodo",ENGENHARIA_COMPUTACAO_NOTURNO,2));
+        table.add(addTable(p,20,10,"ECN","3 Periodo",ENGENHARIA_COMPUTACAO_NOTURNO,3));
+        table.add(addTable(p,30,10,"ECN","4 Periodo",ENGENHARIA_COMPUTACAO_NOTURNO,4));
+        table.add(addTable(p,40,10,"ECN","5 Periodo",ENGENHARIA_COMPUTACAO_NOTURNO,5));
+        table.add(addTable(p,50,10,"ECN","6 Periodo",ENGENHARIA_COMPUTACAO_NOTURNO,6));
+        table.add(addTable(p,60,10,"ECN","7 Periodo",ENGENHARIA_COMPUTACAO_NOTURNO,7));
+        table.add(addTable(p,70,10,"ECN","8 Periodo",ENGENHARIA_COMPUTACAO_NOTURNO,8));
+        table.add(addTable(p,80,10,"ECN","9 Periodo",ENGENHARIA_COMPUTACAO_NOTURNO,9));
+        table.add(addTable(p,90,10,"ECN","10 Periodo",ENGENHARIA_COMPUTACAO_NOTURNO,10));
+        table.add(addTable(p,100,10,"ECN","11 Periodo",ENGENHARIA_COMPUTACAO_NOTURNO,11));
+        table.add(addTable(p,120,10,"ECN","12 Periodo",ENGENHARIA_COMPUTACAO_NOTURNO,12));
         
         table = (List<JTable>) obj[2];
-        table.add(addTable(p,0,20,"EE","1 Periodo",2,0));
-        table.add(addTable(p,10,20,"EE","2 Periodo",2,1));
-        table.add(addTable(p,20,20,"EE","3 Periodo",2,2));
-        table.add(addTable(p,30,20,"EE","4 Periodo",2,3));
-        table.add(addTable(p,40,20,"EE","5 Periodo",2,4));
-        table.add(addTable(p,50,20,"EE","6 Periodo",2,5));
-        table.add(addTable(p,60,20,"EE","7 Periodo",2,6));
-        table.add(addTable(p,70,20,"EE","8 Periodo",2,7));
-        table.add(addTable(p,80,20,"EE","9 Periodo",2,8));
-        table.add(addTable(p,90,20,"EE","10 Periodo",2,9));
+        table.add(addTable(p,0,20,"EE","1 Periodo",ENGENHARIA_ELETRICA,1));
+        table.add(addTable(p,10,20,"EE","2 Periodo",ENGENHARIA_ELETRICA,2));
+        table.add(addTable(p,20,20,"EE","3 Periodo",ENGENHARIA_ELETRICA,3));
+        table.add(addTable(p,30,20,"EE","4 Periodo",ENGENHARIA_ELETRICA,4));
+        table.add(addTable(p,40,20,"EE","5 Periodo",ENGENHARIA_ELETRICA,5));
+        table.add(addTable(p,50,20,"EE","6 Periodo",ENGENHARIA_ELETRICA,6));
+        table.add(addTable(p,60,20,"EE","7 Periodo",ENGENHARIA_ELETRICA,7));
+        table.add(addTable(p,70,20,"EE","8 Periodo",ENGENHARIA_ELETRICA,8));
+        table.add(addTable(p,80,20,"EE","9 Periodo",ENGENHARIA_ELETRICA,9));
+        table.add(addTable(p,90,20,"EE","10 Periodo",ENGENHARIA_ELETRICA,10));
         
         table = (List<JTable>) obj[3];
-        table.add(addTable(p,0,30,"EM","1 Periodo",3,0));
-        table.add(addTable(p,10,30,"EM","2 Periodo",3,1));
-        table.add(addTable(p,20,30,"EM","3 Periodo",3,2));
-        table.add(addTable(p,30,30,"EM","4 Periodo",3,3));
-        table.add(addTable(p,40,30,"EM","5 Periodo",3,4));
-        table.add(addTable(p,50,30,"EM","6 Periodo",3,5));
-        table.add(addTable(p,60,30,"EM","7 Periodo",3,6));
-        table.add(addTable(p,70,30,"EM","8 Periodo",3,7));
-        table.add(addTable(p,80,30,"EM","9 Periodo",3,8));
-        table.add(addTable(p,90,30,"EM","10 Periodo",3,9));
+        table.add(addTable(p,0,30,"EM","1 Periodo",ENGENHARIA_MECANICA,1));
+        table.add(addTable(p,10,30,"EM","2 Periodo",ENGENHARIA_MECANICA,2));
+        table.add(addTable(p,20,30,"EM","3 Periodo",ENGENHARIA_MECANICA,3));
+        table.add(addTable(p,30,30,"EM","4 Periodo",ENGENHARIA_MECANICA,4));
+        table.add(addTable(p,40,30,"EM","5 Periodo",ENGENHARIA_MECANICA,5));
+        table.add(addTable(p,50,30,"EM","6 Periodo",ENGENHARIA_MECANICA,6));
+        table.add(addTable(p,60,30,"EM","7 Periodo",ENGENHARIA_MECANICA,7));
+        table.add(addTable(p,70,30,"EM","8 Periodo",ENGENHARIA_MECANICA,8));
+        table.add(addTable(p,80,30,"EM","9 Periodo",ENGENHARIA_MECANICA,9));
+        table.add(addTable(p,90,30,"EM","10 Periodo",ENGENHARIA_MECANICA,10));
         
         
         f.pack();
@@ -126,9 +128,33 @@ TabelaHorario(){
     }
     
     //gerar a tabela em branco
-    public static String[][] getData(){
+    public static String[][] getData(int curso,int periodo){
        String table[][] = new String[15][7];
        table = getTimeSlots(table,7,22);
+       
+       Gene genes[] = AlgoritimoGenetico.getCromossomo();
+        
+       for (int i = 0; i < genes.length; i++) {
+            Gene gene = genes[i];
+            int disciplina = gene.getDisciplina();
+            int professor  = gene.getProfessor();
+            int sala       = gene.getSala();
+            int timeslot   = gene.getTimeslot();
+            
+            Integer key = Disciplinas.D.get(disciplina);
+            String cursoDisciplina = Disciplinas.disciplinacurso.get(key+"");
+            
+            if(curso == Integer.valueOf(cursoDisciplina).intValue()){
+                String periodoDisciplina = Disciplinas.disciplinaperiodo.get(key+"");
+                if(periodo == Integer.valueOf(periodoDisciplina).intValue()){
+                    Integer p[] = ponto.get(timeslot);
+                    table[p[0]][p[1]] = Disciplinas.disciplinadesc.get(key+"");
+                }
+                
+            }
+            
+            
+        }
                  
         return table;
     }
@@ -160,7 +186,7 @@ TabelaHorario(){
                     JPanel panel = new JPanel();
                     String tabela[][] = new String[15][7];
                     
-                    String data[][] = getData();//modificar aqui
+                    String data[][] = getData(_curso,_periodo);//modificar aqui
                     String col[] = getColunas();
                     DefaultTableModel model = new DefaultTableModel(data,col);
                     

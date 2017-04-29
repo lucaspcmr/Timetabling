@@ -10,6 +10,9 @@ import static java.util.Collections.sort;
 import java.util.List;
 import java.util.Random;
 import objetos.Disciplinas;
+import objetos.Docentes;
+import objetos.Salas;
+import objetos.Timeslot;
 import objetos.Turma;
 
 /**
@@ -18,13 +21,11 @@ import objetos.Turma;
  */
 public class AlgoritimoGenetico {
 
-    private static List<Turma> turmas;//turma
-    private static List<Gene> cromossomo;//solução melhor individuo do AG
+    private static Gene cromossomo[];//solução melhor individuo do AG
     private static Solucao solucao;
 
-    AlgoritimoGenetico() {
-        turmas = new ArrayList<Turma>();
-        cromossomo = new ArrayList<Gene>();
+    public static void init() {
+        solucao.construirMapSolucao(Timeslot.getNumeroTimeslots(), Salas.getNumeroSala(), Docentes.getNumeroProfessores(), Disciplinas.getNumeroDisciplinas());
     }
 
     //Retorna um vetor de Individuos, fazendo o crossOver (One-Point)
@@ -79,18 +80,19 @@ public class AlgoritimoGenetico {
 
     // codigo principal do algoritimo genetico
     public static void startAG() {
-
-    }
-
-    public static void gerarTurmas() {
-        //do something
-
-    }
-
-    public static List<Turma> getTurmas() {
-        gerarTurmas();
-        //do something
-        return turmas;
+//        init();
+//        Individuo individuo = Populacao.criaIndividuo( Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(),Docentes.getNumeroProfessores() , Timeslot.getNumeroTimeslots() );
+//        cromossomo = individuo.getGenes();
+//        
+//        System.out.println("Size Disciplinas: "+Disciplinas.getNumeroDisciplinas());
+//        System.out.println("Size sala: "+Salas.getNumeroSala());
+//        System.out.println("Size professores: "+Docentes.getNumeroProfessores());
+//        System.out.println("Size Timeslot: "+Timeslot.getNumeroTimeslots());
+//        for (int i = 0; i < cromossomo.length; i++) {
+//            Gene gene = cromossomo[i];
+//            System.out.println("*********************************************************************************************");
+//            System.out.println("["+gene.getDisciplina()+","+gene.getProfessor()+","+gene.getSala()+","+gene.getTimeslot()+"]");
+//        }
     }
 
     public static Populacao selecao(Populacao pop1) {
@@ -129,6 +131,13 @@ public class AlgoritimoGenetico {
         }
         pop1=null;
         return novapop;
+    }
+
+    /**
+     * @return the cromossomo
+     */
+    public static Gene[] getCromossomo() {
+        return cromossomo;
     }
 
 }
