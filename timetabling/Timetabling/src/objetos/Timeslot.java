@@ -166,7 +166,6 @@ public class Timeslot {
         int qua[] = {86,90};
         int qui[] = {110,114};
         int sex[] = {134,138};
-        int sab[] = {158,162};
         
         for (int i = seg[0]; i <= seg[1]; i++) {
             vespertino.add(i);
@@ -191,9 +190,6 @@ public class Timeslot {
            vespertino.add(i);
         }
         
-        for (int i = sab[0]; i <= sab[1]; i++) {
-            vespertino.add(i);
-        }
     }
     
      //gerar timeslot para o periodo noturno

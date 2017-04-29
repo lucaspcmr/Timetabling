@@ -135,14 +135,6 @@ public class Estudantes {
 //
 //    }
 
-    public static void gerarListaAlunosDisciplina() {
-        //do something
-    }
-
-    public static void calculaNumeroEstudantes() {
-        //do something
-    }
-
     public static List<AlunoDisciplina> getAlunosDisciplinas() {
 
         return listAlunoDisciplina;
