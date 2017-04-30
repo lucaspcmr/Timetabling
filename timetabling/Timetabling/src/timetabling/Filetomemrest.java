@@ -49,6 +49,13 @@ public class Filetomemrest {
 
             }
             
+//            for (int i = 0; i < discirest.size(); i++) {
+//                System.out.println("Disciplina "+discirest.get(i).getDisciplina());
+//                       for (int j = 0; j < discirest.get(i).getTimeslot().size(); j++) {
+//                            System.out.print(" "+discirest.get(i).getTimeslot().get(j));
+//                }
+//                       System.out.println("");
+//            }
 
             buffR.close();
         } catch (IOException e) {

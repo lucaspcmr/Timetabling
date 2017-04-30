@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import static java.util.Collections.sort;
 import java.util.List;
 import java.util.Random;
+import javax.swing.JOptionPane;
 import objetos.Disciplinas;
 import objetos.Docentes;
 import objetos.Salas;
 import objetos.Timeslot;
 import objetos.Turma;
+import timetabling.Filetomemrest;
 
 /**
  *
@@ -80,8 +82,12 @@ public class AlgoritimoGenetico {
 
     // codigo principal do algoritimo genetico
     public static void startAG() {
+        //testando a validação das soluções geradas
+        //criando individuos aleatorios
+        init();
+        solucao.setRestricoesDisciplinas(Filetomemrest.discirest); 
         for (int i = 0; i < 1000; i++) {
-         init();
+        init();
         Individuo individuo = Populacao.criaIndividuo( Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(),Docentes.getNumeroProfessores() , Timeslot.getNumeroTimeslots() );
         cromossomo = individuo.getGenes();
 //        
@@ -89,7 +95,7 @@ public class AlgoritimoGenetico {
 //            Gene gene = cromossomo[i];
 //        }
 
-        System.out.println("Fitness"+individuo.getFitness());
+        System.out.println("Geração:"+i+"   Fitness = "+individuo.getFitness());
         }
        
     }

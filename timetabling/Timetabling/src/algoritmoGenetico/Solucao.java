@@ -97,20 +97,24 @@ public class Solucao {
         timeSlotSala                  = new Hashtable <Integer,Integer>();
         disciplinaProfessor           = new Hashtable <Integer,List<Integer>>();
         
+        for (int i = 0; i < n_disciplinas; i++) {
+            List<Integer> aux = new ArrayList<Integer>();
+            disciplinaProfessor.put(new Integer(i), aux);
+        }
+        
          Timeslot.timeSlotsPeriodo();
          preencherMascaraRestricoes();//preecher mascara com as retriçoes apenas de horarios
          tipoSalaSalaDisciplina();    //preencher listas de salas
          professorDisciplina();       //criar hashtable disciplina lista de professores que podem ministrar aquela disciplinas
         //as restrições precisam ser setadas apenas uma vez na mascara
+        restricaoHorarioCurso();
         setRestricoesProfessores(Filetomemrest.docrest); 
         setRestricoesDisciplinas(Filetomemrest.discirest); 
         setRestricoesSalas(Filetomemrest.salarest); 
 
-        restricaoHorarioCurso();
-        
-        
-        
-         
+       
+
+              
     }
     
   //colocar as restrições dos professores, salas, disciplinas e cursos
@@ -385,7 +389,7 @@ public class Solucao {
     //implementar restriÃ§oes as disciplinas setando ja na mascara 
     //de soluÃ§oes, setando -1 no espaÃ§o de soluÃ§oes
     //mostarndo uma soluÃ§Ã£o impossivel
-    private static void setRestricoesDisciplinas(List<DisciplinaRestricao> disciplina){
+    public static void setRestricoesDisciplinas(List<DisciplinaRestricao> disciplina){
         
         for (int j = 0; j < disciplina.size(); j++) {
                 
@@ -394,8 +398,7 @@ public class Solucao {
          //setar as restrições
             List<Integer> timeslots = restricao.getTimeslot();//pegas os codigos dos timeslots
             
-            if(timeslots.size() !=0){
-                        //inicializar as disciplinas
+                //inicializar as disciplinas
                  for (int i = 0; i < ids.size(); i++) {
                      int id  = ids.get(i);
                      for (int k = 0; k < n_timeslots; k++) {                   
@@ -405,20 +408,19 @@ public class Solucao {
 
                  for (int i = 0; i < ids.size(); i++) {
                      for (int k = 0; k < timeslots.size(); k++) {
-                         int idTimeslot = timeslots.get(k) -1;
-                         int idDisciplina = ids.get(i);  
+                         int idTimeslot = timeslots.get(k).intValue() -1;
+                         int idDisciplina = ids.get(i).intValue();  
                          disciplinas[idDisciplina][idTimeslot]  = 0;//setar o valor disponivel
                      }
                  }
-            }
-            else
-                System.err.println("*******************************************************ERROR TAMANHO");
+                 
+         
       
         }
     }
     
     //retorna os ids das disciplinas o codigo da disciplina disciplina restrição
-     private static List<Integer> getRestricoesDisciplinasIds(int codigoRestricao){
+     public static List<Integer> getRestricoesDisciplinasIds(int codigoRestricao){
          
          List<Integer> ids = new ArrayList<Integer>();//lista dos ids das disciplinas
                
@@ -682,13 +684,7 @@ public class Solucao {
     private static void professorDisciplina(){
               
         //inicializar o hashMap
-       
-        
-        for (int i = 0; i < n_disciplinas; i++) {
-            List<Integer> aux = new ArrayList<Integer>();
-            disciplinaProfessor.put(new Integer(i), aux);
-        }
-             
+            
         for (int i = 0; i < n_professores; i++) {
             String disciplina =    Docentes.docentedisc1.get((i+1)+"");
             
@@ -698,13 +694,8 @@ public class Solucao {
                 for (int j = 0; j < ids.size(); j++) {
                     Integer id = new Integer(ids.get(j));//id da disciplina
                    
-                    List<Integer> aux = disciplinaProfessor.get(id);//pega a lista referente aquele id
-                    if(aux == null)
-                        aux.add(i);//aducionando o professor
-                    else {
-                        aux = new ArrayList<Integer>();
-                        aux.add(i);//adicionando o professor
-                    }
+                    List<Integer> aux = disciplinaProfessor.get(id);//pega a lista referente aquele id                   
+                    aux.add(i);//aducionando o professor                  
                     disciplinaProfessor.put(id, aux);
                 }
             }
@@ -720,13 +711,8 @@ public class Solucao {
                 for (int j = 0; j < ids.size(); j++) {
                     Integer id = new Integer(ids.get(j));//id da disciplina
                     
-                    List<Integer> aux = disciplinaProfessor.get(id);//pega a lista referente aquele id
-                    if(aux == null)
-                        aux.add(i);//aducionando o professor
-                    else {
-                        aux = new ArrayList<Integer>();
-                        aux.add(i);//adicionando o professor
-                    }
+                    List<Integer> aux = disciplinaProfessor.get(id);//pega a lista referente aquele i
+                    aux.add(i);//aducionando o professor
                     disciplinaProfessor.put(id, aux);
                 }
             }
@@ -743,12 +729,8 @@ public class Solucao {
                     Integer id = new Integer(ids.get(j));//id da disciplina
                   
                     List<Integer> aux = disciplinaProfessor.get(id);//pega a lista referente aquele id
-                    if(aux == null)
-                        aux.add(i);//aducionando o professor
-                    else {
-                        aux = new ArrayList<Integer>();
-                        aux.add(i);//adicionando o professor
-                    }
+                    aux.add(i);//aducionando o professor
+
                     disciplinaProfessor.put(id, aux);
                 }
             }
@@ -765,12 +747,8 @@ public class Solucao {
                     Integer id = new Integer(ids.get(j));//id da disciplina
                    
                     List<Integer> aux = disciplinaProfessor.get(id);//pega a lista referente aquele id
-                    if(aux == null)
-                        aux.add(i);//aducionando o professor
-                    else {
-                        aux = new ArrayList<Integer>();
-                        aux.add(i);//adicionando o professor
-                    }
+                    aux.add(i);//aducionando o professor
+
                     disciplinaProfessor.put(id, aux);
                 }
             }
@@ -787,12 +765,8 @@ public class Solucao {
                     Integer id = new Integer(ids.get(j));//id da disciplina
                     
                     List<Integer> aux = disciplinaProfessor.get(id);//pega a lista referente aquele id
-                    if(aux == null)
-                        aux.add(i);//aducionando o professor
-                    else {
-                        aux = new ArrayList<Integer>();
-                        aux.add(i);//adicionando o professor
-                    }
+                    aux.add(i);//aducionando o professor
+
                     disciplinaProfessor.put(id, aux);
                 }
             }
@@ -917,19 +891,7 @@ public class Solucao {
     //para um horario disponivel daquela disciplina
     //a mutação pode trocar o professor, sala ou a logica do timeslot
     public static boolean validaGene(Gene[] genes,int teste){
-        
-        for (int i = 0; i < n_disciplinas; i++) {
-            List<Integer> aux = disciplinaProfessor.get(new Integer(i));
-            if(aux !=null){
-                System.out.print("Disciplina "+i+":");
-                 for (int j = 0; j < aux.size(); j++) {
-                     System.out.print(" "+aux.get(j));
-                }
-                 System.out.println("");
-            }
-            
-        }
-        
+     
         initSolucaoIndividuo(genes);
         
         Random random = new Random();
@@ -950,6 +912,7 @@ public class Solucao {
 
             
             boolean valor = isValorValido(gene);
+            
             if(valor == false){
                 
                 int disciplina = gene.getDisciplina();
@@ -965,31 +928,25 @@ public class Solucao {
                 sizeDocentes = listaProfessores.size();
                 sizeSalas    = listaSalas.size();
                 sizeTimeslot = listaTimeslotDisciplina.size();//pega os timeslots disponivel da disciplina
-                           
-                //if(sizeDocentes != 0 && sizeSalas !=0 ){
+                                  
+                if(sizeDocentes != 0 && sizeSalas !=0 ){
                      sorteioDocente = random.nextInt(sizeDocentes);
                      sorteioSala = random.nextInt(sizeSalas);
                      gene.setProfessor(listaProfessores.get(sorteioDocente));
                      gene.setSala(listaSalas.get(sorteioSala));
                      gene.setDisciplina(i);
                      
-//                     if(teste == 1){//tentar encontrar um timeslot disponivel para disciplina,professor,sala
+                     if(teste == 1){//tentar encontrar um timeslot disponivel para disciplina,professor,sala
                         sorteioTimeslot = getTimeslotProfessorSala(listaProfessores.get(sorteioDocente),listaSalas.get(sorteioSala),i);
                         gene.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
- //                   }
- //               }
- //               else{//seta um timeslot disponivel da disciplina 
-//                       if(sizeTimeslot >0){
-//                        sorteioTimeslot = random.nextInt(sizeTimeslot);//seleciona um timeslot aleatoria da disciplina
- //                       gene.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));//timeslot da disciplina
-//                        }
-//                    else{
-//                        sorteioTimeslot = random.nextInt(n_timeslots);//seleciona um timeslot aleatoria da disciplina
-//                        gene.setTimeslot(sorteioTimeslot);//timeslot da disciplina
-//                    }
-                    
- //               }
-                                                        
+                    }
+                }
+                else{//seta um timeslot disponivel da disciplina 
+                        sorteioTimeslot = random.nextInt(sizeTimeslot);//seleciona um timeslot aleatoria da disciplina
+                        gene.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));//timeslot da disciplina   
+                }
+                   
+                 valor = isValorValido(gene); //setar na mascara
             }
               
         } 
