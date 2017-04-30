@@ -85,7 +85,8 @@ public class AlgoritimoGenetico {
         
 //testando a validação das soluções geradas //criando individuos aleatorios
         init();
-        for (int i = 0; i < 1000; i++) {
+        int i = 1;
+ //       for (int i = 0; i < 1000; i++) {
         init();
         Individuo individuo = Populacao.criaIndividuo( Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(),Docentes.getNumeroProfessores() , Timeslot.getNumeroTimeslots() );
         cromossomo = individuo.getGenes();
@@ -95,7 +96,7 @@ public class AlgoritimoGenetico {
 //        }
 
         System.out.println("Geração:"+i+"   Fitness = "+individuo.getFitness() + " Horario Valido: "+individuo.isHorarioValido());
-        }
+ //       }
        
     }
 

@@ -1,7 +1,8 @@
 package timetabling;
 import algoritmoGenetico.AlgoritimoGenetico;
 import algoritmoGenetico.Gene;
- import timetabling.Filetomem;
+import algoritmoGenetico.Solucao;
+import timetabling.Filetomem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -19,8 +20,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import objetos.DisciplinaAluno;
 import objetos.Disciplinas;
 import objetos.Docentes;
+import objetos.Estudantes;
 import objetos.Salas;
 import objetos.Turma;
 
@@ -114,7 +117,7 @@ public class FileChooser extends JPanel  {
                                     Turma turma = new Turma();
                                     
                                     turma.setCurso(Integer.valueOf(cursoDisciplina).intValue());
-                                    turma.setDisciplina(cursoDisciplina);
+                                    turma.setDisciplina(disciplinaCodigo);
                                     turma.setPeriodo(periodo);
                                     turma.setProfessor(professorCodigo);
                                     turma.setSala(salaCodigo);//
@@ -133,12 +136,12 @@ public class FileChooser extends JPanel  {
                                            buffW.write(comentario);
                                            comentario = "//---------------------\n";
                                            buffW.write(comentario);
-//                                           comentario = "//---------------------\n";
-//                                           buffW.write(comentario);
-//                                           comentario = "HORARIO";
-//                                           buffW.write(comentario);
-//                                           comentario = "//---------------------\n";
-//                                           buffW.write(comentario);
+                                           comentario = "//---------------------\n";
+                                           buffW.write(comentario);
+                                           comentario = "HORARIO\n";
+                                           buffW.write(comentario);
+                                           comentario = "//---------------------\n";
+                                           buffW.write(comentario);
                                     for (int j = 0; j < turmas.size(); j++) {
                                     
                                         String disciplina         = turmas.get(j).getDisciplina();
@@ -150,12 +153,30 @@ public class FileChooser extends JPanel  {
                                         buffW.write(linha);
                                      }
                                     
-//                                           comentario = "//---------------------\n";
-//                                           buffW.write(comentario);
-//                                           comentario = "ESTUDANTE";
-//                                           buffW.write(comentario);
-//                                           comentario = "//---------------------\n";
-//                                           buffW.write(comentario);
+                                           comentario = "//---------------------\n";
+                                           buffW.write(comentario);
+                                           comentario = "ESTUDANTE\n";
+                                           buffW.write(comentario);
+                                           comentario = "//Codigo disciplina , Timeslot, Lista de alunos\n";
+                                           buffW.write(comentario);
+                                           comentario = "//---------------------\n";
+                                           buffW.write(comentario);
+                                           
+                                          List<DisciplinaAluno> aux = Solucao.getListaAlunosMatriculados(genes,Estudantes.getAlunosDisciplinas());
+                                          
+                                          for (int j = 0; j < aux.size(); j++) {
+                                              List<Integer> alunos = aux.get(j).getAlunos();
+                                              int disciplinaCodigo  = aux.get(j).getDisciplina();
+                                             // if(alunos.size() >0){
+                                                String linha = disciplinaCodigo+",";
+                                                linha = linha+aux.get(j).getTimeslot();
+                                                for (int k = 0; k < alunos.size();k++) {
+                                                    linha = linha+","+alunos.get(k);
+                                                }
+                                                linha = linha +"\n";
+                                                buffW.write(linha);
+                                              //}
+                                            }
                                     
                                         buffW.close ();
                                         file.createNewFile();

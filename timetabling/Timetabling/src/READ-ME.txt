@@ -1,6 +1,6 @@
 Juan:
-- Salvar alunos matriculados em uma disciplina arquivo csv
-- implementar ELITISMO 
+- restrição alunos e capacidade de sala (testar apresentando erros)
+- salvar alunos disciplina arquivo csv
 - testes no algoritmo genetico 
 
 Lucas: 
