@@ -68,15 +68,15 @@ public class Docentes {
 					str3=str2.substring(0,str2.indexOf(","));
 					str2=str2.substring(str2.indexOf(",")+1,str2.length());}
 					switch(i){
-				case 0:docentedisc1.put(str1, str3);
+				case 1:docentedisc1.put(str1, str3);
 					break;
-				case 1:docentedisc2.put(str1, str3);
+				case 2:docentedisc2.put(str1, str3);
 					break;
-				case 2:docentedisc3.put(str1, str3);
+				case 3:docentedisc3.put(str1, str3);
 					break;
-				case 3:docentedisc4.put(str1, str3);
+				case 4:docentedisc4.put(str1, str3);
 					break;
-				case 4:docentedisc5.put(str1, str3);
+				case 5:docentedisc5.put(str1, str3);
 					break;
 				}
 					

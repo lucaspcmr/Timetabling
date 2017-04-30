@@ -86,16 +86,16 @@ public class Disciplinas {
 		}
                 
 	criaux();
-        numeroDisciplinas = disciplinacodigo.size();
+        numeroDisciplinas = D.size();
         
-            System.out.println("Disciplinas");
-             for (int i = 0; i < D.size(); i++) {
-                 System.out.print(D.get(i)+" ");
-            }
-            System.out.println("Tipo Salas");
-            for (int i = 0; i < D2.size(); i++) {
-                 System.out.print(D2.get(i)+" ");
-            }
+//            System.out.println("Disciplinas");
+//             for (int i = 0; i < D.size(); i++) {
+//                 System.out.print(D.get(i)+" ");
+//            }
+//            System.out.println("Tipo Salas");
+//            for (int i = 0; i < D2.size(); i++) {
+//                 System.out.print(D2.get(i)+" ");
+//            }
         }
         void criaux(){
             int carga;

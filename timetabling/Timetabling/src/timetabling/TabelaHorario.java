@@ -32,6 +32,9 @@ import static objetos.Cursos.ENGENHARIA_COMPUTACAO_NOTURNO;
 import static objetos.Cursos.ENGENHARIA_ELETRICA;
 import static objetos.Cursos.ENGENHARIA_MECANICA;
 import objetos.Disciplinas;
+import objetos.Docentes;
+import objetos.Salas;
+import objetos.Timeslot;
 import objetos.Turma;
 /**
  *
@@ -42,9 +45,9 @@ private static  int Linha;
 private static  int Coluna;
 
 private static Hashtable <Integer, Integer[]> ponto;//hash map para retornar o timeslot na tabela de horarios
-Object obj[];//lista horario de cada curso tamanho 4
+private static Object obj[];//lista horario de cada curso tamanho 4
 
-TabelaHorario(){
+private static void initTabela(){
     
     obj = new Object[4];//numero de horarios para os cursos como é 4 cursos
     obj[0] = new ArrayList<JTable>();//horarios da engenharia de computação matutino
@@ -59,7 +62,7 @@ TabelaHorario(){
 //    System.out.println("L: "+i[0]+" C: "+i[1]);
 }   
     public void display() {
-        
+       initTabela();
        JPanel panel = new JPanel();
        
         JFrame f = new JFrame("Horario");   
@@ -142,20 +145,23 @@ TabelaHorario(){
             int timeslot   = gene.getTimeslot();
             
             Integer key = Disciplinas.D.get(disciplina);
-            String cursoDisciplina = Disciplinas.disciplinacurso.get(key+"");
+            String cursoDisciplina = Disciplinas.disciplinacurso.get(key);
             
             if(curso == Integer.valueOf(cursoDisciplina).intValue()){
-                String periodoDisciplina = Disciplinas.disciplinaperiodo.get(key+"");
-                if(periodo == Integer.valueOf(periodoDisciplina).intValue()){
-                    Integer p[] = ponto.get(timeslot);
-                    table[p[0]][p[1]] = Disciplinas.disciplinadesc.get(key+"");
+                String periodoDisciplina = Disciplinas.disciplinaperiodo.get(key);
+                if(periodo == Integer.valueOf(periodoDisciplina).intValue()){                 
+                     if(ponto.get(timeslot) != null){
+                        Integer p[] = ponto.get(new Integer(timeslot));
+//                        System.out.println("Timeslot"+timeslot);
+//                        System.out.println(" p0:"+p[0] + " p1:"+p[1]);
+                        table[p[0]][p[1]] = "["+Disciplinas.disciplinadesc.get(key) +" | "+Docentes.docentenome.get((professor+1)+"")+" | "+Salas.saladesc.get((sala+1)+"")+ "]";
+                    }
+                   
                 }
                 
             }
-            
-            
-        }
-                 
+  
+        }                
         return table;
     }
     //gerar o titula da tabela
@@ -193,7 +199,7 @@ TabelaHorario(){
                     JTable table = new JTable(model) {
             @Override
             public Dimension getPreferredScrollableViewportSize() {
-                return new Dimension(1000, 240);
+                return new Dimension(1500, 240);
                      }
             };
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -212,7 +218,7 @@ TabelaHorario(){
     }
     
     //gerar o map para dado um codigo do timeslot mostrar qual slot no horario ele corresponde
-    public void gerarHashTimeslot(Hashtable <Integer, Integer[]> ponto){
+    public static void gerarHashTimeslot(Hashtable <Integer, Integer[]> ponto){
         int seg[] = {32,46};
         int ter[] = {56,70};
         int qua[] = {80,94};
@@ -223,8 +229,8 @@ TabelaHorario(){
         for (int i = seg[0]; i <= seg[1]; i++) {
             Integer p[] = new Integer[2];
             p[0] = new Integer(j);
-            p[1] = new Integer(0);
-            ponto.put(i, p);
+            p[1] = new Integer(1);
+            ponto.put(new Integer(i), p);
             j++;
         }
         
@@ -232,8 +238,8 @@ TabelaHorario(){
         for (int i = ter[0]; i <= ter[1]; i++) {
             Integer p[] = new Integer[2];
             p[0] = new Integer(j);
-            p[1] = new Integer(1);
-            ponto.put(i, p);
+            p[1] = new Integer(2);
+            ponto.put(new Integer(i), p);
             j++;
         }
         
@@ -241,8 +247,8 @@ TabelaHorario(){
         for (int i = qua[0]; i <= qua[1]; i++) {
             Integer p[] = new Integer[2];
             p[0] = new Integer(j);
-            p[1] = new Integer(2);
-            ponto.put(i, p);
+            p[1] = new Integer(3);
+            ponto.put(new Integer(i), p);
             j++;
         }
         
@@ -250,8 +256,8 @@ TabelaHorario(){
         for (int i = qui[0]; i <= qui[1]; i++) {
             Integer p[] = new Integer[2];
             p[0] = new Integer(j);
-            p[1] = new Integer(3);
-            ponto.put(i, p);
+            p[1] = new Integer(4);
+            ponto.put(new Integer(i), p);
             j++;
         }
         
@@ -259,8 +265,8 @@ TabelaHorario(){
         for (int i = sex[0]; i <= sex[1]; i++) {
             Integer p[] = new Integer[2];
             p[0] = new Integer(j);
-            p[1] = new Integer(4);
-            ponto.put(i, p);
+            p[1] = new Integer(5);
+            ponto.put(new Integer(i), p);
             j++;
         }
         
@@ -268,8 +274,8 @@ TabelaHorario(){
         for (int i = sab[0]; i <= sab[1]; i++) {
             Integer p[] = new Integer[2];
             p[0] = new Integer(j);
-            p[1] = new Integer(5);
-            ponto.put(i, p);
+            p[1] = new Integer(6);
+            ponto.put(new Integer(i), p);
             j++;
         }
     }

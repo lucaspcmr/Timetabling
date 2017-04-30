@@ -80,19 +80,18 @@ public class AlgoritimoGenetico {
 
     // codigo principal do algoritimo genetico
     public static void startAG() {
-//        init();
-//        Individuo individuo = Populacao.criaIndividuo( Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(),Docentes.getNumeroProfessores() , Timeslot.getNumeroTimeslots() );
-//        cromossomo = individuo.getGenes();
+        for (int i = 0; i < 1000; i++) {
+         init();
+        Individuo individuo = Populacao.criaIndividuo( Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(),Docentes.getNumeroProfessores() , Timeslot.getNumeroTimeslots() );
+        cromossomo = individuo.getGenes();
 //        
-//        System.out.println("Size Disciplinas: "+Disciplinas.getNumeroDisciplinas());
-//        System.out.println("Size sala: "+Salas.getNumeroSala());
-//        System.out.println("Size professores: "+Docentes.getNumeroProfessores());
-//        System.out.println("Size Timeslot: "+Timeslot.getNumeroTimeslots());
 //        for (int i = 0; i < cromossomo.length; i++) {
 //            Gene gene = cromossomo[i];
-//            System.out.println("*********************************************************************************************");
-//            System.out.println("["+gene.getDisciplina()+","+gene.getProfessor()+","+gene.getSala()+","+gene.getTimeslot()+"]");
 //        }
+
+        System.out.println("Fitness"+individuo.getFitness());
+        }
+       
     }
 
     public static Populacao selecao(Populacao pop1) {

@@ -87,60 +87,60 @@ public class Button {
 
               @Override
               public void actionPerformed(ActionEvent e) {
-               int isValid = 0; 
-               String numeroIndividuos = "0";
-               String geracoes = "0";
-               String mutacao = "0";
-               
-               while(isValid == 0){   
-                 numeroIndividuos = JOptionPane.showInputDialog("Digite o numero de Individuos");
-                   try {
-                       int value = Integer.parseInt(numeroIndividuos);
-                       if(value >=0){
-                        DADOS.INDIVIDUOS = value;
-                        isValid = 1;
-                       }
-                       else{
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
-                       }
-                       
-                   } catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
-                 }                    
-               }
-               isValid = 0;
-               while(isValid == 0){   
-                 geracoes = JOptionPane.showInputDialog("Digite o numero de Gerações");
-                   try {
-                       int value = Integer.parseInt(geracoes);
-                       if(value>=0){
-                        DADOS.GERACOES = value;
-                        isValid = 1;
-                       }
-                       else{
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
-                       }
-                   } catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
-                 }                    
-               }
-              
-               isValid = 0;
-               while(isValid == 0){   
-                  mutacao = JOptionPane.showInputDialog("Taxa de mutação (valor deve ser 0 a 100 indicando porcentagem)");
-                   try {
-                       int value = Integer.parseInt(mutacao);
-                       if(value>0 && value<=100){
-                        DADOS.MUTACAO = value;
-                        isValid = 1;
-                       }
-                       else{
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                       }
-                   } catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                 }                    
-               }
+//               int isValid = 0; 
+//               String numeroIndividuos = "0";
+//               String geracoes = "0";
+//               String mutacao = "0";
+//               
+//               while(isValid == 0){   
+//                 numeroIndividuos = JOptionPane.showInputDialog("Digite o numero de Individuos");
+//                   try {
+//                       int value = Integer.parseInt(numeroIndividuos);
+//                       if(value >=0){
+//                        DADOS.INDIVIDUOS = value;
+//                        isValid = 1;
+//                       }
+//                       else{
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+//                       }
+//                       
+//                   } catch (NumberFormatException erro) {
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+//                 }                    
+//               }
+//               isValid = 0;
+//               while(isValid == 0){   
+//                 geracoes = JOptionPane.showInputDialog("Digite o numero de Gerações");
+//                   try {
+//                       int value = Integer.parseInt(geracoes);
+//                       if(value>=0){
+//                        DADOS.GERACOES = value;
+//                        isValid = 1;
+//                       }
+//                       else{
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+//                       }
+//                   } catch (NumberFormatException erro) {
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+//                 }                    
+//               }
+//              
+//               isValid = 0;
+//               while(isValid == 0){   
+//                  mutacao = JOptionPane.showInputDialog("Taxa de mutação (valor deve ser 0 a 100 indicando porcentagem)");
+//                   try {
+//                       int value = Integer.parseInt(mutacao);
+//                       if(value>0 && value<=100){
+//                        DADOS.MUTACAO = value;
+//                        isValid = 1;
+//                       }
+//                       else{
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                       }
+//                   } catch (NumberFormatException erro) {
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                 }                    
+//               }
                  
                //  button.setEnabled(false);
                  AlgoritimoGenetico.startAG();

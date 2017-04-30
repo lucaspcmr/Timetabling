@@ -48,6 +48,7 @@ public class Filetomemrest {
                 }
 
             }
+            
 
             buffR.close();
         } catch (IOException e) {
@@ -92,8 +93,8 @@ public class Filetomemrest {
                         }
                         discirest.get(j).setTimeslot(Integer.parseInt(str3));
                     }
-                     System.out.println(discirest.get(j).getDisciplina());
-                System.out.println(discirest.get(j).getTimeslot());
+                //System.out.println(discirest.get(j).getDisciplina());
+                //System.out.println(discirest.get(j).getTimeslot());
                 }
                 j++;
                 str=buffR.readLine();
@@ -152,11 +153,11 @@ public class Filetomemrest {
     private static void sala() {
         String str, str1, str2, str3;
         
-
         int i = 0,j=0;
 
         try {
             str=buffR.readLine();
+            System.out.println(str);
             while((str.charAt(0)) == '/')
                 str=buffR.readLine();
             do {
@@ -184,11 +185,15 @@ public class Filetomemrest {
                         }
                         salarest.get(j).setTimeslot(Integer.parseInt(str3));
                     }
-                     System.out.println(salarest.get(j).getSala());
-                System.out.println(salarest.get(j).getTimeslot());
+                    // System.out.println(salarest.get(j).getSala());
+                    // System.out.println(salarest.get(j).getTimeslot());
                 }
                 j++;
+               
                 str=buffR.readLine();
+                if(str == null)
+                    break;
+             
             } while (str.charAt(0) != '/');
         } catch (IOException ex) {
             Logger.getLogger(Filetomemrest.class.getName()).log(Level.SEVERE, null, ex);
