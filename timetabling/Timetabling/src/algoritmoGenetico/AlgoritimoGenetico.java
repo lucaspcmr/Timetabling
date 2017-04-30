@@ -81,9 +81,9 @@ public class AlgoritimoGenetico {
     }
 
     // codigo principal do algoritimo genetico
-    public static void startAG() {
-        //testando a validação das soluções geradas
-        //criando individuos aleatorios
+    public static void startAG(int numeroIndividuos,int geracoes,int mutacao) {
+        
+//testando a validação das soluções geradas //criando individuos aleatorios
         init();
         for (int i = 0; i < 1000; i++) {
         init();

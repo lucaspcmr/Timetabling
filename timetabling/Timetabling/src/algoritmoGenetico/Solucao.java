@@ -1101,4 +1101,30 @@ public class Solucao {
         return disciplinaProfessor;
     }
    
+//    public static Hashtable<Integer,List<Integer>> getListaAlunosMatriculados(Gene[] genes,List<AlunoDisciplina> alunos){
+//         int n_alunos = alunos.size();
+//         int[][] alunosTimeslot = new int[n_alunos][n_timeslots];//mascara estudantes
+//         
+//        //retorna a disciplina que o aluno quer cursar e o seu timeslot
+//         int fitness = 0;
+//         List<Integer> ids = new ArrayList<Integer>();
+//         List<Integer> disciplinasAluno = aluno.getDisciplina();//lista de disciplinas que o aluno quer cursar
+//         
+//         for (int k = 0; k < disciplinasAluno.size(); k++) {
+//             boolean valor = true;
+//             List<Integer> aux = getRestricoesDisciplinasIds(disciplinasAluno.get(k));//pegar os ids das disciplinas dado o codigo
+//             
+//             for (int j = 0; j < aux.size(); j++) {
+//                 ids.add(aux.get(j));
+//             }
+//             
+//             if(ids.size()>0){
+//                matricularEstudante(ids,mascara,aluno);
+//                ids.clear();//limpa o array de ids para proxima disciplina
+//             }
+//             
+//         }
+//         
+//         return fitness;
+//    }
 }

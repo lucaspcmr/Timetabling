@@ -1,4 +1,6 @@
 package timetabling;
+import algoritmoGenetico.AlgoritimoGenetico;
+import algoritmoGenetico.Gene;
  import timetabling.Filetomem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,11 +11,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import static java.util.Collections.sort;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import objetos.Disciplinas;
+import objetos.Docentes;
+import objetos.Salas;
+import objetos.Turma;
 
 
 public class FileChooser extends JPanel  {
@@ -80,16 +89,76 @@ public class FileChooser extends JPanel  {
     	                int returnVal = fc.showSaveDialog(FileChooser.this);
     	                if (returnVal == JFileChooser.APPROVE_OPTION) {
     	                    File file = fc.getSelectedFile();
-    	                    file = new File( file.toString() + ".txt" );
+    	                    file = new File( file.toString() + ".csv" );
     	                    try {
     	                    	FileWriter fileW = new FileWriter (file,false);//arquivo para escrita
     	                    	BufferedWriter buffW = new BufferedWriter (fileW);
     	                    	
-    	                    	//do something
-    	                    	
-    	                    	buffW.close ();
-    	                    	
-    	    					file.createNewFile();
+                                Gene genes[] = AlgoritimoGenetico.getCromossomo();
+                                List<Turma> turmas = new ArrayList<Turma>();
+                                
+                                for (int i = 0; i < genes.length; i++) {
+                                    Gene gene = genes[i];
+                                    int disciplina = gene.getDisciplina();
+                                    int professor  = gene.getProfessor();
+                                    int sala       = gene.getSala();
+                                    int timeslot   = gene.getTimeslot();
+
+                                    Integer key = Disciplinas.D.get(disciplina);
+                                    String cursoDisciplina    = Disciplinas.disciplinacurso.get(key);
+                                    String disciplinaCodigo   = Disciplinas.disciplinacodigo.get(key);
+                                    String professorCodigo    = (professor +1)+"";
+                                    String salaCodigo         = (sala+1)+"";
+                                    String periodo            = Disciplinas.disciplinaperiodo.get(key);
+                                    
+                                    Turma turma = new Turma();
+                                    
+                                    turma.setCurso(Integer.valueOf(cursoDisciplina).intValue());
+                                    turma.setDisciplina(cursoDisciplina);
+                                    turma.setPeriodo(periodo);
+                                    turma.setProfessor(professorCodigo);
+                                    turma.setSala(salaCodigo);//
+                                    turma.setTimeslot(timeslot+1);//codigo do timslot
+                                    turmas.add(turma);
+                                    }
+                                    sort(turmas);//coloca turmas em ordem
+                                    
+                                    String comentario = "//---------------------\n";
+                                           buffW.write(comentario);
+                                           comentario = "//Horários Gerados\n";
+                                           buffW.write(comentario);
+                                           comentario = "//disposição dos codigo abaixo\n";
+                                           buffW.write(comentario);
+                                           comentario = "//Código da Disciplina, Timeslot, Docente, Sala\n";
+                                           buffW.write(comentario);
+                                           comentario = "//---------------------\n";
+                                           buffW.write(comentario);
+//                                           comentario = "//---------------------\n";
+//                                           buffW.write(comentario);
+//                                           comentario = "HORARIO";
+//                                           buffW.write(comentario);
+//                                           comentario = "//---------------------\n";
+//                                           buffW.write(comentario);
+                                    for (int j = 0; j < turmas.size(); j++) {
+                                    
+                                        String disciplina         = turmas.get(j).getDisciplina();
+                                        String timeslot           = turmas.get(j).getTimeslot()+"";
+                                        String professor          = turmas.get(j).getProfessor();
+                                        String sala               = turmas.get(j).getSala();
+
+                                        String linha = disciplina+","+timeslot+","+professor+","+sala+"\n";
+                                        buffW.write(linha);
+                                     }
+                                    
+//                                           comentario = "//---------------------\n";
+//                                           buffW.write(comentario);
+//                                           comentario = "ESTUDANTE";
+//                                           buffW.write(comentario);
+//                                           comentario = "//---------------------\n";
+//                                           buffW.write(comentario);
+                                    
+                                        buffW.close ();
+                                        file.createNewFile();
     	    				} catch (IOException e1) {
     	    					// TODO Auto-generated catch block
     	    					e1.printStackTrace();
