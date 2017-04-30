@@ -2,6 +2,7 @@
 Juan
 
 - salvar o arquivo
+- alunos matriculados em uma disciplina
 
 Lucas: 
 - criar o metodo de mutação

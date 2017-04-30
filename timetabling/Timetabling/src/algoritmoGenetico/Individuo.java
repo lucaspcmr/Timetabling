@@ -12,6 +12,13 @@ import java.util.Random;
  * @author Aluno
  */
 public class Individuo implements Comparable<Individuo>{
+
+    /**
+     * @return the horarioValido
+     */
+    public boolean isHorarioValido() {
+        return horarioValido;
+    }
     
     //
     // Tipos de mutaÃ§Ãµes (mutation) que estÃ£o disponÃ­veis:
@@ -20,6 +27,7 @@ public class Individuo implements Comparable<Individuo>{
     
     private Gene chromossomo[];
     private int fitness;
+    private boolean horarioValido;
     
    public Individuo() {      
         //dosomething
@@ -30,11 +38,13 @@ public class Individuo implements Comparable<Individuo>{
         switch (mutacaoEscolhida) {
             case  NO_MUTATION:
                 fitness = Solucao.calculaFitnees(genes);
+                horarioValido = Solucao.isHorarioValido();
                 chromossomo = genes;
             break;
                 //implementar mutação escolhida
             default:            
                 fitness = Solucao.calculaFitnees(genes);
+                horarioValido = Solucao.isHorarioValido();
                 chromossomo = genes;
         }
         

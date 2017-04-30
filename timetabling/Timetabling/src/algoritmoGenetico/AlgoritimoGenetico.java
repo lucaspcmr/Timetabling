@@ -85,7 +85,6 @@ public class AlgoritimoGenetico {
         //testando a validação das soluções geradas
         //criando individuos aleatorios
         init();
-        solucao.setRestricoesDisciplinas(Filetomemrest.discirest); 
         for (int i = 0; i < 1000; i++) {
         init();
         Individuo individuo = Populacao.criaIndividuo( Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(),Docentes.getNumeroProfessores() , Timeslot.getNumeroTimeslots() );
@@ -95,7 +94,7 @@ public class AlgoritimoGenetico {
 //            Gene gene = cromossomo[i];
 //        }
 
-        System.out.println("Geração:"+i+"   Fitness = "+individuo.getFitness());
+        System.out.println("Geração:"+i+"   Fitness = "+individuo.getFitness() + " Horario Valido: "+individuo.isHorarioValido());
         }
        
     }
