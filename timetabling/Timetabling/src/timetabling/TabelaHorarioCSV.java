@@ -40,7 +40,10 @@ import objetos.Turma;
  *
  * @author HOME
  */
-public class TabelaHorario {
+public class TabelaHorarioCSV {
+    
+public static List<Turma> turmas = new ArrayList<Turma>();
+
 private static  int Linha;
 private static  int Coluna;
 
@@ -135,26 +138,25 @@ private static void initTabela(){
        String table[][] = new String[15][7];
        table = getTimeSlots(table,7,22);
        
-       Gene genes[] = AlgoritimoGenetico.getCromossomo();
-        
-       for (int i = 0; i < genes.length; i++) {
-            Gene gene = genes[i];
-            int disciplina = gene.getDisciplina();
-            int professor  = gene.getProfessor();
-            int sala       = gene.getSala();
-            int timeslot   = gene.getTimeslot();
+       for (int i = 0; i < turmas.size(); i++) {
+            Turma turma = turmas.get(i);
+            String disciplina  = turma.getDisciplina();
+            String professor    = turma.getProfessor();
+            String sala         = turma.getSala();
+            int timeslot        = turma.getTimeslot();
+            int cursoTurma      = turma.getCurso();
+            int periodoTurma    = Integer.valueOf(turma.getPeriodo());
             
-            Integer key = Disciplinas.D.get(disciplina);
-            String cursoDisciplina = Disciplinas.disciplinacurso.get(key);
-            int codigoTimeslot = timeslot + 1;
-            if(curso == Integer.valueOf(cursoDisciplina).intValue()){
-                String periodoDisciplina = Disciplinas.disciplinaperiodo.get(key);
-                if(periodo == Integer.valueOf(periodoDisciplina).intValue()){                 
-                     if(ponto.get(codigoTimeslot) != null){
-                        Integer p[] = ponto.get(new Integer(codigoTimeslot));
+           
+            
+            if(curso == cursoTurma){
+                
+                if(periodo == periodoTurma){                 
+                     if(ponto.get(timeslot) != null){
+                        Integer p[] = ponto.get(new Integer(timeslot));
 //                        System.out.println("Timeslot"+timeslot);
 //                        System.out.println(" p0:"+p[0] + " p1:"+p[1]);
-                        table[p[0]][p[1]] = "["+Disciplinas.disciplinadesc.get(key) +" | "+Docentes.docentenome.get((professor+1)+"")+" | "+Salas.saladesc.get((sala+1)+"")+ "]";
+                        table[p[0]][p[1]] = "["+disciplina +" | "+professor+" | "+sala+ "]";
                     }
                    
                 }

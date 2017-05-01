@@ -1,9 +1,9 @@
 Juan
--Testes em todo o codigo
+-Testes
 Lucas: 
 1 - Criar o metodo de mutação
 2 - Implementar a taxa de mutacao 
-3 - Testes em todo o codigo
+3 - Testes
 Obs: Fiz uma pequena alteração no seu metodo de seleção , substituino os Objetos Populacao por uma lista de Individuos.
      Como colocamos na classe População uma variavel static, essa variavel seria comun a todos
      os objetos População, neste caso, estava alterando um mesmo objeto e não dois objetos diferentes.
@@ -21,7 +21,7 @@ Raquel:
      // Estes filhos podem, ou não, sofrerem algum tipo de mutação...
 
 2 - Crossover : two point crossover (forma randomica)
-3 - Testes em todo o codigo
+3 - Testes
 
 ##########Outras implementações
 Obs: Caso queiram implementar, ou se não resolver o problema do trabalho(seria um complemento para o trabalho, para testar outros tipos de

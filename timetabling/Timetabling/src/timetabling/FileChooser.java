@@ -132,7 +132,7 @@ public class FileChooser extends JPanel  {
                                            buffW.write(comentario);
                                            comentario = "//disposição dos codigo abaixo\n";
                                            buffW.write(comentario);
-                                           comentario = "//Código da Disciplina, Timeslot, Docente, Sala\n";
+                                           comentario = "//Curso,Periodo,Código da Disciplina, Timeslot, Docente Sala,\n";
                                            buffW.write(comentario);
                                            comentario = "//---------------------\n";
                                            buffW.write(comentario);
@@ -148,8 +148,13 @@ public class FileChooser extends JPanel  {
                                         String timeslot           = turmas.get(j).getTimeslot()+"";
                                         String professor          = turmas.get(j).getProfessor();
                                         String sala               = turmas.get(j).getSala();
+                                        String curso              = turmas.get(j).getCurso()+"";
+                                        String periodo            = turmas.get(j).getPeriodo();
+                                        
+                                        String nomeProfessor = Docentes.docentenome.get(professor);
+                                        String nomeSala      = Salas.salasigla.get(sala);
 
-                                        String linha = disciplina+","+timeslot+","+professor+","+sala+"\n";
+                                        String linha = disciplina+","+timeslot+","+nomeProfessor+","+nomeSala+","+curso+","+periodo+"\n";
                                         buffW.write(linha);
                                      }
                                     
@@ -243,4 +248,37 @@ public class FileChooser extends JPanel  {
     	  });
     }
     
+    public void openFileHorario(JButton button){  
+    	  button.addActionListener(new ActionListener() {
+
+    		  @Override
+    	        public void actionPerformed(ActionEvent e){
+           	  //Handle open button action.              
+            	  int returnVal = fc.showOpenDialog(FileChooser.this);
+                  
+                  if (returnVal == JFileChooser.APPROVE_OPTION) {
+                      File file = fc.getSelectedFile();
+                      /*LEITURA*/
+                     
+					try {
+                                            TextArea.LOG.append("Opening: " + file.getName() + "." + newline);					                                                                                
+                                            Filetomem.sortHorario(new FileReader(file));
+	                      
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}//arquivo para ser lido
+					catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+      
+                  } 
+                  else {
+                	  TextArea.LOG.append("Open command cancelled by user." + newline);
+                  }
+              	              
+    		  }  
+    	  });
+    }
 }

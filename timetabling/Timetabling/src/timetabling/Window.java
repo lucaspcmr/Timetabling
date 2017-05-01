@@ -31,9 +31,17 @@ public class Window {
 //		    fc.openArquivo(fc.getCarregar());	    
 		    textArea.addTextArea(pane,0, 3);
 		    
-		   JButton b = button.addButton(pane, "Limpar Log", 0,6);
-		    button.limparLog(b,TextArea.LOG);
-                   		    
+		   //JButton b = button.addButton(pane, "Limpar Log", 0,6);
+		   // button.limparLog(b,TextArea.LOG);
+                    
+                    JButton b = button.addButton(pane, "Open Horario .csv", 0,6);
+                    fc.openFileHorario(b);
+                    
+                    b = button.addButton(pane, "show Horario .csv", 1,6);
+                    button.addLinstenerHorarioCSV(b);
+                    //fc.openFileHorario(b);
+		    //button.limparLog(b,TextArea.LOG);
+		    
                     //gerarHorario teste tabela
                     JButton horario =  new JButton("Horario");
                     button.addButton(pane, horario, 1,2);

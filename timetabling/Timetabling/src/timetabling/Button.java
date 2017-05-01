@@ -81,6 +81,19 @@ public class Button {
           });	  
     }
       
+    public void addLinstenerHorarioCSV(JButton button){
+    	  
+    	  button.addActionListener(new ActionListener() {
+
+              @Override
+              public void actionPerformed(ActionEvent e) {
+            	TabelaHorarioCSV tabela= new TabelaHorarioCSV();
+                
+                tabela.display();
+             }
+          });	  
+    }
+      
     public void addLinstenerAG(final JButton button,final JButton horario){
     	  
     	  button.addActionListener(new ActionListener() {
