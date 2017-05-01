@@ -1,5 +1,4 @@
 Juan
-- Gerar os horarios dado o arquivo csv gerado
 -Testes em todo o codigo
 Lucas: 
 1 - Criar o metodo de mutação

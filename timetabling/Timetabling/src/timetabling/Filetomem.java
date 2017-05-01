@@ -1,11 +1,15 @@
 package timetabling;
 
+import algoritmoGenetico.Gene;
+import algoritmoGenetico.Individuo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import objetos.Cursos;
 import objetos.Disciplinas;
@@ -82,9 +86,11 @@ public static void timeslot(){
 
 }
 
+}
 
 
-	}
+
+	
 
 
 

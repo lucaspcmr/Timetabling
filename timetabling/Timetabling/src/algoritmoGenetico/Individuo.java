@@ -32,8 +32,9 @@ public class Individuo implements Comparable<Individuo>{
    public Individuo() {      
         //dosomething
    }
+
     
-    Individuo(Gene genes[], int mutacaoEscolhida){
+   public Individuo(Gene genes[], int mutacaoEscolhida){
         
         switch (mutacaoEscolhida) {
             case  NO_MUTATION:

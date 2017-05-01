@@ -33,7 +33,7 @@ public class Window {
 		    
 		   JButton b = button.addButton(pane, "Limpar Log", 0,6);
 		    button.limparLog(b,TextArea.LOG);
-		    
+                   		    
                     //gerarHorario teste tabela
                     JButton horario =  new JButton("Horario");
                     button.addButton(pane, horario, 1,2);
