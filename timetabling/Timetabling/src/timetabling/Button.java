@@ -131,22 +131,22 @@ public class Button {
                  }                    
                }
                
-//               isValid = 0;
-//               while(isValid == 0){   
-//                 leitura = JOptionPane.showInputDialog("Digite a TAXA DE RECOMBINAÇÃO (ou Crossover)\n(valor deve ser 0 a 100 indicando porcentagem).");
-//                   try {
-//                       int value = Integer.parseInt(leitura);
-//                       if(value>=0){
-//                        taxaCrossover = value;
-//                        isValid = 1;
-//                       }
-//                       else{
-//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
-//                       }
-//                   } catch (NumberFormatException erro) {
-//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
-//                 }                    
-//               }
+               isValid = 0;
+               while(isValid == 0){   
+                 leitura = JOptionPane.showInputDialog("Digite a TAXA DE RECOMBINAÇÃO (ou Crossover)\n(valor deve ser 0 a 100 indicando porcentagem).");
+                   try {
+                       int value = Integer.parseInt(leitura);
+                       if(value>=0){
+                        taxaCrossover = value;
+                        isValid = 1;
+                       }
+                       else{
+                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+                       }
+                   } catch (NumberFormatException erro) {
+                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+                 }                    
+               }
               
                isValid = 0;
                while(isValid == 0){   
