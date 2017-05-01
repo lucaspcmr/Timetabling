@@ -24,6 +24,7 @@ public class Window {
 		    FileChooser fc = new FileChooser();
 		         
 		    button.addButton(pane, fc.getSalvar(), 0,1);
+//                  fc.getSalvar().setEnabled(false);
 //		    fc.salvarArquivo(fc.getSalvar());
 		    
 		    button.addButton(pane, fc.getCarregar(), 0,2);
@@ -37,7 +38,7 @@ public class Window {
                     JButton horario =  new JButton("Horario");
                     button.addButton(pane, horario, 1,2);
                     button.addLinstenerHorario(horario);//modificar para gerar horario desejado
-                    //horario.setEnabled(false);
+                    horario.setEnabled(false);
                     
                     JButton ag =  new JButton("AG");
                     button.addButton(pane, ag, 1,1);//iniciar AG

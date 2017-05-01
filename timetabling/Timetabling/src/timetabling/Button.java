@@ -165,13 +165,16 @@ public class Button {
                  }                    
                }
                
+               isValid = 0;
                 while(isValid == 0){   
                   leitura = JOptionPane.showInputDialog("Deverá ser empregado ELITISMO (S = sim, N = não)? ");
                    try {
                        
-                       if(leitura.trim().equalsIgnoreCase("S") || leitura.trim().equalsIgnoreCase("N")){                     
-                           if(leitura.trim().equalsIgnoreCase("S"))
+                       if(leitura.trim().equalsIgnoreCase("s") || leitura.trim().equalsIgnoreCase("n")){                     
+                           if(leitura.trim().equalsIgnoreCase("s")){
                                elitismo = true;
+                           } 
+                               isValid = 1;
                        }
                        else{
                         JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
@@ -188,6 +191,7 @@ public class Button {
                  AlgoritimoGenetico.startAG(elitismo,numeroIndividuos,geracoes,taxaMutacao,taxaCrossover);
                  button.setEnabled(true);
                  horario.setEnabled(true);
+    
              }
           });	  
     }
