@@ -97,20 +97,21 @@ public class Button {
                
                
                while(isValid == 0){   
-                 leitura = JOptionPane.showInputDialog("Digite o TAMANHO DA POPULAÇÃO a ser gerado no Algoritmo Genético?\n Observações: (a) Deve ser um número natural, maior ou igual a 2");
+                 leitura = JOptionPane.showInputDialog("Digite o TAMANHO DA POPULAÇÃO a ser gerado no Algoritmo Genético?\n Observações: (a) Deve ser um número natural, maior ou igual a 2, e multipo de 2.");
                    try {
                        int value = Integer.parseInt(leitura);
-                       if(value >=2){                      
+                       if(value >=2 && value%2 == 0){  
+                           
                             numeroIndividuos= value;
                             isValid = 1;
 
                        }
                        else{
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
                        }
                        
                    } catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
                  }                    
                }
                isValid = 0;
@@ -123,29 +124,29 @@ public class Button {
                         isValid = 1;
                        }
                        else{
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
                        }
                    } catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
                  }                    
                }
                
-               isValid = 0;
-               while(isValid == 0){   
-                 leitura = JOptionPane.showInputDialog("Digite a TAXA DE RECOMBINAÇÃO (ou Crossover)\n(valor deve ser 0 a 100 indicando porcentagem).");
-                   try {
-                       int value = Integer.parseInt(leitura);
-                       if(value>=0){
-                        taxaCrossover = value;
-                        isValid = 1;
-                       }
-                       else{
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
-                       }
-                   } catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
-                 }                    
-               }
+//               isValid = 0;
+//               while(isValid == 0){   
+//                 leitura = JOptionPane.showInputDialog("Digite a TAXA DE RECOMBINAÇÃO (ou Crossover)\n(valor deve ser 0 a 100 indicando porcentagem).");
+//                   try {
+//                       int value = Integer.parseInt(leitura);
+//                       if(value>=0){
+//                        taxaCrossover = value;
+//                        isValid = 1;
+//                       }
+//                       else{
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+//                       }
+//                   } catch (NumberFormatException erro) {
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+//                 }                    
+//               }
               
                isValid = 0;
                while(isValid == 0){   

@@ -146,7 +146,8 @@ public class AlgoritimoGenetico {
         List<Individuo> novapop=new ArrayList<Individuo>();//nova populacao
         weight = new ArrayList<>();
         
-        for(int j=0;j<tam/2;j++){//escolhe metade dos individuos da população
+       // for(int j=0;j<tam/2;j++){//escolhe metade dos individuos da população
+       for(int j=0;j<2;j++){//Selecionar dois individuos da população 
             fittotal = 0;
             aux = 0.0;
             sort(pop1);//coloca população em ordem de fitness
@@ -184,16 +185,24 @@ public class AlgoritimoGenetico {
     //for maior que o ultimo individuo da nova população
     //entao adiciono o melhor individuo na nova geração
     //e o individuo menos apto é removido
-    public static List<Individuo> gerarNovaPopulacao(boolean elitismo,List<Individuo> populacao){
+    // Se o ELITISMO tiver sendo utilizado, 
+    //    então o indivíduo com MAIOR APTIDÃO será mantido na "nova" geração da população.
+    // 
+    // Lembre-se: após ordenação da população, o indivíduo com maior aptidão encontra-se na posição "0" (zero) 
+    //            desta população (é claro que pode haver "empate" e haver outros indivíduos com igual aptidão 
+    //            nas posições 1, 2, ... Entretanto, apenas o indivíduo que ocupa a posição "0" - zero é mantido)
+    public static List<Individuo> novaGeracao(boolean elitismo,List<Individuo> populacao){
         
         selecao(populacao); //correção necessario a correção do metodo
         
         List<Individuo> novaPopulacao = new ArrayList<Individuo>();
         int size = populacao.size();
         size = size/2;
-        
+        //
+        // Insere novos indivíduos na "nova" população até atingir o tamanho máximo permitido para ela.
+        //
         for (int i = 0; i < size ; i++) {
-            Individuo ind[] = crossover(melhorIndividuo, melhorIndividuo);
+            Individuo ind[] = crossover(Populacao.populacao.get(i),Populacao.populacao.get(i+1));
             novaPopulacao.add(ind[0]);
             novaPopulacao.add(ind[1]);
         }
