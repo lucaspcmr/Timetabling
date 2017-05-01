@@ -66,7 +66,7 @@ private static void initTabela(){
        JPanel panel = new JPanel();
        
         JFrame f = new JFrame("Horario");   
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JPanel p = new JPanel();
         JScrollPane scrollPane = new JScrollPane(p);

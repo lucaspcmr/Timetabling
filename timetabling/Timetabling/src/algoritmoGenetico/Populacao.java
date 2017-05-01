@@ -16,7 +16,8 @@ import objetos.AlunoDisciplina;
 import objetos.Disciplinas;
 
 public class Populacao {
-        public static ArrayList<Individuo> populacao = new ArrayList<>();
+    
+    public static List<Individuo> populacao = new ArrayList<Individuo>();
     
     public static Individuo criaIndividuo(int n_disciplinas, int n_salas, int n_docentes, int n_timeslot) {
     
@@ -65,20 +66,6 @@ public class Populacao {
         }
     }
     
-//    public static AlunoDisciplinaID criaListAlunoDisciplinaID (List<AlunoDisciplina> alunoDisc, ArrayList<Integer> codDisc){
-//    
-//        int sizeAlunoDisc = alunoDisc.size();
-//        int sizeDisc = codDisc.size();
-//        
-//        for(int i = 0; i < sizeAlunoDisc; i++){
-//            for (int j = 0; j < sizeDisc ; j++){
-//                
-//            }
-//        }
-//        
-//        return null;
-//    }
-
     public static int getampopulacao(){//tamanho da população
         return populacao.size();
     }

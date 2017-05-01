@@ -157,25 +157,29 @@ public class FileChooser extends JPanel  {
                                            buffW.write(comentario);
                                            comentario = "ESTUDANTE\n";
                                            buffW.write(comentario);
-                                           comentario = "//Codigo disciplina , Timeslot, Lista de alunos\n";
+                                           comentario = "//Código da Disciplina, Timeslot, Nome Docente, Sigla Sala, Lista de alunos\n";
                                            buffW.write(comentario);
                                            comentario = "//---------------------\n";
                                            buffW.write(comentario);
                                            
                                           List<DisciplinaAluno> aux = Solucao.getListaAlunosMatriculados(genes,Estudantes.getAlunosDisciplinas());
+                                          sort(aux);
                                           
                                           for (int j = 0; j < aux.size(); j++) {
                                               List<Integer> alunos = aux.get(j).getAlunos();
                                               int disciplinaCodigo  = aux.get(j).getDisciplina();
-                                             // if(alunos.size() >0){
+                                              if(alunos.size() >0){
                                                 String linha = disciplinaCodigo+",";
-                                                linha = linha+aux.get(j).getTimeslot();
+                                                linha = linha+aux.get(j).getTimeslot()+",";
+                                                linha = linha+aux.get(j).getProfessor()+",";
+                                                linha = linha+aux.get(j).getSala();
+                                                
                                                 for (int k = 0; k < alunos.size();k++) {
                                                     linha = linha+","+alunos.get(k);
                                                 }
                                                 linha = linha +"\n";
                                                 buffW.write(linha);
-                                              //}
+                                              }
                                             }
                                     
                                         buffW.close ();

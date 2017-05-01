@@ -1,25 +1,28 @@
-Juan:
-- restrição alunos e capacidade de sala (testar apresentando erros)
-- salvar alunos disciplina arquivo csv
-- testes no algoritmo genetico 
+Juan
+- testes AG (quando terminar o codigo)
 
 Lucas: 
-- criar o metodo de mutação
--testes no algoritmo genetico 
+1 - criar o metodo de mutação
+2 - testes AG (quando terminar o codigo)
 
 Raquel:
-- Metodo principal do algoritimo genetico, cria a população, avalia, ordena pela função fitness, faz a seleção, 
-  crossover,mutação,e verifica a condição de parada
-- Gerar os horarios dado o arquivo csv gerado(Já esta gerando o horario dado um cromossomo, no caso seria para gerar o horari
+1 - Metodo principal do algoritimo genetico, cria a população, avalia, ordena pela função fitness, faz a seleção, 
+    crossover,mutação,e verifica a condição de parada
+
+2 - crossover : two point crossover (forma randomica)
+
+3 - testes AG (quando terminar o codigo)
+
+4 - Gerar os horarios dado o arquivo csv gerado(Já esta gerando o horario dado um cromossomo, no caso seria para gerar o horari
                                               dado o arquivo csv gerado pelo programa)
-- testes no algoritmo genetico 
+obs:está gerando os horarios a partir de uma solução do AG, mas não de um arquivo csv gerado
+    Não sei se seria necessario gerar a leitura da solução do arquivo do csv gerado ???
 
-###############################################################################
-Implemetações complementação do trabalho
-Obs: caso achem interessante podem implementar tambem essa lista abaixo
-     é apenas um complemento para o trabalho, onde cada um iria implementar um tipo de crossover e um tipo de seleção
 
--selecao   : Selecao torneio                      -->Raquel 
--crossover : two point crossover (forma randomica)--> Raquel
--crossover : uniform-crossover                    --> Lucas
-- implementar ELITISMO                            --> Juan
+
+##########Outras implementações
+Obs: Caso queiram implementar, seria um complemento para o trabalho, para testar outros tipos de
+     seleção e crossover.
+     
+- crossover : uniform-crossover -->Lucas
+- selecao   : Selecao torneio   -->Raquel                   

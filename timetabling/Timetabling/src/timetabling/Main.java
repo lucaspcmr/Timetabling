@@ -1,5 +1,6 @@
 package timetabling;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,10 +26,11 @@ public class Main {
 
         //Create and set up the window.
         JFrame frame = new JFrame("Timetabling Problem");
+        //frame.setPreferredSize(new Dimension(400, 500));
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Window windown = new Window();
-
+        
         //Set up the content pane.
         windown.addComponentsToPane(frame.getContentPane());
         TextArea.LOG.append("Abra o arquivo de informações"+"\n");
@@ -43,20 +45,11 @@ public class Main {
             public void run() {
                 UIManager.put("swing.boldMetal", Boolean.FALSE);
                 createAndShowGUI();
-
+//                while(true){
+//                    TextArea.LOG.append("1");
+//                }
             }
         });
-        
-        //Hashtable <Integer, Integer> teste ;
-       // teste = new Hashtable<Integer,Integer>();
-       // Integer key = new Integer(0);
-       // Integer valor = new Integer(5);
-        //teste.put(key, valor);
-       // if(teste.get(key) != null)
-        //    teste.put(key, teste.get(key) +1);
-        
-        //System.out.println("valor:"+ teste.get(key));
-        
-        
+              
     }
 }

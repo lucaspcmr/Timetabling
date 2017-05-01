@@ -16,6 +16,7 @@ import objetos.Salas;
 import objetos.Timeslot;
 import objetos.Turma;
 import timetabling.Filetomemrest;
+import timetabling.TextArea;
 
 /**
  *
@@ -23,10 +24,17 @@ import timetabling.Filetomemrest;
  */
 public class AlgoritimoGenetico {
 
-    private static Gene cromossomo[];//solução melhor individuo do AG
-    private static Solucao solucao;
+    private static Gene cromossomo[];         //solução melhor individuo do AG
+    private static Individuo melhorIndividuo; //Melhor individuo
+    private static Solucao solucao;           //instancia de solução
+    private static List<String> mensagem = new ArrayList<String>();
 
-    public static void init() {
+    //metodo para iniciar a classe solução
+    //necessario para inicializar os objetos 
+    //que são necessario para os calculos
+    //e inicializar o tamanho do mapa de solução
+    //assim como setar todas as restrições dos arquivos lidos
+    private static void init() {
         solucao.construirMapSolucao(Timeslot.getNumeroTimeslots(), Salas.getNumeroSala(), Docentes.getNumeroProfessores(), Disciplinas.getNumeroDisciplinas());
     }
 
@@ -81,68 +89,147 @@ public class AlgoritimoGenetico {
     }
 
     // codigo principal do algoritimo genetico
-    public static void startAG(int numeroIndividuos,int geracoes,int mutacao) {
+    public static void startAG(boolean elitismo,int numeroIndividuos,int numeroGeracoes,int taxaMutacao,int taxaCrossover) {
+        //necessario para processar o texto no LOG
+          new Thread() {
+			@Override
+			public void run() {
+                            TextArea.LOG.setText(""); //Limpar o Log
+                            init(); //necessario para iniciar o mapa de soluções
+                            
+//obs:RAQUEL
+//O codigo abaixo foi implementado para testes da classe solução
+//toda a logica do Algoritimo genetico deve ser implementado nessa parte
+//pode deletar ou comentar o codigo 
+//------------------------------------------------------------------------------------------------------- 
+                            for (int i = 0; i < 1000; i++) {
+                            //do something
+                            Individuo individuo = Populacao.criaIndividuo( Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(),Docentes.getNumeroProfessores() , Timeslot.getNumeroTimeslots() );
+                            cromossomo = individuo.getGenes();
+                            //Debug do individuo pegando seu fitness
+                            TextArea.LOG.append("Geração:"+i+"   Fitness = "+individuo.getFitness() + " Horario Valido: "+individuo.isHorarioValido()+"\n");
+                            TextArea.LOG.setCaretPosition(TextArea.LOG.getText().length() ); // scroll rolando dinamicamente
+                            
+                            if(melhorIndividuo ==null)
+                                melhorIndividuo = individuo;
+                             else{
+                                  if(individuo.getFitness() > melhorIndividuo.getFitness() )
+                                         melhorIndividuo = individuo;
+                                 }
+                            }
+                            
+                            //mostrar o melhor individuo
+                            TextArea.LOG.append("---------------------------------"+"\n");
+                            TextArea.LOG.append("Melhor Fitness = "+melhorIndividuo.getFitness() + " Horario Valido: "+melhorIndividuo.isHorarioValido()+"\n");
+                            TextArea.LOG.setCaretPosition(  TextArea.LOG.getText().length() );
+                            cromossomo = melhorIndividuo.getGenes(); 
+//----------------------------------------------------------------------------------------------
+			}
+		}.start();    
         
-//testando a validação das soluções geradas //criando individuos aleatorios
-        init();
-        int i = 1;
- //       for (int i = 0; i < 1000; i++) {
-        init();
-        Individuo individuo = Populacao.criaIndividuo( Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(),Docentes.getNumeroProfessores() , Timeslot.getNumeroTimeslots() );
-        cromossomo = individuo.getGenes();
-//        
-//        for (int i = 0; i < cromossomo.length; i++) {
-//            Gene gene = cromossomo[i];
-//        }
-
-        System.out.println("Geração:"+i+"   Fitness = "+individuo.getFitness() + " Horario Valido: "+individuo.isHorarioValido());
- //       }
-       
     }
-
-    public static Populacao selecao(Populacao pop1) {
+    
+    public static void escreverLog(String str){
+        TextArea.LOG.append(str);
+    }
+    
+    //Metodo de seleção tipo roleta
+    //dada uma população    (lista de individuos)
+    public static List<Individuo> selecao(List<Individuo> pop1) {
         int fittotal;
         double aux;
-        int tam=pop1.getampopulacao();
+        int tam= pop1.size();
         Random rnd = new Random();
         Float selected;
         float seccao;
         ArrayList<Float> weight;
-        Populacao novapop=new Populacao();
+        List<Individuo> novapop=new ArrayList<Individuo>();//nova populacao
         weight = new ArrayList<>();
-        for(int j=0;j<tam/2;j++){//escolhe metade dos individuos da população
-        fittotal = 0;
-        aux = 0.0;
-        sort(pop1.populacao);//coloca população em ordem de fitness
-        for (int i = 1; i <= pop1.getampopulacao(); i++) {
-            fittotal = fittotal + pop1.populacao.get(i).getFitness();//calcula a soma de todos os fitness
-        }
-        for (int i = 1; i <= Populacao.getampopulacao(); i++) {
-            seccao = (pop1.populacao.get(i).getFitness()) / fittotal;//calcula a porcentagem da roleta para cada individuo
-            weight.add(seccao);
-        }
-        selected = rnd.nextFloat();
-        int i = 1;
         
-        while (i <= tam + 1) {
-            if (selected >= aux && selected <= aux + weight.get(i)) {//encontra a posicao do numero gerado randomicamente
-                break;
+        for(int j=0;j<tam/2;j++){//escolhe metade dos individuos da população
+            fittotal = 0;
+            aux = 0.0;
+            sort(pop1);//coloca população em ordem de fitness
+            
+            for (int i = 1; i <= pop1.size(); i++) {
+                fittotal = fittotal + pop1.get(i).getFitness();//calcula a soma de todos os fitness
             }
-            aux = aux + weight.get(i);
-            i++;
-        }
-        novapop.populacao.add(pop1.populacao.get(i));//adiciona o elemento escolhido em uma nova população
-        pop1.populacao.remove(i);//remove o elemento da população antiga
+            
+            for (int i = 1; i <= Populacao.getampopulacao(); i++) {
+                seccao = (pop1.get(i).getFitness()) / fittotal;//calcula a porcentagem da roleta para cada individuo
+                weight.add(seccao);
+            }
+            
+            selected = rnd.nextFloat();
+            int i = 1;
+
+            while (i <= tam + 1) {
+                if (selected >= aux && selected <= aux + weight.get(i)) {//encontra a posicao do numero gerado randomicamente
+                    break;
+                }
+                aux = aux + weight.get(i);
+                i++;
+            }
+            
+            novapop.add(pop1.get(i));//adiciona o elemento escolhido em uma nova população
+            pop1.remove(i);//remove o elemento da população antiga
         }
         pop1=null;
         return novapop;
     }
+    
+    //metodo para criar uma nova população
+    //selecionando se tem elitismo ou não
+    //ou seja, se o melhor individuo da população anterior
+    //for maior que o ultimo individuo da nova população
+    //entao adiciono o melhor individuo na nova geração
+    //e o individuo menos apto é removido
+    public static List<Individuo> gerarNovaPopulacao(boolean elitismo,List<Individuo> populacao){
+        
+        selecao(populacao); //correção necessario a correção do metodo
+        
+        List<Individuo> novaPopulacao = new ArrayList<Individuo>();
+        int size = populacao.size();
+        size = size/2;
+        
+        for (int i = 0; i < size ; i++) {
+            Individuo ind[] = crossover(melhorIndividuo, melhorIndividuo);
+            novaPopulacao.add(ind[0]);
+            novaPopulacao.add(ind[1]);
+        }
+        
+        
+        if(elitismo){
+            sort(populacao);
+            sort(novaPopulacao);
 
+            int fitnessPopulacao     = populacao.get(0).getFitness();
+            int fitnessNovaPopulacao = novaPopulacao.get(novaPopulacao.size()-1).getFitness();
+
+            if(fitnessPopulacao > fitnessNovaPopulacao ){
+                Individuo individuo = populacao.get(0);
+                novaPopulacao.remove(novaPopulacao.size()-1);
+                novaPopulacao.add(individuo);
+            }
+            sort(novaPopulacao);
+        }
+        else{
+            sort(novaPopulacao);
+        }
+        
+        Populacao.populacao = novaPopulacao; // seta na população
+        
+        return novaPopulacao;//retorna a referencia da população
+    }
+    
+    
     /**
      * @return the cromossomo
      */
     public static Gene[] getCromossomo() {
         return cromossomo;
     }
+    
+    
 
 }

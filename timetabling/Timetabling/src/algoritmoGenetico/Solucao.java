@@ -65,6 +65,7 @@ public class Solucao {
    public static Hashtable <Integer, Integer> disciplinaTimeSlot ;            //HashMap para pegar o timeslot de uma determinada disciplina
    public static Hashtable <Integer, Integer> quantidadeProfessorDisciplina ; //HashMap para validar a quantidade de disciplinas por professor
    public static Hashtable <Integer, Integer> disciplinaSala;                 //disciplina - sala
+   public static Hashtable <Integer, Integer> disciplinaProfessor;            //disciplina - professor
    
    //Lista das salas para cada tipo
     private static List<Integer> salaComum;
@@ -75,7 +76,7 @@ public class Solucao {
     private static List<Integer> laboratorioEspecificoEG;
     private static List<Integer> laboratorioOutro;
     
-    private static Hashtable <Integer, List<Integer>> disciplinaProfessor;//retorna os professores que pode ministrar uma determinada disciplina
+    private static Hashtable <Integer, List<Integer>> disciplinaProfessores;//retorna os professores que pode ministrar uma determinada disciplina
     
     private static boolean horarioValido;//variavel setada para verificar se nenhuma hardconstraint foi afetada
                                          //mostrando um horario valido
@@ -105,8 +106,9 @@ public class Solucao {
         
         disciplinaTimeSlot            = new Hashtable <Integer,Integer>();
         quantidadeProfessorDisciplina = new Hashtable <Integer,Integer>();
-        disciplinaProfessor           = new Hashtable <Integer,List<Integer>>();
+        disciplinaProfessores         = new Hashtable <Integer,List<Integer>>();
         disciplinaSala                = new Hashtable <Integer,Integer>();
+        disciplinaProfessor           = new Hashtable <Integer,Integer>();
         
         for (int i = 0; i < n_disciplinas; i++) {
             List<Integer> aux = new ArrayList<Integer>();
@@ -185,6 +187,7 @@ public class Solucao {
        disciplinaTimeSlot.clear();//limpar HashTable
        quantidadeProfessorDisciplina.clear();//limpar hashtable
        disciplinaSala.clear();
+       disciplinaProfessor.clear();
        
     }
     
@@ -218,6 +221,7 @@ public class Solucao {
        disciplinaTimeSlot.clear();//limpar HashTable
        quantidadeProfessorDisciplina.clear();//limpar hashtable
        disciplinaSala.clear();
+       disciplinaProfessor.clear();
        
     }
     
@@ -237,6 +241,7 @@ public class Solucao {
         //seta no hashmap  como chave o id da disciplina e salva o timeslot e o id da disciplina
         disciplinaTimeSlot.put(disciplina,timeslot);
         disciplinaSala.put(disciplina,sala);
+        disciplinaProfessor.put(disciplina, professor);
         
         //seta a quantidade de professore por disciplina
         //ou seja o professor seleciona tem mais uma disciplina na grade dele
@@ -337,9 +342,26 @@ public class Solucao {
         }
         
         //Softconstraits alunos choque de horario e capacidade disciplina
-        if(horarioValido){
-            fitness = Estudantes.getNumeroAlunos();
+        if(horarioValido){  
+            //se o horario for valido o fitness == 0
+            //nesse caso calcula as softconstrants
+            //para esta aplicação
+            //não há hardconstrant para choque de estudantes
+            //para um mesmo horario a mascara de estudantes ja esta
+            //validando essa constrant
+            //no caso so tem as softsconstrants para estudantes matriculados
+            //em uma disciplina , onde o maximo de penalidade é a quantidade 
+            //de alunos
             fitness = fitness +softConstraints(Estudantes.getAlunosDisciplinas(),Estudantes.getNumeroAlunos());
+        }
+        else{
+            // se o horario não for valido soma mais a quantidade de estudante
+            //pois o maximo de softconstrants que pode ocorrer 
+            //é se nenhum estudante for matriculado então soma a penalidade
+            //maxima das softconstrants
+            //fitnes = Somatorio das hardsconstrants + o maximo de penalidade das softsconstrants
+            //para esse caso
+            fitness =fitness - Estudantes.getNumeroAlunos();
         }
         
         
@@ -529,13 +551,13 @@ public class Solucao {
 
 
                      if(disciplinaTimeslot!=null){//se for igual nulo não foi possivel inserir a disciplina no timeslot
-                         int timeslot = disciplinaTimeslot.intValue();//id do timeslot
+                         int timeslot = disciplinaTimeslot;//id do timeslot
                          
                         //verifica se o aluno esta disponivel naquele horario e 
                         //verifica se tem vaga na disciplina
                         int alunoID = aluno.getAluno() - 1;
 
-                        if(mascara[alunoID][timeslot]  != 1 ){//aluno esta disponivel naquele horario
+                        if(mascara[alunoID][timeslot]  == 0 ){//aluno esta disponivel naquele horario
                                mascara[alunoID][timeslot] = 1;
                                mascaraDisciplinas[ids.get(i)][alunoID] = 1;
                         }
@@ -564,7 +586,7 @@ public class Solucao {
          for (int l = 0; l < ids.size(); l++) {
              Integer timeslot = disciplinaTimeSlot.get(ids.get(l));
             if(timeslot !=null){         
-                mascara[alunoId][timeslot.intValue()] =0;
+                mascara[alunoId][timeslot] =0;
             }
         }
      }
@@ -572,7 +594,7 @@ public class Solucao {
      //Limpar os horario dado uma lista de ids
      private static void limparDisciplinaAluno( List<Integer> ids,int[][] mascara, int alunoId){
          for (int l = 0; l < ids.size(); l++) {
-                mascara[ids.get(l).intValue()][alunoId] = 0;
+                mascara[ids.get(l)][alunoId] = 0;
             }
      }
      
@@ -1069,7 +1091,7 @@ public class Solucao {
      * retorna hash com os professores dado um id
      */
     public static Hashtable <Integer, List<Integer>> getDisciplinaProfessor() {
-        return disciplinaProfessor;
+        return disciplinaProfessores;
     }
    
     public static List<DisciplinaAluno> getListaAlunosMatriculados(Gene[] genes,List<AlunoDisciplina> alunos){
@@ -1098,22 +1120,16 @@ public class Solucao {
      private static void preencherTabelaAluno(int[][] mascara,int[][] mascaraDisciplinas, AlunoDisciplina aluno){
          
          //retorna a disciplina que o aluno quer cursar e o seu timeslot
-         List<Integer> ids = new ArrayList<Integer>();
          List<Integer> disciplinasAluno = aluno.getDisciplina();//lista de disciplinas que o aluno quer cursar
          
          for (int k = 0; k < disciplinasAluno.size(); k++) {
-             boolean valor = true;
-             List<Integer> aux = getRestricoesDisciplinasIds(disciplinasAluno.get(k));//pegar os ids das disciplinas dado o codigo
              
-             for (int j = 0; j < aux.size(); j++) {
-                 ids.add(aux.get(j));
-             }
-             
+             List<Integer> ids = getRestricoesDisciplinasIds(disciplinasAluno.get(k));//pegar os ids das disciplinas dado o codigo
+                      
              if(ids.size()>0){
                 preencherHorarioEstudante(ids,mascara,mascaraDisciplinas,aluno);
              }
-               ids.clear();//limpa o array de ids para proxima disciplina
-             
+      
          }
          
        
@@ -1122,8 +1138,20 @@ public class Solucao {
      
       //verifica se é possivel inserir todos os alunos em uma sala
      public static List<DisciplinaAluno> insereEstudante(int n_alunos, int[][] disciplinaAlunos){
-
-       List<DisciplinaAluno> disciplinasAlunos = new ArrayList<DisciplinaAluno>();
+        
+//         int quan = 0;
+//         for (int i = 0; i < n_disciplinas; i++) {
+//             for (int j = 0; j < n_alunos; j++) {
+//                 if(disciplinaAlunos[i][j] == 1)
+//                     quan = quan+1;
+//                 //System.out.print(" "+disciplinaAlunos[i][j]);
+//             }
+//             System.out.println("Disciplina: "+i+" quantidade: "+quan);
+//             quan = 0;
+//              
+//         }
+         
+        List<DisciplinaAluno> disciplinasAlunos = new ArrayList<DisciplinaAluno>();
         int quantidade = 0;
          
          for (int i = 0; i < n_disciplinas; i++) {
@@ -1135,20 +1163,35 @@ public class Solucao {
                 String capacidade = Salas.salacap.get(keySala);//pega a capacidade da sala
                 List<Integer> alunos = new ArrayList<Integer>();
                 for (int j = 0; j < n_alunos; j++) {//quantidade de alunos naquele timeslot
-                    if(disciplinaAlunos[i][j] == 1)
+                    if(disciplinaAlunos[i][j] == 1){
                         quantidade ++;
-                    if(quantidade >= Integer.valueOf(capacidade))
                         alunos.add(j+1);//setando o codigo do aluno
+                        if(quantidade >= Integer.valueOf(capacidade)){
+                            break;
+                        }
+                        
+                    }
+        
                 }
                 
                 DisciplinaAluno aux = new DisciplinaAluno();
-                Integer codigo = Disciplinas.D.get(i);
-                String codigoDisciplina = Disciplinas.disciplinacodigo.get(codigo);
+                Integer key = Disciplinas.D.get(i);
+                String codigoDisciplina = Disciplinas.disciplinacodigo.get(key);
+                Integer sala = disciplinaSala.get(i);
+                String nomeSala = Salas.salasigla.get(""+(sala+1));
+              
+                Integer timeslot = disciplinaTimeSlot.get(i);
+                Integer professor = disciplinaProfessor.get(i);
+                String professorNome =Docentes.docentenome.get(""+(professor+1));
+                String curso = Disciplinas.disciplinacurso.get(key);
+                
                 aux.setDisciplina(Integer.valueOf(codigoDisciplina.trim()));//setar o codigo da disciplina
                 aux.setAlunos(alunos);//setar o codigo do aluno
-                Integer timeslot = disciplinaTimeSlot.get(i);
-                aux.setTimeslot(timeslot.intValue());
-                disciplinasAlunos.add(aux);
+                aux.setCurso(Integer.valueOf(curso.trim()));
+                aux.setTimeslot(timeslot+1);//inserir o codigo do timeslot
+                aux.setSala(nomeSala);//inserir o codigo da sala
+                aux.setProfessor(professorNome);//inserir o codigo do professor
+                disciplinasAlunos.add(aux);//inserir a lista de codigos dos alunos
 
             }
          }
