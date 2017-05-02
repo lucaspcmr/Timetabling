@@ -118,29 +118,29 @@ public class AlgoritimoGenetico {
 //------------------------------------------------------------------------------------------------------- 
        //do something
                             
-                            for (int i = 0; i < AlgoritimoGenetico.numeroGeracoes; i++) {
-                                
-                     
-                            Individuo individuo = Populacao.criaIndividuo( Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(),Docentes.getNumeroProfessores() , Timeslot.getNumeroTimeslots() );
-                            cromossomo = individuo.getGenes();
-                            
-                            //Debug do individuo pegando seu fitness
-                            TextArea.LOG.append("Geração:"+i+"   Fitness = "+individuo.getFitness() + " Horario Valido: "+individuo.isHorarioValido()+"\n");
-                            TextArea.LOG.setCaretPosition(TextArea.LOG.getText().length() ); // scroll rolando dinamicamente
-                            
-                            if(melhorIndividuo ==null)
-                                melhorIndividuo = individuo;
-                             else{
-                                  if(individuo.getFitness() > melhorIndividuo.getFitness() )
-                                         melhorIndividuo = individuo;
-                                 }
-                            }
-                            
-                            //mostrar o melhor individuo
-                            TextArea.LOG.append("---------------------------------"+"\n");
-                            TextArea.LOG.append("Melhor Fitness = "+melhorIndividuo.getFitness() + " Horario Valido: "+melhorIndividuo.isHorarioValido()+"\n");
-                            TextArea.LOG.setCaretPosition(  TextArea.LOG.getText().length() );
-                            cromossomo = melhorIndividuo.getGenes(); 
+//                            for (int i = 0; i < AlgoritimoGenetico.numeroGeracoes; i++) {
+//                                
+//                     
+//                            Individuo individuo = Populacao.criaIndividuo( Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(),Docentes.getNumeroProfessores() , Timeslot.getNumeroTimeslots() );
+//                            cromossomo = individuo.getGenes();
+//                            
+//                            //Debug do individuo pegando seu fitness
+//                            TextArea.LOG.append("Geração:"+i+"   Fitness = "+individuo.getFitness() + " Horario Valido: "+individuo.isHorarioValido()+"\n");
+//                            TextArea.LOG.setCaretPosition(TextArea.LOG.getText().length() ); // scroll rolando dinamicamente
+//                            
+//                            if(melhorIndividuo ==null)
+//                                melhorIndividuo = individuo;
+//                             else{
+//                                  if(individuo.getFitness() > melhorIndividuo.getFitness() )
+//                                         melhorIndividuo = individuo;
+//                                 }
+//                            }
+//                            
+//                            //mostrar o melhor individuo
+//                            TextArea.LOG.append("---------------------------------"+"\n");
+//                            TextArea.LOG.append("Melhor Fitness = "+melhorIndividuo.getFitness() + " Horario Valido: "+melhorIndividuo.isHorarioValido()+"\n");
+//                            TextArea.LOG.setCaretPosition(  TextArea.LOG.getText().length() );
+//                            cromossomo = melhorIndividuo.getGenes(); 
 //----------------------------------------------------------------------------------------------
 			}
 		}.start();    
