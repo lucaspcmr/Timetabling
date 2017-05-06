@@ -9,34 +9,56 @@ import java.util.Random;
 
 /**
  *
- * @author Aluno
+ * @author Raquel
  */
 public class Individuo implements Comparable<Individuo>{
+
+    /**
+     * @return the horarioValido
+     */
+    public boolean isHorarioValido() {
+        return horarioValido;
+    }
     
     //
     // Tipos de mutaÃ§Ãµes (mutation) que estÃ£o disponÃ­veis:
     //
     public static final int     NO_MUTATION               = 0;   // NÃ£o aplica mutaÃ§Ã£o
-    
+    public static final int     MUTATION                  = 1;   // NÃ£o aplica mutaÃ§Ã£o
     private Gene chromossomo[];
     private int fitness;
+    private boolean horarioValido;
     
    public Individuo() {      
         //dosomething
    }
+
     
-    Individuo(Gene genes[], int mutacaoEscolhida){
+   public Individuo(Gene genes[], int mutacaoEscolhida){
         
         switch (mutacaoEscolhida) {
             case  NO_MUTATION:
-                Solucao.initSolucao();
-                fitness = Solucao.CalculaFitnees(genes);
+                fitness = Solucao.calculaFitness(genes);
+                horarioValido = Solucao.isHorarioValido();
                 chromossomo = genes;
             break;
-                //implementar mutação escolhida
-            default:
-                Solucao.initSolucao();
-                fitness = Solucao.CalculaFitnees(genes);
+            
+            case  MUTATION:
+                Random random = new Random();
+                
+                if(random.nextInt(101)<AlgoritmoGenetico.getTaxaMutacao()){
+                    //mutacao(genes);
+                }
+                
+                fitness = Solucao.calculaFitness(genes);
+                horarioValido = Solucao.isHorarioValido();
+                chromossomo = genes;
+                
+            break;
+                
+            default:            
+                fitness = Solucao.calculaFitness(genes);
+                horarioValido = Solucao.isHorarioValido();
                 chromossomo = genes;
         }
         

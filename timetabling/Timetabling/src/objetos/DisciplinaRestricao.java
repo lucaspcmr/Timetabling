@@ -6,7 +6,6 @@
 package objetos;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -16,7 +15,7 @@ public class DisciplinaRestricao {
     private int disciplina;//codigo da disciplina
     private ArrayList<Integer> timeslot;  //codigo do timeslot
 public DisciplinaRestricao(){
-    timeslot=new ArrayList<Integer>();
+    timeslot=new ArrayList<>();
 }
     /**
      * @return the disciplina

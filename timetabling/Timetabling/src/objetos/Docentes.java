@@ -9,7 +9,11 @@ import java.util.List;
 import timetabling.Filetomem;
 
 public class Docentes {
-    
+        //maximo de disciplinas por professores
+        public static int MAXIMO_DISCIPLINAS_PROFESSOR = 10; //10 timeslots ou 5 disciplinas de 64
+        //numero professores 
+        private static int numeroProfessores;
+        
 	public static Hashtable <String, String> docentesigla;
 	public static Hashtable <String, String> docentenome;
 	public static Hashtable <String, String> docentedisc1;
@@ -23,18 +27,18 @@ public class Docentes {
 
         
        //Lista de docente com restricao
-        private static List<DocenteRestricao> docenteRestricao= new ArrayList<DocenteRestricao>();
+        private static List<DocenteRestricao> docenteRestricao= new ArrayList<>();
        
         
 	public Docentes(){
-		docentesigla=new Hashtable <String,String>();
-		docentenome=new Hashtable <String,String>();
-		docentedisc1=new Hashtable <String,String>();
-		docentedisc2=new Hashtable <String,String>();
-		docentedisc3=new Hashtable <String,String>();
-		docentedisc4=new Hashtable <String,String>();
-		docentedisc5=new Hashtable <String,String>();
-                P=new ArrayList<String>();
+		docentesigla=new Hashtable <>();
+		docentenome=new Hashtable <>();
+		docentedisc1=new Hashtable <>();
+		docentedisc2=new Hashtable <>();
+		docentedisc3=new Hashtable <>();
+		docentedisc4=new Hashtable <>();
+		docentedisc5=new Hashtable <>();
+                P=new ArrayList<>();
 		try {
 			buffR.readLine();
 			buffR.readLine();
@@ -64,15 +68,15 @@ public class Docentes {
 					str3=str2.substring(0,str2.indexOf(","));
 					str2=str2.substring(str2.indexOf(",")+1,str2.length());}
 					switch(i){
-				case 0:docentedisc1.put(str1, str3);
+				case 1:docentedisc1.put(str1, str3);
 					break;
-				case 1:docentedisc2.put(str1, str3);
+				case 2:docentedisc2.put(str1, str3);
 					break;
-				case 2:docentedisc3.put(str1, str3);
+				case 3:docentedisc3.put(str1, str3);
 					break;
-				case 3:docentedisc4.put(str1, str3);
+				case 4:docentedisc4.put(str1, str3);
 					break;
-				case 4:docentedisc5.put(str1, str3);
+				case 5:docentedisc5.put(str1, str3);
 					break;
 				}
 					
@@ -85,7 +89,7 @@ public class Docentes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+                numeroProfessores = docentenome.size();
 //	criaux();
 	}
 //       void criaux(){
@@ -104,5 +108,12 @@ public class Docentes {
         
     public static List<DocenteRestricao> getDocenteRestricao(){
         return docenteRestricao;
+    }
+
+    /**
+     * @return the numeroProfessores
+     */
+    public static int getNumeroProfessores() {
+        return numeroProfessores;
     }
 }

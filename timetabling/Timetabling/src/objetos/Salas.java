@@ -3,20 +3,22 @@ package objetos;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
-import static objetos.Disciplinas.D;
-import static objetos.Disciplinas.D2;
-import static objetos.Disciplinas.disciplinaCHP;
-import static objetos.Disciplinas.disciplinaCHT;
-import static objetos.Disciplinas.disciplinatipop;
-import static objetos.Disciplinas.disciplinatipot;
-import static objetos.Disciplinas.quantidade;
 
 import timetabling.Filetomem;
 
 public class Salas {
+        //Tipos de sala da aplicação
+        public static int SALA_COMUM                   = 1;
+        public static int LABORATORIO_DE_INFORMATICA   = 2;
+        public static int LABORATORIO_ESPECIFICO_EC    = 3;
+        public static int LABORATORIO_ESPECIFICO_EE    = 4;
+        public static int LABORATORIO_ESPECIFICO_EM    = 5;
+        public static int LABORATORIO_ESPECIFICO_GERAL = 6;
+        public static int LABORATORIO_OUTRO            = 7;
+                
+        private static int numeroSala;
 	public static Hashtable<String, String> salasigla;
 	public static Hashtable<String, String> saladesc;
 	public static Hashtable<String, String> salatipo;
@@ -26,15 +28,15 @@ public class Salas {
 
 	BufferedReader buffR=Filetomem.buffR;
         
-        private static List<SalaRestricao> salaRestricao= new ArrayList<SalaRestricao>();
+        private static List<SalaRestricao> salaRestricao= new ArrayList<>();
         
         
 public Salas(){
-	salasigla=new Hashtable <String,String>();
-	saladesc=new Hashtable <String,String>();
-	salatipo=new Hashtable <String,String>();
-	salacap=new Hashtable <String,String>();
-        S=new ArrayList<String>();
+	salasigla=new Hashtable <>();
+	saladesc=new Hashtable <>();
+	salatipo=new Hashtable <>();
+	salacap=new Hashtable <>();
+        S=new ArrayList<>();
 	try {
 		buffR.readLine();
 		buffR.readLine();
@@ -62,6 +64,7 @@ public Salas(){
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+        numeroSala = salasigla.size();
         criaux();
 }
 void criaux(){
@@ -83,6 +86,13 @@ void criaux(){
 
     public static List<SalaRestricao> getSalaRestricao(){
         return salaRestricao;
+    }
+
+    /**
+     * @return the numeroSala
+     */
+    public static int getNumeroSala() {
+        return numeroSala;
     }
 
 }

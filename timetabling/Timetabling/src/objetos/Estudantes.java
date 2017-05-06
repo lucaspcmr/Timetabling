@@ -9,7 +9,11 @@ import java.util.List;
 import timetabling.Filetomem;
 
 public class Estudantes {
-
+    //maximo de disciplinas por por aluno
+    private static int MAXIMO_DISCIPLINAS_ALUNOS = 10;
+    //numero de alunos
+    private static int numeroAlunos;
+    
     public static Hashtable<String, String> estudantenome;
     public static Hashtable<String, String> estudantedisc1;
     public static Hashtable<String, String> estudantedisc2;
@@ -26,22 +30,22 @@ public class Estudantes {
     public static ArrayList<String> E;//lista com os nomes dos alunos
 
     //Lista Alunos Disciplina
-    private static List<AlunoDisciplina> listAlunoDisciplina = new ArrayList<AlunoDisciplina>();
-    private static int n_estudantes = 0;
+    private static List<AlunoDisciplina> listAlunoDisciplina = new ArrayList<>();
+    
 
     public Estudantes() {
-        estudantenome = new Hashtable<String, String>();
-        estudantedisc1 = new Hashtable<String, String>();
-        estudantedisc2 = new Hashtable<String, String>();
-        estudantedisc3 = new Hashtable<String, String>();
-        estudantedisc4 = new Hashtable<String, String>();
-        estudantedisc5 = new Hashtable<String, String>();
-        estudantedisc6 = new Hashtable<String, String>();
-        estudantedisc7 = new Hashtable<String, String>();
-        estudantedisc8 = new Hashtable<String, String>();
-        estudantedisc9 = new Hashtable<String, String>();
-        estudantedisc10 = new Hashtable<String, String>();
-        E = new ArrayList<String>();
+        estudantenome = new Hashtable<>();
+        estudantedisc1 = new Hashtable<>();
+        estudantedisc2 = new Hashtable<>();
+        estudantedisc3 = new Hashtable<>();
+        estudantedisc4 = new Hashtable<>();
+        estudantedisc5 = new Hashtable<>();
+        estudantedisc6 = new Hashtable<>();
+        estudantedisc7 = new Hashtable<>();
+        estudantedisc8 = new Hashtable<>();
+        estudantedisc9 = new Hashtable<>();
+        estudantedisc10 = new Hashtable<>();
+        E = new ArrayList<>();
         try {
             buffR.readLine();
             buffR.readLine();
@@ -117,6 +121,7 @@ public class Estudantes {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        numeroAlunos = estudantenome.size();
 //        criaux();
     }
 
@@ -130,14 +135,6 @@ public class Estudantes {
 //
 //    }
 
-    public static void gerarListaAlunosDisciplina() {
-        //do something
-    }
-
-    public static void calculaNumeroEstudantes() {
-        //do something
-    }
-
     public static List<AlunoDisciplina> getAlunosDisciplinas() {
 
         return listAlunoDisciplina;
@@ -145,6 +142,6 @@ public class Estudantes {
 
     public static int getNumeroAlunos() {
 
-        return n_estudantes;
+        return numeroAlunos;
     }
 }

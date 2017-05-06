@@ -1,10 +1,14 @@
 package timetabling;
 
+import algoritmoGenetico.AlgoritmoGenetico;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -16,7 +20,7 @@ import javax.swing.border.TitledBorder;
 
 public class TextArea {
 	
-	public static JTextArea LOG = new JTextArea(100,200);
+	public static JTextArea LOG = new JTextArea(200,400);
 	
 	 public void addTextArea(Container pane, int x, int y)
 	    {
@@ -28,7 +32,7 @@ public class TextArea {
 			c.gridheight = 3;
 			c.insets = new Insets(10,10,0,0);
 			
-			JPanel middlePanel = new JPanel ();
+		JPanel middlePanel = new JPanel ();
 	        middlePanel.setBorder( new TitledBorder ( new EtchedBorder (), "Log" ) );
 	        middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));
 	        
@@ -36,7 +40,7 @@ public class TextArea {
 	        //Create the log first, because the action listeners
 	        //need to refer to it.
 	        
-	        LOG  = new JTextArea(15,20);
+	        LOG  = new JTextArea(10,30);
 	        LOG.setMargin(new Insets(5,5,5,5));
 	        LOG.setEditable(false);
 	        JScrollPane logScrollPane = new JScrollPane(LOG);
@@ -46,4 +50,5 @@ public class TextArea {
 			
 		    pane.add(middlePanel, c);
 	    }
+         
 }

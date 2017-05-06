@@ -3,14 +3,13 @@ package timetabling;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Label {
 	public void addLabel(Container pane, String description, int x, int y)
     {
-		JLabel label = new JLabel(description);
+            JLabel label = new JLabel(description);
 	    GridBagConstraints c = new GridBagConstraints();
 	    c = new GridBagConstraints();
 	    c.fill = GridBagConstraints.HORIZONTAL;
@@ -21,7 +20,7 @@ public class Label {
 	
 	public JPanel addLabel(JPanel pane, String description, int x, int y)
     {
-		JLabel label = new JLabel(description);
+            JLabel label = new JLabel(description);
 	    GridBagConstraints c = new GridBagConstraints();
 	    c = new GridBagConstraints();
 	    c.fill = GridBagConstraints.HORIZONTAL;
