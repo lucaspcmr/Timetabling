@@ -48,7 +48,7 @@ public class Cursos {
 			str3=str2.substring(0,str2.indexOf(","));
 			cursoperiodos.put(str1, str3);
 			str2=str2.substring(str2.indexOf(",")+1,str2.length());
-			str3=str2.substring(0,1);
+			str3=str2;
 			cursoturnos.put(str1, str3);
 			}
 			}while(str.charAt(0)!='/');
@@ -58,6 +58,7 @@ public class Cursos {
 			e.printStackTrace();
 		}
                 numeroCursos = cursodesc.size();
+               
 	}
 
     /**

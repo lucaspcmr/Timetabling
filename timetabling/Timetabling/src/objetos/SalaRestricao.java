@@ -15,7 +15,7 @@ public class SalaRestricao {
     private int sala;//codigo  da sala
     private ArrayList<Integer> timeslot;//codigo do timeslot
 public SalaRestricao(){
-    timeslot=new ArrayList<Integer>();
+    timeslot=new ArrayList<>();
 }
     /**
      * @return the sala

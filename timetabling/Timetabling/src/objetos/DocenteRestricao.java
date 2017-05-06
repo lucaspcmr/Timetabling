@@ -15,7 +15,7 @@ public class DocenteRestricao {
     private int docente; //codigo de docente
     private ArrayList<Integer> timeslot;//codigo de timeslot
 public DocenteRestricao(){
-    timeslot=new ArrayList<Integer>();
+    timeslot=new ArrayList<>();
 }
     /**
      * @return the docente

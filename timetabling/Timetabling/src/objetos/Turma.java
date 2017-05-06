@@ -5,18 +5,73 @@
  */
 package objetos;
 
+
+
 /**
  *
  * @author HOME
  */
-public class Turma {
+
+//ordenacao deve ser pelo codigo do curso e timeslot
+public class Turma implements Comparable<Turma>{
     //Classe usada para gerar a tabela de horarios
-    private String disciplina;
+    
+    
+    private int curso;     //codigo curso
+    private int timeslot;
+    
+    private String disciplina;//codigo diciplina
     private String professor;
     private String sala;
-    private String timeslot;
     private String periodo;
-    private String curso;
+
+    @Override
+    public int compareTo(Turma obj) {
+        
+        //ordenar pelo curso
+       if (this.getCurso() > obj.getCurso()) {
+            return 1;
+        } else if (this.getCurso() < obj.getCurso()) {
+            return -1;
+        } else {
+            //ordenar pelo timeslot
+            if (this.getTimeslot()> obj.getTimeslot()) {
+                return 1;
+            } else if (this.getTimeslot() < obj.getTimeslot()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    /**
+     * @return the curso
+     */
+    public int getCurso() {
+        return curso;
+    }
+
+    /**
+     * @param curso the curso to set
+     */
+    public void setCurso(int curso) {
+        this.curso = curso;
+    }
+
+    /**
+     * @return the timeslot
+     */
+    public int getTimeslot() {
+        return timeslot;
+    }
+
+    /**
+     * @param timeslot the timeslot to set
+     */
+    public void setTimeslot(int timeslot) {
+        this.timeslot = timeslot;
+    }
 
     /**
      * @return the disciplina
@@ -61,20 +116,6 @@ public class Turma {
     }
 
     /**
-     * @return the timeslot
-     */
-    public String getTimeslot() {
-        return timeslot;
-    }
-
-    /**
-     * @param timeslot the timeslot to set
-     */
-    public void setTimeslot(String timeslot) {
-        this.timeslot = timeslot;
-    }
-
-    /**
      * @return the periodo
      */
     public String getPeriodo() {
@@ -87,21 +128,5 @@ public class Turma {
     public void setPeriodo(String periodo) {
         this.periodo = periodo;
     }
-
-    /**
-     * @return the curso
-     */
-    public String getCurso() {
-        return curso;
-    }
-
-    /**
-     * @param curso the curso to set
-     */
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
-    
-    
     
 }

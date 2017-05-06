@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import objetos.AlunoDisciplina;
 import objetos.DisciplinaRestricao;
 import objetos.DocenteRestricao;
 import objetos.SalaRestricao;
@@ -30,9 +29,9 @@ public class Filetomemrest {
 
     public static void sort(FileReader fileR) {
         buffR = new BufferedReader(fileR);//arquivo buferizado
-        discirest = new ArrayList<DisciplinaRestricao>();
-        docrest=new ArrayList<DocenteRestricao>();
-        salarest=new ArrayList<SalaRestricao>();
+        discirest = new ArrayList<>();
+        docrest=new ArrayList<>();
+        salarest=new ArrayList<>();
         //do something
         try {
             while (buffR.ready()) {
@@ -48,6 +47,14 @@ public class Filetomemrest {
                 }
 
             }
+            
+//            for (int i = 0; i < discirest.size(); i++) {
+//                System.out.println("Disciplina "+discirest.get(i).getDisciplina());
+//                       for (int j = 0; j < discirest.get(i).getTimeslot().size(); j++) {
+//                            System.out.print(" "+discirest.get(i).getTimeslot().get(j));
+//                }
+//                       System.out.println("");
+//            }
 
             buffR.close();
         } catch (IOException e) {
@@ -92,8 +99,8 @@ public class Filetomemrest {
                         }
                         discirest.get(j).setTimeslot(Integer.parseInt(str3));
                     }
-                     System.out.println(discirest.get(j).getDisciplina());
-                System.out.println(discirest.get(j).getTimeslot());
+                //System.out.println(discirest.get(j).getDisciplina());
+                //System.out.println(discirest.get(j).getTimeslot());
                 }
                 j++;
                 str=buffR.readLine();
@@ -152,11 +159,11 @@ public class Filetomemrest {
     private static void sala() {
         String str, str1, str2, str3;
         
-
         int i = 0,j=0;
 
         try {
             str=buffR.readLine();
+            System.out.println(str);
             while((str.charAt(0)) == '/')
                 str=buffR.readLine();
             do {
@@ -184,11 +191,15 @@ public class Filetomemrest {
                         }
                         salarest.get(j).setTimeslot(Integer.parseInt(str3));
                     }
-                     System.out.println(salarest.get(j).getSala());
-                System.out.println(salarest.get(j).getTimeslot());
+                    // System.out.println(salarest.get(j).getSala());
+                    // System.out.println(salarest.get(j).getTimeslot());
                 }
                 j++;
+               
                 str=buffR.readLine();
+                if(str == null)
+                    break;
+             
             } while (str.charAt(0) != '/');
         } catch (IOException ex) {
             Logger.getLogger(Filetomemrest.class.getName()).log(Level.SEVERE, null, ex);

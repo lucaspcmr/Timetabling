@@ -3,7 +3,6 @@ package objetos;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -27,20 +26,20 @@ public class Disciplinas {
         public static ArrayList<Integer> D2;//lista com tipo de sala pra cada horario da disciplina
         
         //Lista de disciplinas com restriçoes e lista de disciplinas com
-        private static List<DisciplinaRestricao> disciplinaRestricao= new ArrayList<DisciplinaRestricao>();
+        private static List<DisciplinaRestricao> disciplinaRestricao= new ArrayList<>();
               
 	public Disciplinas(){
-                disciplinacodigo=new Hashtable <Integer,String>();
-		disciplinacurso=new Hashtable <Integer,String>();
-		disciplinaperiodo=new Hashtable <Integer,String>();
-		disciplinasigla=new Hashtable <Integer,String>();
-		disciplinadesc=new Hashtable <Integer,String>();
-		disciplinaCHT=new Hashtable <Integer,String>();
-		disciplinatipot=new Hashtable <Integer,String>();
-		disciplinaCHP=new Hashtable <Integer,String>();
-		disciplinatipop=new Hashtable <Integer,String>();
-                D=new ArrayList<Integer>();//disciplina
-                D2=new ArrayList<Integer>();//tipo da sala
+                disciplinacodigo=new Hashtable <>();
+		disciplinacurso=new Hashtable <>();
+		disciplinaperiodo=new Hashtable <>();
+		disciplinasigla=new Hashtable <>();
+		disciplinadesc=new Hashtable <>();
+		disciplinaCHT=new Hashtable <>();
+		disciplinatipot=new Hashtable <>();
+		disciplinaCHP=new Hashtable <>();
+		disciplinatipop=new Hashtable <>();
+                D=new ArrayList<>();//disciplina
+                D2=new ArrayList<>();//tipo da sala
 		try {
                     int i=1;
 			buffR.readLine();
@@ -86,16 +85,16 @@ public class Disciplinas {
 		}
                 
 	criaux();
-        numeroDisciplinas = disciplinacodigo.size();
+        numeroDisciplinas = D.size();
         
-            System.out.println("Disciplinas");
-             for (int i = 0; i < D.size(); i++) {
-                 System.out.print(D.get(i)+" ");
-            }
-            System.out.println("Tipo Salas");
-            for (int i = 0; i < D2.size(); i++) {
-                 System.out.print(D2.get(i)+" ");
-            }
+//            System.out.println("Disciplinas");
+//             for (int i = 0; i < D.size(); i++) {
+//                 System.out.print(D.get(i)+" ");
+//            }
+//            System.out.println("Tipo Salas");
+//            for (int i = 0; i < D2.size(); i++) {
+//                 System.out.print(D2.get(i)+" ");
+//            }
         }
         void criaux(){
             int carga;
