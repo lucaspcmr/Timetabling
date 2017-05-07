@@ -258,7 +258,7 @@ public class AlgoritmoGenetico {
                             if(individuoCompara.getFitness() > AlgoritmoGenetico.melhorIndividuo.getFitness()){
                                 AlgoritmoGenetico.melhorIndividuo = individuoCompara;
                                 AlgoritmoGenetico.cromossomo = individuoCompara.getGenes();
-                                AlgoritmoGenetico.melhorGeracao = contadorGeracoes;
+                                AlgoritmoGenetico.melhorGeracao = contadorGeracoes +1;
                             }
                             
                             
