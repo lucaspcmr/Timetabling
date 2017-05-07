@@ -334,11 +334,11 @@ public class AlgoritmoGenetico {
             sort(pop1);//coloca população em ordem de fitness
             
             for (int i = 0; i < tam; i++) {
-                fittotal = fittotal + pop1.get(i).getFitness();//calcula a soma de todos os fitness
+                fittotal = fittotal+20000 + pop1.get(i).getFitness();//calcula a soma de todos os fitness
             }
             
             for (int i = 0; i < tam; i++) {
-                seccao = (pop1.get(i).getFitness()) / fittotal;//calcula a porcentagem da roleta para cada individuo
+                seccao = (pop1.get(i).getFitness()+20000) / fittotal;//calcula a porcentagem da roleta para cada individuo
                 weight.add(seccao);
             }
             
