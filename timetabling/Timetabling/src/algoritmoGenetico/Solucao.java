@@ -936,6 +936,7 @@ public class Solucao {
         }
                 
         for (int i = 0; i < sizeGene; i++){
+            //fazer uma selecao aleatoria para setar na mascara de solução
             Random r = new Random();
             int select = r.nextInt(aux.size());
             Gene gene = aux.get(select);
