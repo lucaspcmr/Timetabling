@@ -1,39 +1,9 @@
 Juan
 -Testes
+
 Lucas: 
 1 - Criar o metodo de mutação
-2 - Implementar a taxa de mutacao 
 3 - Testes
-Obs: Fiz uma pequena alteração no seu metodo de seleção , substituino os Objetos Populacao por uma lista de Individuos.
-     Como colocamos na classe População uma variavel static, essa variavel seria comun a todos
-     os objetos População, neste caso, estava alterando um mesmo objeto e não dois objetos diferentes.
-     ( A variavel Populacao - pop1 e a mesma da Populacao - novapop )
-     Tambem para retornar apenas dois individuos (deixando de forma dinanmica a taxa de recombinação)
-     (mantem a população original, apenas seleciona dois individuos e retorna eles);
 
 Raquel:
-1 - Metodo principal do algoritimo genetico, cria a população, avalia, ordena pela função fitness, faz a seleção, 
-    crossover,elitismo,mutação, nova populacao e verifica a condição de parada
-- Implementar a taxa de recombinação 
-     //Faz um "sorteio" e verifica se a taxa de crossover foi atingida... 
-     //se sim, realiza o crossover, 
-     //se não, mantém os pais selecionados para a próxima geração, copiando-os para os filhos.
-     // Estes filhos podem, ou não, sofrerem algum tipo de mutação...
-
-2 - Crossover : two point crossover (forma randomica)
-3 - Testes
-
-##########Outras implementações
-Obs: Caso queiram implementar, ou se não resolver o problema do trabalho(seria um complemento para o trabalho, para testar outros tipos de
-     seleção e crossover).(Olhar o codigo StringFinder disponibiliazado pelo professor).
-     
-- crossover : uniform-crossover -->Lucas
-// Faz o "cara ou coroa" para decidir cada posição do cromossomo...
-
-- selecao   : Selecao torneio   -->Raquel  
-// Seleciona, aleatoriamente, TRÊS ou mais  indivíduos da atual população que competirão entre si para que dois deles
-// sejam progenitores de uma futura recombinação (crossover). Para isto cria uma "população intermediária"
-// com o intuito de não "estragar" a população atual. Ao final esta população intermediária é destruída. 
-//No caso um seleção tornei seria por exemplo ou outra regra de escolha                
-// Ordena a população intermediária, o que faz com que os dois indivíduos com melhor aptidão (fitness)
-// ocupem as posições 0 - zero e 1 - um. Estes serão os progenitores escolhidos pelo torneio.
+-Testes
