@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package timetabling;
-import algoritmoGenetico.AlgoritimoGenetico;
+import algoritmoGenetico.AlgoritmoGenetico;
 import algoritmoGenetico.Gene;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -135,7 +135,7 @@ private static void initTabela(){
        String table[][] = new String[15][7];
        table = getTimeSlots(table,7,22);
        
-       Gene genes[] = AlgoritimoGenetico.getCromossomo();
+       Gene genes[] = AlgoritmoGenetico.getCromossomo();
         
        for (int i = 0; i < genes.length; i++) {
             Gene gene = genes[i];

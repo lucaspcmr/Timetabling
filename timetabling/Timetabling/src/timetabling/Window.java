@@ -1,5 +1,5 @@
 package timetabling;
-import algoritmoGenetico.AlgoritimoGenetico;
+import algoritmoGenetico.AlgoritmoGenetico;
 import java.awt.Container;
 import java.awt.GridBagLayout;
 import java.awt.Panel;

@@ -1,5 +1,5 @@
 package timetabling;
-import algoritmoGenetico.AlgoritimoGenetico;
+import algoritmoGenetico.AlgoritmoGenetico;
 import algoritmoGenetico.Gene;
 import algoritmoGenetico.Solucao;
 import timetabling.Filetomem;
@@ -97,7 +97,7 @@ public class FileChooser extends JPanel  {
     	                    	FileWriter fileW = new FileWriter (file,false);//arquivo para escrita
     	                    	BufferedWriter buffW = new BufferedWriter (fileW);
     	                    	
-                                Gene genes[] = AlgoritimoGenetico.getCromossomo();
+                                Gene genes[] = AlgoritmoGenetico.getCromossomo();
                                 List<Turma> turmas = new ArrayList<Turma>();
                                 
                                 for (int i = 0; i < genes.length; i++) {

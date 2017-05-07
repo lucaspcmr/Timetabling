@@ -6,15 +6,12 @@ import java.util.List;
 import java.util.Random;
 import objetos.AlunoDisciplina;
 import objetos.Cursos;
-import static objetos.Cursos.cursoperiodos;
-import static objetos.Cursos.cursoturnos;
 import objetos.DisciplinaAluno;
 
 import objetos.DisciplinaRestricao;
 import objetos.Disciplinas;
 import objetos.DocenteRestricao;
 import objetos.Docentes;
-import static objetos.Docentes.docentesigla;
 import objetos.Estudantes;
 import objetos.SalaRestricao;
 import objetos.Salas;
@@ -91,23 +88,23 @@ public class Solucao {
          disciplinas  = new byte[n_disciplinas][n_timeslots];  //disciplinas - timeslot
          
         //inicializar variaveis  
-        salaComum               = new ArrayList<Integer>();
-        laboratorioInformatica  = new ArrayList<Integer>();
-        laboratorioEspecificoEC = new ArrayList<Integer>();
-        laboratorioEspecificoEE = new ArrayList<Integer>();
-        laboratorioEspecificoEM = new ArrayList<Integer>();
-        laboratorioEspecificoEG = new ArrayList<Integer>();
-        laboratorioOutro        = new ArrayList<Integer>();
+        salaComum               = new ArrayList<>();
+        laboratorioInformatica  = new ArrayList<>();
+        laboratorioEspecificoEC = new ArrayList<>();
+        laboratorioEspecificoEE = new ArrayList<>();
+        laboratorioEspecificoEM = new ArrayList<>();
+        laboratorioEspecificoEG = new ArrayList<>();
+        laboratorioOutro        = new ArrayList<>();
         
-        disciplinaTimeSlot            = new Hashtable <Integer,Integer>();
-        quantidadeProfessorDisciplina = new Hashtable <Integer,Integer>();
-        disciplinaProfessores         = new Hashtable <Integer,List<Integer>>();
-        disciplinaSala                = new Hashtable <Integer,Integer>();
-        disciplinaProfessor           = new Hashtable <Integer,Integer>();
+        disciplinaTimeSlot            = new Hashtable <>();
+        quantidadeProfessorDisciplina = new Hashtable <>();
+        disciplinaProfessores         = new Hashtable <>();
+        disciplinaSala                = new Hashtable <>();
+        disciplinaProfessor           = new Hashtable <>();
         
         //iniciar Hashtable disciplina professoros com uma lista
         for (int i = 0; i < n_disciplinas; i++) {
-            List<Integer> aux = new ArrayList<Integer>();
+            List<Integer> aux = new ArrayList<>();
             getDisciplinaProfessor().put(new Integer(i), aux);
         }
         
@@ -325,7 +322,7 @@ public class Solucao {
     }
     
     //Função que calcula a função fitnees verificar choque de horarios
-    public static int calculaFitnees(Gene genes[]){
+    public static int calculaFitness(Gene genes[]){
         horarioValido = true;
         int fitness = 0;
         initSolucaoIndividuo(genes);//iniciar mascara de solução
@@ -355,7 +352,7 @@ public class Solucao {
             //maxima das softconstrants
             //fitnes = Somatorio das hardsconstrants + o maximo de penalidade das softsconstrants
             //para esse caso
-            fitness =fitness - Estudantes.getNumeroAlunos();
+            fitness =fitness - Estudantes.getNumeroAlunos();//by Raquel hue
         }
         
         
@@ -517,7 +514,7 @@ public class Solucao {
       
          //retorna a disciplina que o aluno quer cursar e o seu timeslot
          int fitness = 0;
-         List<Integer> ids = new ArrayList<Integer>();
+         List<Integer> ids = new ArrayList<>();
          List<Integer> disciplinasAluno = aluno.getDisciplina();//lista de disciplinas que o aluno quer cursar
          
          for (int k = 0; k < disciplinasAluno.size(); k++) {
@@ -626,7 +623,7 @@ public class Solucao {
      
 //retorna um time slot para a professores dado o id do professor na mascara de solucao
      public static int  timeSlotLivreProfessor(int professor){
-         List<Integer> timeslots = new ArrayList<Integer>();
+         List<Integer> timeslots = new ArrayList<>();
          int retorno = -1;
          for (int i = 0; i < n_timeslots; i++) {
              if(professores[professor][i] == 0)
@@ -644,7 +641,7 @@ public class Solucao {
      
      //retorna uma lista de timeslots para a professores dado o id do professor na mascara de solucao
      public static List<Integer>  timeSlotLivreProfessorList(int professor){
-         List<Integer> timeslots = new ArrayList<Integer>();
+         List<Integer> timeslots = new ArrayList<>();
          for (int i = 0; i < n_timeslots; i++) {
              if(professores[professor][i] == 0)
                 timeslots.add(i);//adiciona o id do professor
@@ -656,7 +653,7 @@ public class Solucao {
      
 //retorna uma time slot para a sala dado o id da sala na mascara de solucao
     public static int timeSlotLivreSala(int sala){
-         List<Integer> timeslots = new ArrayList<Integer>();
+         List<Integer> timeslots = new ArrayList<>();
          int retorno = -1;
          for (int i = 0; i < n_timeslots; i++) {
              if(salas[sala][i] == 0)
@@ -673,7 +670,7 @@ public class Solucao {
     
     //retorna uma lista de  timeslots livres para a sala dado o id da sala na mascara de solucao
     public static List<Integer> timeSlotLivreSalaList(int sala){
-         List<Integer> timeslots = new ArrayList<Integer>();
+         List<Integer> timeslots = new ArrayList<>();
          for (int i = 0; i < n_timeslots; i++) {
              if(salas[sala][i] == 0)
                 timeslots.add(i);//adiciona o id do timeslot da sala disponivel
@@ -682,7 +679,7 @@ public class Solucao {
      }
 //retorna um time slot para a disciplina dado o id da disciplina na mascara de solucao
     public static int timeSlotLivreDisciplina(int disciplina){
-         List<Integer> timeslots = new ArrayList<Integer>();
+         List<Integer> timeslots = new ArrayList<>();
          int retorno = -1;
          for (int i = 0; i < n_timeslots; i++) {
              if(disciplinas[disciplina][i] == 0)
@@ -699,7 +696,7 @@ public class Solucao {
     
     //retorna uma lista de timeslots para a disciplina dado o id da disciplina na mascara de solucao
     public static List<Integer> timeSlotLivreDisciplinaList(int disciplina){
-         List<Integer> timeslots = new ArrayList<Integer>();
+         List<Integer> timeslots = new ArrayList<>();
 
          for (int i = 0; i < n_timeslots; i++) {
              //System.out.print(" "+disciplinas[disciplina][i]);
@@ -989,8 +986,8 @@ public class Solucao {
         List<Integer> listaSalas       = timeSlotLivreSalaList(sala);
         List<Integer> listaDisciplinas = timeSlotLivreDisciplinaList(disciplina);
         
-        Hashtable <Integer, Integer> timeslotProfessor = new Hashtable<Integer,Integer>() ;
-        Hashtable <Integer, Integer> timeslotSala = new Hashtable<Integer,Integer>();
+        Hashtable <Integer, Integer> timeslotProfessor = new Hashtable<>() ;
+        Hashtable <Integer, Integer> timeslotSala = new Hashtable<>();
         
         if(listaProfessores.size() !=0 && listaSalas.size() !=0 &&  listaDisciplinas.size() != 0){
             for (int i = 0; i < listaProfessores.size(); i++) {
@@ -1046,7 +1043,7 @@ public class Solucao {
          int[][] alunosTimeslot = new int[n_alunos][n_timeslots];//mascara estudantes
          int[][] disciplinaAluno = new int[n_disciplinas][n_alunos];
          
-         calculaFitnees(genes);//preencher objetos necessarios
+         calculaFitness(genes);//preencher objetos necessarios
          
       
          for (int i = 0; i < alunos.size(); i++) { 

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package timetabling;
-import algoritmoGenetico.AlgoritimoGenetico;
+import algoritmoGenetico.AlgoritmoGenetico;
 import algoritmoGenetico.Gene;
 import java.awt.BorderLayout;
 import java.awt.Color;
