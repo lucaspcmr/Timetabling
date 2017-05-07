@@ -21,7 +21,10 @@ public class DisciplinaAluno implements Comparable<DisciplinaAluno>{
     private int curso;     //codigo curso
     
     public DisciplinaAluno(){
+
         alunos = new ArrayList<Integer>();
+
+     
     }  
 
     /**

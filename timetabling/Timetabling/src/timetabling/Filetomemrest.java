@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import objetos.AlunoDisciplina;
 import objetos.DisciplinaRestricao;
 import objetos.DocenteRestricao;
 import objetos.SalaRestricao;
@@ -30,9 +29,9 @@ public class Filetomemrest {
 
     public static void sort(FileReader fileR) {
         buffR = new BufferedReader(fileR);//arquivo buferizado
-        discirest = new ArrayList<DisciplinaRestricao>();
-        docrest=new ArrayList<DocenteRestricao>();
-        salarest=new ArrayList<SalaRestricao>();
+        discirest = new ArrayList<>();
+        docrest=new ArrayList<>();
+        salarest=new ArrayList<>();
         //do something
         try {
             while (buffR.ready()) {

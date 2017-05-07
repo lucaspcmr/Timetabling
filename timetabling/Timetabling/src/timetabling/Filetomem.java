@@ -3,9 +3,9 @@ package timetabling;
 import algoritmoGenetico.Gene;
 import algoritmoGenetico.Individuo;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -26,32 +26,31 @@ public static void sort (FileReader fileR) {
 	
 	 //do something
      try {
-		while (buffR.ready())
-		 {
+            while (buffR.ready())
+            {
 			
-		  String str = buffR.readLine();
+        	String str = buffR.readLine();
 		if(str.equals("TIMESLOT")){
-			timeslot();
-			
+                    timeslot();
 		}
 
 		if(str.equals("CURSO"))
-		new Cursos();
+                    new Cursos();
 
 		if(str.equals("TIPO DE SALA"));
 		
 		if(str.equals("SALA"))
-			new Salas();
+                    new Salas();
 
 		if(str.equals("DISCIPLINA"))
-			new Disciplinas();
+                    new Disciplinas();
 
 		if(str.equals("ESTUDANTE"))
-			new Estudantes();
+                    new Estudantes();
 
 		if(str.equals("DOCENTE"))
-			new Docentes();	
-		}
+                    new Docentes();	
+            }
 		
 
 		  
@@ -104,6 +103,7 @@ public static void sortHorario (FileReader fileR) {
      }catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+
 	}
 
 	
@@ -148,6 +148,7 @@ public static void horario(){
 		} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+
 	}
         TabelaHorarioCSV.turmas = turmas;
 }
@@ -159,6 +160,50 @@ public static void horario(){
 
 	
 
+	
+}
 
+public static void horario(){
+	List<Turma> turmas = new ArrayList<>();
+	try {
+		buffR.readLine();
+		String str;
+                
+                
+		do{
+		
+                str=buffR.readLine(); 
+		if(str.charAt(0)!='/'){	
+                   String [] aux =  str.split(",");
+                   Turma turma = new Turma();
+                   
+                  
+                   String disciplina = aux[0];
+                   String timeslot   = aux[1];
+                   String professor  = aux[2];
+                   String sala       = aux[3];
+                   String curso      = aux[4];
+                   String periodo    = aux[5];
+                   
+                   
+                   turma.setDisciplina(disciplina);
+                   turma.setTimeslot(Integer.valueOf(timeslot));
+                   turma.setProfessor(professor);
+                   turma.setSala(sala);
+                   turma.setCurso(Integer.valueOf(curso));
+                   turma.setPeriodo(periodo);
+                   turmas.add(turma);
+                   
+                   
+                   //System.out.println(str);
+		}
+		}while(str.charAt(0)!='/');System.out.println(str);
+		buffR.readLine();
+		} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+        TabelaHorarioCSV.turmas = turmas;
+}
 
-
+}

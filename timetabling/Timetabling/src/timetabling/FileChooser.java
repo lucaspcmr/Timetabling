@@ -2,10 +2,11 @@ package timetabling;
 import algoritmoGenetico.AlgoritmoGenetico;
 import algoritmoGenetico.Gene;
 import algoritmoGenetico.Solucao;
+
 import timetabling.Filetomem;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -98,7 +99,9 @@ public class FileChooser extends JPanel  {
     	                    	BufferedWriter buffW = new BufferedWriter (fileW);
     	                    	
                                 Gene genes[] = AlgoritmoGenetico.getCromossomo();
+
                                 List<Turma> turmas = new ArrayList<Turma>();
+
                                 
                                 for (int i = 0; i < genes.length; i++) {
                                     Gene gene = genes[i];

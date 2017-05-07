@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class AlunoDisciplina {
     private int aluno;  //codigo  do aluno
-    private ArrayList<Integer> disciplina=new ArrayList<Integer>();//codigo da disciplina
+    private ArrayList<Integer> disciplina=new ArrayList<>();//codigo da disciplina
 
     /**
      * @return the aluno

@@ -1,13 +1,10 @@
 package objetos;
 
-import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Hashtable;
 import java.util.List;
 
-import timetabling.FileChooser;
-import timetabling.TextArea;
 
 //testes
 public class Timeslot {
@@ -41,7 +38,9 @@ public class Timeslot {
     private static List<Integer> almoco;//codigo dos almoco
     
     public Timeslot(){
+
     T=new ArrayList<String>();
+
     
     criaux();//Cria o array T
   
@@ -72,6 +71,7 @@ public class Timeslot {
         noturno    = new ArrayList<Integer>();
         sabado     = new ArrayList<Integer>();
         almoco     = new ArrayList<Integer>();
+
         
         gerarTimeslotMatutino();
         gerarTimeslotMatutinoSabado();
