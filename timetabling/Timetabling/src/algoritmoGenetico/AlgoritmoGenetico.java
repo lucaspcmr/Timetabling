@@ -10,6 +10,8 @@
  */
 package algoritmoGenetico;
 
+import static algoritmoGenetico.Solucao.initSolucaoIndividuo;
+import static algoritmoGenetico.Solucao.timeSlotLivreDisciplinaList;
 import java.util.ArrayList;
 import static java.util.Collections.sort;
 import java.util.List;
@@ -342,6 +344,27 @@ public class AlgoritmoGenetico {
         
         //retorna lista com os 2 mais aptos
         return listaTorneio;        
+    }
+    
+    public static void mutation(Gene genes[]){
+         Random random = new Random();
+         Solucao.initSolucaoIndividuo(genes);
+         int r = random.nextInt(genes.length);
+
+         Gene gene = genes[r];
+         int disciplina = gene.getDisciplina();
+         List<Integer> listaTimeslotDisciplina = timeSlotLivreDisciplinaList(disciplina);
+         
+         while(listaTimeslotDisciplina.size() ==0){
+          r = random.nextInt(genes.length);
+
+          gene = genes[r];
+          disciplina = gene.getDisciplina();
+          listaTimeslotDisciplina = timeSlotLivreDisciplinaList(disciplina);
+         }
+         
+         r = random.nextInt(listaTimeslotDisciplina.size());
+         gene.setTimeslot(listaTimeslotDisciplina.get(r));
     }
     
     /**
