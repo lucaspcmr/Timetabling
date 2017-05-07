@@ -1,5 +1,9 @@
 package timetabling;
 
+
+import java.awt.Dimension;
+import java.awt.EventQueue;
+
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JFrame;
