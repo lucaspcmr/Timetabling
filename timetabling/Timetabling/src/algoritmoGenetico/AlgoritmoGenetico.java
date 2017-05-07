@@ -10,6 +10,8 @@
  */
 package algoritmoGenetico;
 
+import static algoritmoGenetico.Solucao.getDisciplinaProfessor;
+import static algoritmoGenetico.Solucao.getSalaDisciplina;
 import static algoritmoGenetico.Solucao.initSolucaoIndividuo;
 import static algoritmoGenetico.Solucao.timeSlotLivreDisciplinaList;
 import java.text.DateFormat;
@@ -390,7 +392,50 @@ public class AlgoritmoGenetico {
         return listaTorneio;        
     }
     
-    public static void mutation(Gene genes[]){
+    public static void mutation(Gene gene, int i){
+        
+        List<Integer> listaProfessores = getDisciplinaProfessor().get(new Integer(gene.getDisciplina()));
+        Integer tipoSala = Disciplinas.D2.get(gene.getDisciplina());//tipo da sala para aquela disciplina
+        //Lista de salas que aquela disciplina pode ser ministrada
+        List<Integer> listaSalas      = getSalaDisciplina(tipoSala);
+        List<Integer> listaTimeslotDisciplina = timeSlotLivreDisciplinaList(gene.getDisciplina());
+ 
+        Random rnd=new Random();
+        Gene aux=new Gene();
+        //do{
+        aux.setDisciplina(gene.getDisciplina());
+        aux.setProfessor(gene.getProfessor());
+        aux.setSala(gene.getSala());
+        aux.setTimeslot(gene.getTimeslot());
+        switch (i){
+                case 0: 
+                     if(listaSalas.size() !=0){
+                        int sorteioSala = rnd.nextInt(listaSalas.size());
+                            aux.setSala(listaSalas.get(sorteioSala));
+                     }
+                break;
+                case 1:
+                    if(listaProfessores.size() !=0){
+                        int sorteioProfessor = rnd.nextInt(listaProfessores.size());
+                        aux.setProfessor(listaProfessores.get(sorteioProfessor));
+                    }
+                break;
+                case 2:
+                    if(listaTimeslotDisciplina.size() !=0){
+                        int sorteioTimeslot = rnd.nextInt(listaTimeslotDisciplina.size());
+                         aux.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
+                    }
+                    
+                break;
+                default: break;
+        } 
+                    
+    //}while(!Solucao.isValorValido(aux));
+        gene=aux;
+   }
+    
+    public static void mutation2(Gene genes[]){
+             
          Random random = new Random();
          Solucao.initSolucaoIndividuo(genes);
          int r = random.nextInt(genes.length);
