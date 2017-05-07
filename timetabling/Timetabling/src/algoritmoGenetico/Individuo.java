@@ -52,7 +52,7 @@ public class Individuo implements Comparable<Individuo>{
                     Random r = new Random();
                     int gene = r.nextInt(genes.length);
                     AlgoritmoGenetico.mutation(genes[gene],r.nextInt(3));
-
+                   // AlgoritmoGenetico.mutation2(genes);
                 }
                 
                 Solucao.validaGene(genes); //criar genes validos para professor, sala inicial

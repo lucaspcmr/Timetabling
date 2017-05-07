@@ -423,13 +423,13 @@ public class AlgoritmoGenetico {
                         aux.setProfessor(listaProfessores.get(sorteioProfessor));
                     }
                 break;
-                case 2:
-                    if(listaTimeslotDisciplina.size() !=0){
-                        int sorteioTimeslot = rnd.nextInt(listaTimeslotDisciplina.size());
-                         aux.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
-                    }
-                   
-                break;
+//                case 2:
+//                    if(listaTimeslotDisciplina.size() !=0){
+//                        int sorteioTimeslot = rnd.nextInt(listaTimeslotDisciplina.size());
+//                         aux.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
+//                    }
+//                   
+//                break;
                 default: break;
         } 
                     
@@ -489,7 +489,4 @@ public class AlgoritmoGenetico {
         return crossover;
     }
     
-    
-
-
 }

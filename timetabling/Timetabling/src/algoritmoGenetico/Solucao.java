@@ -88,13 +88,13 @@ public class Solucao {
          disciplinas  = new byte[n_disciplinas][n_timeslots];  //disciplinas - timeslot
          
         //inicializar variaveis  
-        salaComum               = new ArrayList<>();
-        laboratorioInformatica  = new ArrayList<>();
-        laboratorioEspecificoEC = new ArrayList<>();
-        laboratorioEspecificoEE = new ArrayList<>();
-        laboratorioEspecificoEM = new ArrayList<>();
-        laboratorioEspecificoEG = new ArrayList<>();
-        laboratorioOutro        = new ArrayList<>();
+        salaComum               = new ArrayList<Integer>();
+        laboratorioInformatica  = new ArrayList<Integer>();
+        laboratorioEspecificoEC = new ArrayList<Integer>();
+        laboratorioEspecificoEE = new ArrayList<Integer>();
+        laboratorioEspecificoEM = new ArrayList<Integer>();
+        laboratorioEspecificoEG = new ArrayList<Integer>();
+        laboratorioOutro        = new ArrayList<Integer>();
         
         disciplinaTimeSlot            = new Hashtable <>();
         quantidadeProfessorDisciplina = new Hashtable <>();
@@ -117,7 +117,7 @@ public class Solucao {
         setRestricoesProfessores(Filetomemrest.docrest); 
         setRestricoesDisciplinas(Filetomemrest.discirest); 
         setRestricoesSalas(Filetomemrest.salarest); 
-      
+             
     }
     
   //inicializa as mascaras
@@ -445,10 +445,9 @@ public class Solucao {
                          disciplinas[idDisciplina][idTimeslot]  = 0;//setar o valor disponivel
                      }
                  }
-                 
-         
-      
+  
         }
+        
     }
     
     //retorna os ids das disciplinas o codigo da disciplina disciplina restrição
@@ -486,7 +485,7 @@ public class Solucao {
             
             for (int j = 0; j < timeslot.size(); j++) {//rodar a lista de codigos dos timeslots
                 int id = (int) timeslot.get(j) -1 ;//id do timeslot
-                salas[sala][id] = 0;
+                salas[sala][id] = 2;
             }
             
         }
@@ -696,14 +695,25 @@ public class Solucao {
     
     //retorna uma lista de timeslots para a disciplina dado o id da disciplina na mascara de solucao
     public static List<Integer> timeSlotLivreDisciplinaList(int disciplina){
-         List<Integer> timeslots = new ArrayList<>();
+         List<Integer> timeslots = new ArrayList<Integer>();
 
          for (int i = 0; i < n_timeslots; i++) {
              //System.out.print(" "+disciplinas[disciplina][i]);
              if(disciplinas[disciplina][i] == 0)
                 timeslots.add(i);//adiciona o id do timeslot da disciplina
          }
-         //System.out.println("");
+        // System.out.println("");
+         return timeslots;
+     }
+    
+        public static List<Integer> timeSlotDisciplinaList(int disciplina){
+         List<Integer> timeslots = new ArrayList<>();
+
+         for (int i = 0; i < n_timeslots; i++) {
+             
+             if(disciplinas[disciplina][i] == 0 || disciplinas[disciplina][i] == 1)
+                timeslots.add(i);//adiciona o id do timeslot da disciplina
+         }
          return timeslots;
      }
     
@@ -967,18 +977,16 @@ public class Solucao {
                 
                  //se tem timeslot disponivel da disciplina
                 //e e o timeslot da disciplina é invalido
-                if(sizeTimeslot>0 && !isDisciplina){
+                if(sizeTimeslot>0 ){
                     
-                     for (int j = 0; j < listaTimeslotDisciplina.size(); j++) 
-                        gene.setTimeslot(listaTimeslotDisciplina.get(j));//timeslot da disciplina   
-                        isDisciplina = Solucao.isDisciplinaValido(gene);
-                        
-                        if(isDisciplina)
-                            break;
-                    }
-                else{
-                       sorteioTimeslot = random.nextInt(n_timeslots);
-                       gene.setTimeslot(sorteioTimeslot);//timeslot da disciplina                                           
+                    if(!isDisciplina){
+                        for (int j = 0; j < listaTimeslotDisciplina.size(); j++) 
+                           gene.setTimeslot(listaTimeslotDisciplina.get(j));//timeslot da disciplina   
+                           isDisciplina = Solucao.isDisciplinaValido(gene);
+
+                           if(isDisciplina)
+                               break;
+                        }
                     }
                 
                 boolean isprofessor = Solucao.isProfessorValido(gene);
@@ -1016,21 +1024,23 @@ public class Solucao {
                 //se tem sala para ministrar aquela disciplina
                 //e o timeslot da sala atual é invalido
                 //então troca a sala aleatoriamente
-                if(sizeSalas !=0 && !isSala ){//se diferente de zero atualiza o gene
+                if(sizeSalas !=0 ){//se diferente de zero atualiza o gene
                      
-                    for (int j = 0; j < sizeSalas; j++) {
-                             gene.setSala(listaSalas.get(j));
-                             isSala = Solucao.isSalaValido(gene);
-                             if(isSala)
-                                 break;
-                         }
-                    
-                        if(!isSala){
-                                sorteioSala = random.nextInt(sizeSalas);
-                                gene.setProfessor(listaSalas.get(sorteioSala));
-                              }   
-                        
-                    
+                    if(!isSala ){
+                        for (int j = 0; j < sizeSalas; j++) {
+                                 gene.setSala(listaSalas.get(j));
+                                 isSala = Solucao.isSalaValido(gene);
+                                 if(isSala)
+                                     break;
+                             }
+
+                            if(!isSala){
+                                    sorteioSala = random.nextInt(sizeSalas);
+                                    gene.setProfessor(listaSalas.get(sorteioSala));
+                                  }   
+
+
+                            }
                         }
                     }
                   
