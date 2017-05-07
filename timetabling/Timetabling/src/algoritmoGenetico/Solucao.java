@@ -118,6 +118,19 @@ public class Solucao {
         setRestricoesDisciplinas(Filetomemrest.discirest); 
         setRestricoesSalas(Filetomemrest.salarest); 
       
+        for (int i = 0; i < n_disciplinas; i++) {
+            List<Integer> list = disciplinaProfessores.get(i);
+            
+            if(list.size() == 0){
+                int codigo = Disciplinas.D.get(i);
+                System.out.println(Disciplinas.disciplinacodigo.get(codigo));
+            }
+//            System.out.print(i+": ");
+//            for (int j = 0; j < list.size(); j++) {
+//                System.out.print(" "+list.get(j));
+//            }
+//            System.out.println("");
+       }
     }
     
   //inicializa as mascaras
@@ -913,7 +926,7 @@ public class Solucao {
     //O timeslot sera gerado aleatoriamente para um horario disponivel da disciplina
     //para um horario disponivel daquela disciplina
     //a mutação pode trocar o professor, sala ou a logica do timeslot
-    public static boolean validaGene(Gene[] genes,int teste){
+    public static void validaGene(Gene[] genes){
      
         initSolucaoIndividuo(genes);
         
@@ -948,31 +961,72 @@ public class Solucao {
                 
                 List<Integer> listaTimeslotDisciplina = timeSlotLivreDisciplinaList(disciplina);
 
-                sizeDocentes = listaProfessores.size();
-                sizeSalas    = listaSalas.size();
+                sizeDocentes = listaProfessores.size();//pega os professores para a disciplina
+                sizeSalas    = listaSalas.size();//pega as salas para a disciplina
                 sizeTimeslot = listaTimeslotDisciplina.size();//pega os timeslots disponivel da disciplina
-                                  
-                if(sizeDocentes != 0 && sizeSalas !=0 ){//se diferente de zero atualiza o gene
-                     sorteioDocente = random.nextInt(sizeDocentes);
-                     gene.setProfessor(listaProfessores.get(sorteioDocente));
+                
+                boolean isprofessor = Solucao.isProfessorValido(gene);
+                boolean isSala= Solucao.isSalaValido(gene);
+                boolean isDisciplina = Solucao.isDisciplinaValido(gene);
+                
+                //se tem professor para ministrar aquela disciplina
+                //e o timeslot do professor atual é invalido
+                //então troca o professor aleatoriamente
+                if(sizeDocentes != 0 ){//se diferente de zero atualiza o gene
+                     if( !isprofessor ){
+                         
+                         for (int j = 0; j < sizeDocentes; j++) {
+                             gene.setProfessor(listaProfessores.get(j));
+                             isprofessor = Solucao.isProfessorValido(gene);
+                             if(isprofessor)
+                                 break;
+                         }
+                        if(!isprofessor){ 
+                            sorteioDocente = random.nextInt(sizeDocentes);
+                            gene.setProfessor(listaProfessores.get(sorteioDocente));
+                        }
+                        
+                     }
+                }
+                else{
+                     sorteioDocente = random.nextInt(n_professores);
+                     gene.setProfessor(sorteioDocente);
                 }
                 
-                if(sizeSalas !=0 ){//se diferente de zero atualiza o gene
-                     sorteioSala = random.nextInt(sizeSalas);
-                     gene.setSala(listaSalas.get(sorteioSala));
+                //se tem sala para ministrar aquela disciplina
+                //e o timeslot da sala atual é invalido
+                //então troca a sala aleatoriamente
+                if(sizeSalas !=0 && !isSala ){//se diferente de zero atualiza o gene
+                     
+                    for (int j = 0; j < sizeSalas; j++) {
+                             gene.setSala(listaSalas.get(j));
+                             isSala = Solucao.isSalaValido(gene);
+                             if(isSala)
+                                 break;
+                         }
+                        if(!isSala){ 
+                            sorteioSala = random.nextInt(sizeSalas);
+                            gene.setSala(listaSalas.get(sorteioSala));
+                        }
                 }
                 
-                if(sizeTimeslot>0){
+                //se tem timeslot disponivel da disciplina
+                //e e o timeslot da disciplina é invalido
+                if(sizeTimeslot>0 && !isDisciplina){
                         sorteioTimeslot = random.nextInt(sizeTimeslot);//seleciona um timeslot aleatoria da disciplina
                         gene.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));//timeslot da disciplina   
                 }
-                                 
-                 valor = isValorValido(gene); //setar na mascara
+                else{
+                     sorteioTimeslot = random.nextInt(n_timeslots);//seleciona um timeslot aleatoria da disciplina
+                     gene.setTimeslot(sorteioTimeslot);//timeslot da disciplina   
+                }
+                //seta na mascara o novo gente                
+                valor = isValorValido(gene); //setar na mascara ???
             }
               
         } 
         
-        return false;
+        //return false;
         
     }
     

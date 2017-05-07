@@ -10,8 +10,13 @@
  */
 package algoritmoGenetico;
 
+import static algoritmoGenetico.Solucao.initSolucaoIndividuo;
+import static algoritmoGenetico.Solucao.timeSlotLivreDisciplinaList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import static java.util.Collections.sort;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import objetos.Disciplinas;
@@ -33,7 +38,7 @@ public class AlgoritmoGenetico {
     private static int numeroGeracoes;
     private static int taxaMutacao;
     private static int taxaCrossover;
-    
+    private static int melhorGeracao;
     
     //metodo para iniciar a classe solução
     //necessario para inicializar os objetos 
@@ -217,7 +222,11 @@ public class AlgoritmoGenetico {
           new Thread() {
 			@Override
 			public void run() {
+                            //medir tempo de execução
+                            long tempoInicial = System.currentTimeMillis();
+                            
                             TextArea.LOG.setText(""); //Limpar o Log
+                            
                             init(); //necessario para iniciar o mapa de soluções
                          
                         //cria população
@@ -243,9 +252,14 @@ public class AlgoritmoGenetico {
                             sort(Populacao.populacao);
                             
                             individuoCompara = Populacao.populacao.get(0);
-                            AlgoritmoGenetico.melhorIndividuo = individuoCompara;
-                            AlgoritmoGenetico.cromossomo = individuoCompara.getGenes();
-                         
+                            
+                            if(individuoCompara.getFitness() > AlgoritmoGenetico.melhorIndividuo.getFitness()){
+                                AlgoritmoGenetico.melhorIndividuo = individuoCompara;
+                                AlgoritmoGenetico.cromossomo = individuoCompara.getGenes();
+                                AlgoritmoGenetico.melhorGeracao = contadorGeracoes;
+                            }
+                            
+                            
                             contadorGeracoes++;
                             
                             if(contadorGeracoes > AlgoritmoGenetico.numeroGeracoes)
@@ -254,13 +268,45 @@ public class AlgoritmoGenetico {
                           
                          //mostrar o melhor individuo
                         TextArea.LOG.append("---------------------------------"+"\n");
-                        TextArea.LOG.append("Melhor Fitness = "+melhorIndividuo.getFitness() + " Horario Valido: "+melhorIndividuo.isHorarioValido()+"\n");
+                        TextArea.LOG.append("Geração: "+melhorGeracao+" Melhor Fitness = "+melhorIndividuo.getFitness() + " Horario Valido: "+melhorIndividuo.isHorarioValido()+"\n");
+                        long tempo= System.currentTimeMillis() - tempoInicial;
+                        Date dt = new Date(tempo);
+                        long hours = tempo / 1000 / 60 / 60;
+                        
+                        DateFormat df = new SimpleDateFormat ("HH:mm:ss.S");
+                        TextArea.LOG.append("Tempo de execução: "+tempotoString(tempo)+"\n");
                         TextArea.LOG.setCaretPosition(  TextArea.LOG.getText().length() );
-                                     
+                        
 			}
 		}.start();    
         
     }
+    
+    	public static String tempotoString( long tempo )
+	{
+		long millis = tempo;
+		long hours = millis / 1000 / 60 / 60;
+		millis -= hours * 1000 * 60 * 60;
+		long minutes = millis / 1000 / 60;
+		millis -= minutes * 1000 * 60;
+		long seconds = millis / 1000;
+		millis -= seconds * 1000;
+		StringBuffer time = new StringBuffer();
+		if( hours > 0 )
+			time.append( hours + ":" );
+                else
+                    time.append( "00" + ":" );
+                
+		if( minutes < 10 )
+                    time.append( "0" );
+                
+		time.append( minutes + ":" );
+		if( seconds < 10 )
+			time.append( "0" );
+		time.append( seconds );
+
+		return time.toString();
+	}
     
     public static void escreverLog(String str){
         TextArea.LOG.append(str);
@@ -342,6 +388,27 @@ public class AlgoritmoGenetico {
         
         //retorna lista com os 2 mais aptos
         return listaTorneio;        
+    }
+    
+    public static void mutation(Gene genes[]){
+         Random random = new Random();
+         Solucao.initSolucaoIndividuo(genes);
+         int r = random.nextInt(genes.length);
+
+         Gene gene = genes[r];
+         int disciplina = gene.getDisciplina();
+         List<Integer> listaTimeslotDisciplina = timeSlotLivreDisciplinaList(disciplina);
+         
+         while(listaTimeslotDisciplina.size() ==0){
+          r = random.nextInt(genes.length);
+
+          gene = genes[r];
+          disciplina = gene.getDisciplina();
+          listaTimeslotDisciplina = timeSlotLivreDisciplinaList(disciplina);
+         }
+         
+         r = random.nextInt(listaTimeslotDisciplina.size());
+         gene.setTimeslot(listaTimeslotDisciplina.get(r));
     }
     
     /**
