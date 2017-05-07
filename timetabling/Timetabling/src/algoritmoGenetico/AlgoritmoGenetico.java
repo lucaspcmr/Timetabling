@@ -38,7 +38,7 @@ public class AlgoritmoGenetico {
     private static int numeroGeracoes;
     private static int taxaMutacao;
     private static int taxaCrossover;
-    
+    private static int melhorGeracao;
     
     //metodo para iniciar a classe solução
     //necessario para inicializar os objetos 
@@ -252,9 +252,14 @@ public class AlgoritmoGenetico {
                             sort(Populacao.populacao);
                             
                             individuoCompara = Populacao.populacao.get(0);
-                            AlgoritmoGenetico.melhorIndividuo = individuoCompara;
-                            AlgoritmoGenetico.cromossomo = individuoCompara.getGenes();
-                         
+                            
+                            if(individuoCompara.getFitness() > AlgoritmoGenetico.melhorIndividuo.getFitness()){
+                                AlgoritmoGenetico.melhorIndividuo = individuoCompara;
+                                AlgoritmoGenetico.cromossomo = individuoCompara.getGenes();
+                                AlgoritmoGenetico.melhorGeracao = contadorGeracoes;
+                            }
+                            
+                            
                             contadorGeracoes++;
                             
                             if(contadorGeracoes > AlgoritmoGenetico.numeroGeracoes)
@@ -263,7 +268,7 @@ public class AlgoritmoGenetico {
                           
                          //mostrar o melhor individuo
                         TextArea.LOG.append("---------------------------------"+"\n");
-                        TextArea.LOG.append("Melhor Fitness = "+melhorIndividuo.getFitness() + " Horario Valido: "+melhorIndividuo.isHorarioValido()+"\n");
+                        TextArea.LOG.append("Geração: "+melhorGeracao+" Melhor Fitness = "+melhorIndividuo.getFitness() + " Horario Valido: "+melhorIndividuo.isHorarioValido()+"\n");
                         long tempo= System.currentTimeMillis() - tempoInicial;
                         Date dt = new Date(tempo);
                         long hours = tempo / 1000 / 60 / 60;
