@@ -20,6 +20,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
+import javax.swing.table.TableModel;
+
 import static objetos.Cursos.ENGENHARIA_COMPUTACAO_MATUTINO;
 import static objetos.Cursos.ENGENHARIA_COMPUTACAO_NOTURNO;
 import static objetos.Cursos.ENGENHARIA_ELETRICA;
@@ -27,6 +30,10 @@ import static objetos.Cursos.ENGENHARIA_MECANICA;
 import objetos.Disciplinas;
 import objetos.Docentes;
 import objetos.Salas;
+
+import objetos.Timeslot;
+import objetos.Turma;
+
 /**
  *
  * @author HOME

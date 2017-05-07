@@ -1,6 +1,7 @@
 package objetos;
 
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -37,7 +38,9 @@ public class Timeslot {
     private static List<Integer> almoco;//codigo dos almoco
     
     public Timeslot(){
-    T=new ArrayList<>();
+
+    T=new ArrayList<String>();
+
     
     criaux();//Cria o array T
   
@@ -63,11 +66,12 @@ public class Timeslot {
    
    public static void timeSlotsPeriodo(){
 
-        matutino   = new ArrayList<>();
-        vespertino = new ArrayList<>();
-        noturno    = new ArrayList<>();
-        sabado     = new ArrayList<>();
-        almoco     = new ArrayList<>();
+        matutino   = new ArrayList<Integer>();
+        vespertino = new ArrayList<Integer>();
+        noturno    = new ArrayList<Integer>();
+        sabado     = new ArrayList<Integer>();
+        almoco     = new ArrayList<Integer>();
+
         
         gerarTimeslotMatutino();
         gerarTimeslotMatutinoSabado();

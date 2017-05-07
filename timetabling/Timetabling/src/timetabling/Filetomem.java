@@ -1,11 +1,16 @@
 package timetabling;
 
+import algoritmoGenetico.Gene;
+import algoritmoGenetico.Individuo;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+
 import objetos.Cursos;
 import objetos.Disciplinas;
 import objetos.Docentes;
@@ -98,7 +103,62 @@ public static void sortHorario (FileReader fileR) {
      }catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+
 	}
+
+	
+}
+
+public static void horario(){
+	List<Turma> turmas = new ArrayList<Turma>();
+	try {
+		buffR.readLine();
+		String str;
+                
+                
+		do{
+		
+                str=buffR.readLine(); 
+		if(str.charAt(0)!='/'){	
+                   String [] aux =  str.split(",");
+                   Turma turma = new Turma();
+                   
+                  
+                   String disciplina = aux[0];
+                   String timeslot   = aux[1];
+                   String professor  = aux[2];
+                   String sala       = aux[3];
+                   String curso      = aux[4];
+                   String periodo    = aux[5];
+                   
+                   
+                   turma.setDisciplina(disciplina);
+                   turma.setTimeslot(Integer.valueOf(timeslot));
+                   turma.setProfessor(professor);
+                   turma.setSala(sala);
+                   turma.setCurso(Integer.valueOf(curso));
+                   turma.setPeriodo(periodo);
+                   turmas.add(turma);
+                   
+                   
+                   //System.out.println(str);
+		}
+		}while(str.charAt(0)!='/');System.out.println(str);
+		buffR.readLine();
+		} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+	}
+        TabelaHorarioCSV.turmas = turmas;
+}
+
+}
+
+
+
+
+	
 
 	
 }
