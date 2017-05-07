@@ -48,8 +48,11 @@ public class Individuo implements Comparable<Individuo>{
                 Random random = new Random();
                 
                 if(random.nextInt(101)<AlgoritmoGenetico.getTaxaMutacao()){
-                    AlgoritmoGenetico.mutation(genes[random.nextInt(genes.length)], random.nextInt(3));
-                
+
+                    Random r = new Random();
+                    int gene = r.nextInt(genes.length);
+                    AlgoritmoGenetico.mutation(genes[gene],r.nextInt(3));
+
                 }
                 
                 Solucao.validaGene(genes); //criar genes validos para professor, sala inicial

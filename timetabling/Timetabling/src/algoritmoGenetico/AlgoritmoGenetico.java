@@ -10,6 +10,8 @@
  */
 package algoritmoGenetico;
 
+import static algoritmoGenetico.Solucao.getDisciplinaProfessor;
+import static algoritmoGenetico.Solucao.getSalaDisciplina;
 import static algoritmoGenetico.Solucao.initSolucaoIndividuo;
 import static algoritmoGenetico.Solucao.timeSlotLivreDisciplinaList;
 import java.text.DateFormat;
@@ -391,26 +393,73 @@ public class AlgoritmoGenetico {
     }
     
     public static void mutation(Gene gene, int i){
-         Random rnd=new Random();
+
+        
+        List<Integer> listaProfessores = getDisciplinaProfessor().get(new Integer(gene.getDisciplina()));
+        Integer tipoSala = Disciplinas.D2.get(gene.getDisciplina());//tipo da sala para aquela disciplina
+        //Lista de salas que aquela disciplina pode ser ministrada
+        List<Integer> listaSalas      = getSalaDisciplina(tipoSala);
+        List<Integer> listaTimeslotDisciplina = timeSlotLivreDisciplinaList(gene.getDisciplina());
+ 
+        Random rnd=new Random();
         Gene aux=new Gene();
-        do{
+        //do{
+
         aux.setDisciplina(gene.getDisciplina());
         aux.setProfessor(gene.getProfessor());
         aux.setSala(gene.getSala());
         aux.setTimeslot(gene.getTimeslot());
         switch (i){
-                case 0: aux.setSala(rnd.nextInt(Salas.salasigla.size())+1);
+
+                case 0: 
+                     if(listaSalas.size() !=0){
+                        int sorteioSala = rnd.nextInt(listaSalas.size());
+                            aux.setSala(listaSalas.get(sorteioSala));
+                     }
                 break;
-                case 1:aux.setProfessor(rnd.nextInt(Docentes.docentesigla.size())+1);
+                case 1:
+                    if(listaProfessores.size() !=0){
+                        int sorteioProfessor = rnd.nextInt(listaProfessores.size());
+                        aux.setProfessor(listaProfessores.get(sorteioProfessor));
+                    }
                 break;
-                case 2:aux.setDisciplina(rnd.nextInt(Disciplinas.disciplinacodigo.size())+1);
+                case 2:
+                    if(listaTimeslotDisciplina.size() !=0){
+                        int sorteioTimeslot = rnd.nextInt(listaTimeslotDisciplina.size());
+                         aux.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
+                    }
+                   
                 break;
                 default: break;
         } 
                     
-    }while(!Solucao.isValorValido(aux));
+
+    //}while(!Solucao.isValorValido(aux));
         gene=aux;
-        }
+   }
+    
+    public static void mutation2(Gene genes[]){
+             
+         Random random = new Random();
+         Solucao.initSolucaoIndividuo(genes);
+         int r = random.nextInt(genes.length);
+
+         Gene gene = genes[r];
+         int disciplina = gene.getDisciplina();
+         List<Integer> listaTimeslotDisciplina = timeSlotLivreDisciplinaList(disciplina);
+         
+         while(listaTimeslotDisciplina.size() ==0){
+          r = random.nextInt(genes.length);
+
+          gene = genes[r];
+          disciplina = gene.getDisciplina();
+          listaTimeslotDisciplina = timeSlotLivreDisciplinaList(disciplina);
+         }
+         
+         r = random.nextInt(listaTimeslotDisciplina.size());
+         gene.setTimeslot(listaTimeslotDisciplina.get(r));
+    }
+
     
     /**
      * @return the cromossomo
