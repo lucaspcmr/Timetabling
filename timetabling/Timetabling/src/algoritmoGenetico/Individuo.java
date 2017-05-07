@@ -38,6 +38,7 @@ public class Individuo implements Comparable<Individuo>{
         
         switch (mutacaoEscolhida) {
             case  NO_MUTATION:
+                Solucao.validaGene(genes); //criar genes validos para professor, sala inicial
                 fitness = Solucao.calculaFitness(genes);
                 horarioValido = Solucao.isHorarioValido();
                 chromossomo = genes;
@@ -47,8 +48,10 @@ public class Individuo implements Comparable<Individuo>{
                 Random random = new Random();
                 
                 if(random.nextInt(101)<AlgoritmoGenetico.getTaxaMutacao()){
-                    //mutacao(genes);
+                    AlgoritmoGenetico.mutation(genes);
                 }
+                
+                Solucao.validaGene(genes); //criar genes validos para professor, sala inicial
                 
                 fitness = Solucao.calculaFitness(genes);
                 horarioValido = Solucao.isHorarioValido();
