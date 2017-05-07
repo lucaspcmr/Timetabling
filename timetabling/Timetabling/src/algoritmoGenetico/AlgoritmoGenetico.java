@@ -402,31 +402,35 @@ public class AlgoritmoGenetico {
  
         Random rnd=new Random();
         Gene aux=new Gene();
-        do{
+        //do{
         aux.setDisciplina(gene.getDisciplina());
         aux.setProfessor(gene.getProfessor());
         aux.setSala(gene.getSala());
         aux.setTimeslot(gene.getTimeslot());
         switch (i){
                 case 0: 
-                    int sorteioSala = rnd.nextInt(listaSalas.size());
-                    if(sorteioSala!=-1)
-                        aux.setSala(listaSalas.get(sorteioSala));
+                     if(listaSalas.size() !=0){
+                        int sorteioSala = rnd.nextInt(listaSalas.size());
+                            aux.setSala(listaSalas.get(sorteioSala));
+                     }
                 break;
                 case 1:
-                    int sorteioProfessor = rnd.nextInt(listaProfessores.size());
-                    if(sorteioProfessor!=-1)
+                    if(listaProfessores.size() !=0){
+                        int sorteioProfessor = rnd.nextInt(listaProfessores.size());
                         aux.setProfessor(listaProfessores.get(sorteioProfessor));
+                    }
                 break;
                 case 2:
-                    int sorteioTimeslot = rnd.nextInt(listaTimeslotDisciplina.size());
-                    if(sorteioTimeslot!=-1)
-                     aux.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
+                    if(listaTimeslotDisciplina.size() !=0){
+                        int sorteioTimeslot = rnd.nextInt(listaTimeslotDisciplina.size());
+                         aux.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
+                    }
+                    
                 break;
                 default: break;
         } 
                     
-    }while(!Solucao.isValorValido(aux));
+    //}while(!Solucao.isValorValido(aux));
         gene=aux;
    }
     
