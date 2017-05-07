@@ -80,8 +80,11 @@ public class Populacao {
         
         //se houver elitismo, primeira posição da lista novaPopulacao recebe primeira posição da lista populacao
         if(elitismo){
-            novaPopulacao.add(populacao.get(0));
-            novaPopulacao.add(populacao.get(1));
+            Individuo ind1 = copyIndividuo(populacao.get(0));
+            Individuo ind2 = copyIndividuo(populacao.get(1));
+                  
+            novaPopulacao.add(ind1);
+            novaPopulacao.add(ind2);            
         }
         
         //realizar onePointCrossover enquanto tamanho da nova população for menor que o da população original
@@ -125,6 +128,25 @@ public class Populacao {
         
         populacao = novaPopulacao;
         
+    }
+    
+    public static Individuo copyIndividuo(Individuo individuo){
+        int size = individuo.getGenes().length;
+        
+            Gene genes[] =  new Gene[size]; 
+            for (int i = 0; i < size; i++) {
+                Gene gene = new Gene();
+                Gene aux = individuo.getGenes()[i];
+                
+                gene.setDisciplina(aux.getDisciplina());
+                gene.setProfessor(aux.getProfessor());
+                gene.setSala(aux.getSala());
+                gene.setTimeslot(aux.getTimeslot());               
+                genes[i] = gene;               
+            }
+           Individuo ind = new Individuo(genes,Individuo.NO_MUTATION);      
+        
+           return ind;
     }
     
     public static int getampopulacao(){//tamanho da população
