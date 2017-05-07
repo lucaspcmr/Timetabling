@@ -390,26 +390,27 @@ public class AlgoritmoGenetico {
         return listaTorneio;        
     }
     
-    public static void mutation(Gene genes[]){
-         Random random = new Random();
-         Solucao.initSolucaoIndividuo(genes);
-         int r = random.nextInt(genes.length);
-
-         Gene gene = genes[r];
-         int disciplina = gene.getDisciplina();
-         List<Integer> listaTimeslotDisciplina = timeSlotLivreDisciplinaList(disciplina);
-         
-         while(listaTimeslotDisciplina.size() ==0){
-          r = random.nextInt(genes.length);
-
-          gene = genes[r];
-          disciplina = gene.getDisciplina();
-          listaTimeslotDisciplina = timeSlotLivreDisciplinaList(disciplina);
-         }
-         
-         r = random.nextInt(listaTimeslotDisciplina.size());
-         gene.setTimeslot(listaTimeslotDisciplina.get(r));
-    }
+    public static void mutation(Gene gene, int i){
+         Random rnd=new Random();
+        Gene aux=new Gene();
+        do{
+        aux.setDisciplina(gene.getDisciplina());
+        aux.setProfessor(gene.getProfessor());
+        aux.setSala(gene.getSala());
+        aux.setTimeslot(gene.getTimeslot());
+        switch (i){
+                case 0: aux.setSala(rnd.nextInt(Salas.salasigla.size())+1);
+                break;
+                case 1:aux.setProfessor(rnd.nextInt(Docentes.docentesigla.size())+1);
+                break;
+                case 2:aux.setDisciplina(rnd.nextInt(Disciplinas.disciplinacodigo.size())+1);
+                break;
+                default: break;
+        } 
+                    
+    }while(!Solucao.isValorValido(aux));
+        gene=aux;
+        }
     
     /**
      * @return the cromossomo
