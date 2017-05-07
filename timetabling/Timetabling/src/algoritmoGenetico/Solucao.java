@@ -1161,4 +1161,6 @@ public class Solucao {
     public static boolean isHorarioValido() {
         return horarioValido;
     }
+
 }
+

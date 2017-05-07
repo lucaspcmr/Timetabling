@@ -7,12 +7,8 @@ package timetabling;
 import algoritmoGenetico.AlgoritmoGenetico;
 import algoritmoGenetico.Gene;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -22,11 +18,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
+
 import javax.swing.table.TableModel;
+
 import static objetos.Cursos.ENGENHARIA_COMPUTACAO_MATUTINO;
 import static objetos.Cursos.ENGENHARIA_COMPUTACAO_NOTURNO;
 import static objetos.Cursos.ENGENHARIA_ELETRICA;
@@ -34,8 +30,10 @@ import static objetos.Cursos.ENGENHARIA_MECANICA;
 import objetos.Disciplinas;
 import objetos.Docentes;
 import objetos.Salas;
+
 import objetos.Timeslot;
 import objetos.Turma;
+
 /**
  *
  * @author HOME
@@ -50,12 +48,12 @@ private static Object obj[];//lista horario de cada curso tamanho 4
 private static void initTabela(){
     
     obj = new Object[4];//numero de horarios para os cursos como é 4 cursos
-    obj[0] = new ArrayList<JTable>();//horarios da engenharia de computação matutino
-    obj[1] = new ArrayList<JTable>();//horarios da engenharia de computação noturno
-    obj[2] = new ArrayList<JTable>();//horarios engenharia eletrica
-    obj[3] = new ArrayList<JTable>();//horario engenharia mecanica
+    obj[0] = new ArrayList<>();//horarios da engenharia de computação matutino
+    obj[1] = new ArrayList<>();//horarios da engenharia de computação noturno
+    obj[2] = new ArrayList<>();//horarios engenharia eletrica
+    obj[3] = new ArrayList<>();//horario engenharia mecanica
     
-    ponto =  new Hashtable <Integer,Integer[]>();
+    ponto =  new Hashtable <>();
     gerarHashTimeslot(ponto);
    
 //    Integer i [] = ponto.get(34);

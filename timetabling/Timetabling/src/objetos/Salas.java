@@ -3,16 +3,8 @@ package objetos;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
-import static objetos.Disciplinas.D;
-import static objetos.Disciplinas.D2;
-import static objetos.Disciplinas.disciplinaCHP;
-import static objetos.Disciplinas.disciplinaCHT;
-import static objetos.Disciplinas.disciplinatipop;
-import static objetos.Disciplinas.disciplinatipot;
-import static objetos.Disciplinas.quantidade;
 
 import timetabling.Filetomem;
 
@@ -36,15 +28,15 @@ public class Salas {
 
 	BufferedReader buffR=Filetomem.buffR;
         
-        private static List<SalaRestricao> salaRestricao= new ArrayList<SalaRestricao>();
+        private static List<SalaRestricao> salaRestricao= new ArrayList<>();
         
         
 public Salas(){
-	salasigla=new Hashtable <String,String>();
-	saladesc=new Hashtable <String,String>();
-	salatipo=new Hashtable <String,String>();
-	salacap=new Hashtable <String,String>();
-        S=new ArrayList<String>();
+	salasigla=new Hashtable <>();
+	saladesc=new Hashtable <>();
+	salatipo=new Hashtable <>();
+	salacap=new Hashtable <>();
+        S=new ArrayList<>();
 	try {
 		buffR.readLine();
 		buffR.readLine();

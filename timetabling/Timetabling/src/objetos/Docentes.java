@@ -27,18 +27,18 @@ public class Docentes {
 
         
        //Lista de docente com restricao
-        private static List<DocenteRestricao> docenteRestricao= new ArrayList<DocenteRestricao>();
+        private static List<DocenteRestricao> docenteRestricao= new ArrayList<>();
        
         
 	public Docentes(){
-		docentesigla=new Hashtable <String,String>();
-		docentenome=new Hashtable <String,String>();
-		docentedisc1=new Hashtable <String,String>();
-		docentedisc2=new Hashtable <String,String>();
-		docentedisc3=new Hashtable <String,String>();
-		docentedisc4=new Hashtable <String,String>();
-		docentedisc5=new Hashtable <String,String>();
-                P=new ArrayList<String>();
+		docentesigla=new Hashtable <>();
+		docentenome=new Hashtable <>();
+		docentedisc1=new Hashtable <>();
+		docentedisc2=new Hashtable <>();
+		docentedisc3=new Hashtable <>();
+		docentedisc4=new Hashtable <>();
+		docentedisc5=new Hashtable <>();
+                P=new ArrayList<>();
 		try {
 			buffR.readLine();
 			buffR.readLine();

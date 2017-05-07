@@ -1,22 +1,13 @@
 package timetabling;
 
+
 import java.awt.Dimension;
 import java.awt.EventQueue;
+
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Hashtable;
-import java.util.Scanner;
-
-import javax.swing.UIManager;
-
-import objetos.Cursos;
-import objetos.Docentes;
-import timetabling.Window;
-
 import javax.swing.JFrame;
 import javax.swing.UIManager;
-import objetos.Disciplinas;
-import objetos.Timeslot;
 
 public class Main {
 
