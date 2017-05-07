@@ -928,10 +928,18 @@ public class Solucao {
         int sorteioDocente = 0;
         int sorteioSala = 0;
         int sorteioTimeslot = 0;
+        
+        List<Gene> aux = new ArrayList<Gene>();
+        
+        for (int i = 0; i < sizeGene; i++) {
+            aux.add(genes[i]);
+        }
                 
         for (int i = 0; i < sizeGene; i++){
-            Gene gene = genes[i];
-            
+            Random r = new Random();
+            int select = r.nextInt(aux.size());
+            Gene gene = aux.get(select);
+ //           Gene gene = genes[i];
 
             //verifica se o genes é valido
             boolean valor = isValorValido(gene);
@@ -953,7 +961,7 @@ public class Solucao {
                 sizeSalas    = listaSalas.size();//pega as salas para a disciplina
                 sizeTimeslot = listaTimeslotDisciplina.size();//pega os timeslots disponivel da disciplina
                 
-
+                //se o meu timeslot é valido
                 boolean isDisciplina = Solucao.isDisciplinaValido(gene);
                 
                  //se tem timeslot disponivel da disciplina
@@ -968,13 +976,8 @@ public class Solucao {
                             break;
                     }
                 else{
-                     for (int j = 0; j < n_timeslots; j++) {
-                       gene.setTimeslot(j);//timeslot da disciplina   
-                       isDisciplina = Solucao.isDisciplinaValido(gene);
-                       if(isDisciplina)
-                            break;
-                     }
-                     
+                       sorteioTimeslot = random.nextInt(n_timeslots);
+                       gene.setTimeslot(sorteioTimeslot);//timeslot da disciplina                                           
                     }
                 
                 boolean isprofessor = Solucao.isProfessorValido(gene);
@@ -1032,6 +1035,7 @@ public class Solucao {
                   
                 //seta na mascara o novo gente                
                 valor = isValorValido(gene); //setar na mascara ???
+                aux.remove(select);
             }
                     
     }
