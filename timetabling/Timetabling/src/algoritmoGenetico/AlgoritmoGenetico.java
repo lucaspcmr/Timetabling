@@ -393,6 +393,7 @@ public class AlgoritmoGenetico {
     }
     
     public static void mutation(Gene gene, int i){
+
         
         List<Integer> listaProfessores = getDisciplinaProfessor().get(new Integer(gene.getDisciplina()));
         Integer tipoSala = Disciplinas.D2.get(gene.getDisciplina());//tipo da sala para aquela disciplina
@@ -403,11 +404,13 @@ public class AlgoritmoGenetico {
         Random rnd=new Random();
         Gene aux=new Gene();
         //do{
+
         aux.setDisciplina(gene.getDisciplina());
         aux.setProfessor(gene.getProfessor());
         aux.setSala(gene.getSala());
         aux.setTimeslot(gene.getTimeslot());
         switch (i){
+
                 case 0: 
                      if(listaSalas.size() !=0){
                         int sorteioSala = rnd.nextInt(listaSalas.size());
@@ -425,11 +428,12 @@ public class AlgoritmoGenetico {
                         int sorteioTimeslot = rnd.nextInt(listaTimeslotDisciplina.size());
                          aux.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
                     }
-                    
+                   
                 break;
                 default: break;
         } 
                     
+
     //}while(!Solucao.isValorValido(aux));
         gene=aux;
    }
@@ -455,6 +459,7 @@ public class AlgoritmoGenetico {
          r = random.nextInt(listaTimeslotDisciplina.size());
          gene.setTimeslot(listaTimeslotDisciplina.get(r));
     }
+
     
     /**
      * @return the cromossomo
