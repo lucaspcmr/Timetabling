@@ -115,10 +115,10 @@ public class Solucao {
          tipoSalaSalaDisciplina();    //preencher listas de salas
          preencherDisciplinaProfessores();      //criar hashtable disciplina lista de professores que podem ministrar aquela disciplinas
         //as restrições precisam ser setadas apenas uma vez na mascara
-//        restricaoHorarioCurso();
-//        setRestricoesProfessores(Filetomemrest.docrest); 
-//        setRestricoesDisciplinas(Filetomemrest.discirest); 
-//        setRestricoesSalas(Filetomemrest.salarest);
+        restricaoHorarioCurso();
+        setRestricoesProfessores(Filetomemrest.docrest); 
+        setRestricoesDisciplinas(Filetomemrest.discirest); 
+        setRestricoesSalas(Filetomemrest.salarest);
         
    }  
   //inicializa as mascaras
