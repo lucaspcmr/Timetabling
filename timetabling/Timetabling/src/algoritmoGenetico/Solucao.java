@@ -325,7 +325,7 @@ public class Solucao {
     public static int calculaFitness(Gene genes[]){
         horarioValido = true;
         int fitness = 0;
-        initSolucaoIndividuo(genes);//iniciar mascara de solução
+        initSolucao();//iniciar mascara de solução
         
         //Hardconstraits conflito de horarios
         for (int i = 0; i < genes.length; i++) {
@@ -351,7 +351,8 @@ public class Solucao {
             //é se nenhum estudante for matriculado então soma a penalidade
             //maxima das softconstrants
             //fitnes = Somatorio das hardsconstrants + o maximo de penalidade das softsconstrants
-            //para esse caso
+            //para esse caso 1100
+            
             fitness =fitness - Estudantes.getNumeroAlunos();//by Raquel hue
         }
         
@@ -814,8 +815,9 @@ public class Solucao {
         for (int i = 0; i < Disciplinas.D.size(); i++) {
             String str = Disciplinas.disciplinacurso.get(Disciplinas.D.get(i));//pega a o codigo da disciplina dado o id i
             String turnoDis = Cursos.cursoturnos.get(str).trim();//turno da disciplina i
-            
+            //System.out.println("Turno"+turnoDis);
             horarioDisciplinaRestricao(turnoDis,i);
+            horarioDisciplinaRestricaoInicio(i);
         }
         
         //setar restrição almoço para professor e salas
@@ -854,6 +856,14 @@ public class Solucao {
             
             horarioAlmocoRestricaoDisciplinas(idDisciplina);
     
+    }
+    
+        public static void horarioDisciplinaRestricaoInicio(int id){
+        List<Integer> aux = Timeslot.getInicio();//codigos do timeslot              
+                for (int j = 0; j < aux.size(); j++) {
+                    int idTimeslot = aux.get(j) -1; 
+                    disciplinas[id][idTimeslot] = -1;
+         }
     }
     
     public static void horarioVespertinoRestricaoDisciplinas(int id){
@@ -980,14 +990,23 @@ public class Solucao {
                 if(sizeTimeslot>0 ){
                     
                     if(!isDisciplina){
-                        for (int j = 0; j < listaTimeslotDisciplina.size(); j++) 
+                        for (int j = 0; j < listaTimeslotDisciplina.size(); j++){ 
                            gene.setTimeslot(listaTimeslotDisciplina.get(j));//timeslot da disciplina   
                            isDisciplina = Solucao.isDisciplinaValido(gene);
 
                            if(isDisciplina)
                                break;
+                            }
+                        
+                            if(!isDisciplina){
+                                sorteioTimeslot = random.nextInt(listaTimeslotDisciplina.size());
+                                gene.setTimeslot(sorteioTimeslot);
+                            }                  
                         }
                     }
+                else{
+                    System.err.println("ERROR: Disciplina não tem timeslot disponivel");
+                }
                 
                 boolean isprofessor = Solucao.isProfessorValido(gene);
                 boolean isSala= Solucao.isSalaValido(gene);
@@ -1037,9 +1056,7 @@ public class Solucao {
                             if(!isSala){
                                     sorteioSala = random.nextInt(sizeSalas);
                                     gene.setProfessor(listaSalas.get(sorteioSala));
-                                  }   
-
-
+                                  }  
                             }
                         }
                     }
@@ -1161,4 +1178,3 @@ public class Solucao {
     }
 
 }
-

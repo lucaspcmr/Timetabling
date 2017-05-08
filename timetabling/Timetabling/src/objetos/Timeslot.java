@@ -26,8 +26,9 @@ public class Timeslot {
     public static int SEXTA   = 6;
     public static int SABADO  = 7;
     
-    private static int numeroTimeslots = 168;//quantidade de timeslots total
-
+    //private static int numeroTimeslots = 168;//quantidade de timeslots total
+    private static int numeroTimeslots = 156;//quantidade de timeslots total
+    
     public static ArrayList<String> T;//Array de timeslots valores reais sua posição no array
     
     //Listas de codigos para os timeslots usado para as restrições dos cursos
@@ -36,6 +37,8 @@ public class Timeslot {
     private static List<Integer> noturno;//codigo dos timeslots
     private static List<Integer> sabado;//codigo dos timeslots
     private static List<Integer> almoco;//codigo dos almoco
+    private static List<Integer> inicio;//codigo inicio dos timeslots
+
     
     public Timeslot(){
 
@@ -71,7 +74,7 @@ public class Timeslot {
         noturno    = new ArrayList<Integer>();
         sabado     = new ArrayList<Integer>();
         almoco     = new ArrayList<Integer>();
-
+        inicio     = new ArrayList<Integer>();
         
         gerarTimeslotMatutino();
         gerarTimeslotMatutinoSabado();
@@ -228,6 +231,16 @@ public class Timeslot {
             getAlmoco().add(i);
         }
     }
+    
+        //gerar timeslot para o horario de almoço adiciona o codigo
+    public static void gerarTimeslotInicio( ){
+        int domSeg[] = {1,31};
+
+        
+        for (int i = domSeg[0]; i <= domSeg[1]; i++) {
+            getInicio().add(i);
+        }
+    }
     /**
      * @return the numeroTimeslots
      */
@@ -268,6 +281,13 @@ public class Timeslot {
      */
     public static List<Integer> getAlmoco() {
         return almoco;
+    }
+
+    /**
+     * @return the inicio
+     */
+    public static List<Integer> getInicio() {
+        return inicio;
     }
     
      
