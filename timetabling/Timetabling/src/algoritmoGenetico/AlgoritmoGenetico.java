@@ -12,6 +12,7 @@ package algoritmoGenetico;
 
 import static algoritmoGenetico.Solucao.getDisciplinaProfessor;
 import static algoritmoGenetico.Solucao.getSalaDisciplina;
+import static algoritmoGenetico.Solucao.initSolucao;
 import static algoritmoGenetico.Solucao.initSolucaoIndividuo;
 import static algoritmoGenetico.Solucao.timeSlotLivreDisciplinaList;
 import java.text.DateFormat;
@@ -41,6 +42,7 @@ public class AlgoritmoGenetico {
     private static int taxaMutacao;
     private static int taxaCrossover;
     private static int melhorGeracao;
+    private static int flag = 0;
     
     //metodo para iniciar a classe solução
     //necessario para inicializar os objetos 
@@ -48,6 +50,10 @@ public class AlgoritmoGenetico {
     //e inicializar o tamanho do mapa de solução
     //assim como setar todas as restrições dos arquivos lidos
     private static void init() {
+            AlgoritmoGenetico.cromossomo = null;
+            AlgoritmoGenetico.melhorIndividuo = null;
+            Populacao.populacao = new ArrayList<>();
+            
         solucao.construirMapSolucao(Timeslot.getNumeroTimeslots(), Salas.getNumeroSala(), Docentes.getNumeroProfessores(), Disciplinas.getNumeroDisciplinas());
     }
 
@@ -228,8 +234,8 @@ public class AlgoritmoGenetico {
                             long tempoInicial = System.currentTimeMillis();
                             
                             TextArea.LOG.setText(""); //Limpar o Log
-                            
-                            init(); //necessario para iniciar o mapa de soluções
+                           // if(flag ==0)
+                                init(); //necessario para iniciar o mapa de soluções
                          
                         //cria população
                          Populacao.criaPopulacao(AlgoritmoGenetico.numeroIndividuos, Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(), Docentes.getNumeroProfessores(), Timeslot.getNumeroTimeslots());
@@ -269,6 +275,17 @@ public class AlgoritmoGenetico {
                          }
                           
                          //mostrar o melhor individuo
+//                         
+//                         Individuo ind = Populacao.criaIndividuo( Disciplinas.getNumeroDisciplinas(),Salas.getNumeroSala(),  Docentes.getNumeroProfessores(),Timeslot.getNumeroTimeslots());
+//                         initSolucao();
+//                            for (int i = 0; i < ind.getGenes().length; i++) {
+//                                Solucao.timeSlotLivreDisciplinaList(i);
+//                                System.out.println("Disciplina: "+ Solucao.timeSlotLivreDisciplinaList(i).size());
+//                            }
+//                            
+//                         AlgoritmoGenetico.melhorIndividuo = ind;
+//                         AlgoritmoGenetico.cromossomo = ind.getGenes();
+                         
                         TextArea.LOG.append("---------------------------------"+"\n");
                         TextArea.LOG.append("Geração: "+melhorGeracao+" Melhor Fitness = "+melhorIndividuo.getFitness() + " Horario Valido: "+melhorIndividuo.isHorarioValido()+"\n");
                         long tempo= System.currentTimeMillis() - tempoInicial;
@@ -423,13 +440,13 @@ public class AlgoritmoGenetico {
                         aux.setProfessor(listaProfessores.get(sorteioProfessor));
                     }
                 break;
-                case 2:
-                    if(listaTimeslotDisciplina.size() !=0){
-                        int sorteioTimeslot = rnd.nextInt(listaTimeslotDisciplina.size());
-                         aux.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
-                    }
-                   
-                break;
+//                case 2:
+//                    if(listaTimeslotDisciplina.size() !=0){
+//                        int sorteioTimeslot = rnd.nextInt(listaTimeslotDisciplina.size());
+//                         aux.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
+//                    }
+//                   
+//                break;
                 default: break;
         } 
                     
@@ -489,7 +506,4 @@ public class AlgoritmoGenetico {
         return crossover;
     }
     
-    
-
-
 }

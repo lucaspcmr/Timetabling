@@ -222,8 +222,9 @@ private static void initTabela(){
         int qua[] = {80,94};
         int qui[] = {104,118};
         int sex[] = {128,142};
-        int sab[] = {152,166};
+        int sab[] = {152,156};
         int j=0;
+        
         for (int i = seg[0]; i <= seg[1]; i++) {
             Integer p[] = new Integer[2];
             p[0] = new Integer(j);

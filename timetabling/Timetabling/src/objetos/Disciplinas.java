@@ -89,7 +89,7 @@ public class Disciplinas {
         
 //            System.out.println("Disciplinas");
 //             for (int i = 0; i < D.size(); i++) {
-//                 System.out.print(D.get(i)+" ");
+//                 System.out.println(D.get(i)+" ");
 //            }
 //            System.out.println("Tipo Salas");
 //            for (int i = 0; i < D2.size(); i++) {
@@ -100,7 +100,7 @@ public class Disciplinas {
             int carga;
             int salat;
             int salap;
-            for(int i=1;i<quantidade;i++){
+            for(int i=1;i<=quantidade;i++){
                 carga=0;
                 carga=Integer.valueOf(disciplinaCHT.get(i));
                 salat=Integer.valueOf(disciplinatipot.get(i));

@@ -31,7 +31,8 @@ public class Populacao {
         
         int sizeDocentes = n_docentes;
         int sizeSalas = n_salas;
-        int sizeTimeslot = n_timeslot;
+        int sizeTimeslot = n_timeslot - 31;
+       
         
         int sorteioDocente;
         int sorteioSala;
@@ -43,7 +44,7 @@ public class Populacao {
             
             sorteioDocente = random.nextInt(sizeDocentes);
             sorteioSala = random.nextInt(sizeSalas);
-            sorteioTimeslot = random.nextInt(sizeTimeslot);
+            sorteioTimeslot = random.nextInt(sizeTimeslot + 31);
             
             gene.setProfessor(sorteioDocente);
             gene.setSala(sorteioSala);

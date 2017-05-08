@@ -1,9 +1,0 @@
-Juan
--Testes
-
-Lucas: 
-1 - Criar o metodo de mutação
-3 - Testes
-
-Raquel:
--Testes
