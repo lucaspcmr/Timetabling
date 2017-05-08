@@ -81,6 +81,7 @@ public class Timeslot {
         gerarTimeslotVespertino();
         gerarTimeslotNoturno();
         gerarTimeslotAlmoco();
+        gerarTimeslotInicio();
    }
    
    public static void gerarTimeSlotID(Hashtable <String,Integer> timeslot){
