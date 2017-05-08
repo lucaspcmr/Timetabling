@@ -68,7 +68,8 @@ public class Solucao {
     private static List<Integer> laboratorioOutro;
     
     private static Hashtable <Integer, List<Integer>> disciplinaProfessores;//retorna os professores que pode ministrar uma determinada disciplina
-    private static Hashtable <Integer, List<Integer>> disciplinaIds;//retorna os professores que pode ministrar uma determinada disciplina
+    private static Hashtable <Integer, List<Integer>> disciplinaIds;//
+    private static Hashtable <Integer, List<Integer>> disciplinaPeriodo;//choque de disciplinas do mesmo periodo
     
     private static boolean horarioValido;//variavel setada para verificar se nenhuma hardconstraint foi afetada
                                          //mostrando um horario valido
@@ -114,10 +115,10 @@ public class Solucao {
          tipoSalaSalaDisciplina();    //preencher listas de salas
          preencherDisciplinaProfessores();      //criar hashtable disciplina lista de professores que podem ministrar aquela disciplinas
         //as restrições precisam ser setadas apenas uma vez na mascara
-        restricaoHorarioCurso();
-        setRestricoesProfessores(Filetomemrest.docrest); 
-        setRestricoesDisciplinas(Filetomemrest.discirest); 
-        setRestricoesSalas(Filetomemrest.salarest);
+//        restricaoHorarioCurso();
+//        setRestricoesProfessores(Filetomemrest.docrest); 
+//        setRestricoesDisciplinas(Filetomemrest.discirest); 
+//        setRestricoesSalas(Filetomemrest.salarest);
         
    }  
   //inicializa as mascaras
