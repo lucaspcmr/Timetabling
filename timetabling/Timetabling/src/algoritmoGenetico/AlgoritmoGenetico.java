@@ -12,6 +12,7 @@ package algoritmoGenetico;
 
 import static algoritmoGenetico.Solucao.getDisciplinaProfessor;
 import static algoritmoGenetico.Solucao.getSalaDisciplina;
+import static algoritmoGenetico.Solucao.initSolucao;
 import static algoritmoGenetico.Solucao.initSolucaoIndividuo;
 import static algoritmoGenetico.Solucao.timeSlotLivreDisciplinaList;
 import java.text.DateFormat;
@@ -236,44 +237,55 @@ public class AlgoritmoGenetico {
                            // if(flag ==0)
                                 init(); //necessario para iniciar o mapa de soluções
                          
-                        //cria população
-                         Populacao.criaPopulacao(AlgoritmoGenetico.numeroIndividuos, Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(), Docentes.getNumeroProfessores(), Timeslot.getNumeroTimeslots());
-                         
-                         //ordena populaçao
-                         sort(Populacao.populacao);
-                         
-                         //individuoCompara recebe o individuo mais apto da população
-                         Individuo individuoCompara = Populacao.populacao.get(0);
-                         
-                         int contadorGeracoes = 0;
-                         
-                         AlgoritmoGenetico.melhorIndividuo = individuoCompara;
-                         AlgoritmoGenetico.cromossomo = individuoCompara.getGenes();
-                         
-                         //enquanto o resultado não alcança o valor mínimo aceito
-                         while (individuoCompara.getFitness() != 0){                         
-                            //Debug do individuo pegando seu fitness
-                            TextArea.LOG.append("Geração:" + contadorGeracoes +"   Fitness = "+ individuoCompara.getFitness() + " Horario Valido: "+individuoCompara.isHorarioValido()+"\n");
-                            TextArea.LOG.setCaretPosition(TextArea.LOG.getText().length() ); // scroll rolando dinamicamente
-                            Populacao.criaNovaGeracao(AlgoritmoGenetico.elitismo, AlgoritmoGenetico.getTaxaMutacao(), AlgoritmoGenetico.taxaCrossover);
-                            sort(Populacao.populacao);
-                            
-                            individuoCompara = Populacao.populacao.get(0);
-                            
-                            if(individuoCompara.getFitness() > AlgoritmoGenetico.melhorIndividuo.getFitness()){
-                                AlgoritmoGenetico.melhorIndividuo = individuoCompara;
-                                AlgoritmoGenetico.cromossomo = individuoCompara.getGenes();
-                                AlgoritmoGenetico.melhorGeracao = contadorGeracoes +1;
-                            }
-                            
-                            
-                            contadorGeracoes++;
-                            
-                            if(contadorGeracoes > AlgoritmoGenetico.numeroGeracoes)
-                                break;
-                         }
+//                        //cria população
+//                         Populacao.criaPopulacao(AlgoritmoGenetico.numeroIndividuos, Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(), Docentes.getNumeroProfessores(), Timeslot.getNumeroTimeslots());
+//                         
+//                         //ordena populaçao
+//                         sort(Populacao.populacao);
+//                         
+//                         //individuoCompara recebe o individuo mais apto da população
+//                         Individuo individuoCompara = Populacao.populacao.get(0);
+//                         
+//                         int contadorGeracoes = 0;
+//                         
+//                         AlgoritmoGenetico.melhorIndividuo = individuoCompara;
+//                         AlgoritmoGenetico.cromossomo = individuoCompara.getGenes();
+//                         
+//                         //enquanto o resultado não alcança o valor mínimo aceito
+//                         while (individuoCompara.getFitness() != 0){                         
+//                            //Debug do individuo pegando seu fitness
+//                            TextArea.LOG.append("Geração:" + contadorGeracoes +"   Fitness = "+ individuoCompara.getFitness() + " Horario Valido: "+individuoCompara.isHorarioValido()+"\n");
+//                            TextArea.LOG.setCaretPosition(TextArea.LOG.getText().length() ); // scroll rolando dinamicamente
+//                            Populacao.criaNovaGeracao(AlgoritmoGenetico.elitismo, AlgoritmoGenetico.getTaxaMutacao(), AlgoritmoGenetico.taxaCrossover);
+//                            sort(Populacao.populacao);
+//                            
+//                            individuoCompara = Populacao.populacao.get(0);
+//                            
+//                            if(individuoCompara.getFitness() > AlgoritmoGenetico.melhorIndividuo.getFitness()){
+//                                AlgoritmoGenetico.melhorIndividuo = individuoCompara;
+//                                AlgoritmoGenetico.cromossomo = individuoCompara.getGenes();
+//                                AlgoritmoGenetico.melhorGeracao = contadorGeracoes +1;
+//                            }
+//                            
+//                            
+//                            contadorGeracoes++;
+//                            
+//                            if(contadorGeracoes > AlgoritmoGenetico.numeroGeracoes)
+//                                break;
+//                         }
                           
                          //mostrar o melhor individuo
+                         
+                         Individuo ind = Populacao.criaIndividuo( Disciplinas.getNumeroDisciplinas(),Salas.getNumeroSala(),  Docentes.getNumeroProfessores(),Timeslot.getNumeroTimeslots());
+                         initSolucao();
+                            for (int i = 0; i < ind.getGenes().length; i++) {
+                                Solucao.timeSlotLivreDisciplinaList(i);
+                                System.out.println("Disciplina: "+ Solucao.timeSlotLivreDisciplinaList(i).size());
+                            }
+                            
+                         AlgoritmoGenetico.melhorIndividuo = ind;
+                         AlgoritmoGenetico.cromossomo = ind.getGenes();
+                         
                         TextArea.LOG.append("---------------------------------"+"\n");
                         TextArea.LOG.append("Geração: "+melhorGeracao+" Melhor Fitness = "+melhorIndividuo.getFitness() + " Horario Valido: "+melhorIndividuo.isHorarioValido()+"\n");
                         long tempo= System.currentTimeMillis() - tempoInicial;

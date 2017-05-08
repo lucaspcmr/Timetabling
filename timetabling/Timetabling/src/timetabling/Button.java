@@ -102,128 +102,128 @@ public class Button {
                int crossover = 0;
                int selecao = 0;
                
-               while(isValid == 0){   
-                 leitura = JOptionPane.showInputDialog("Digite o TAMANHO DA POPULAÇÃO a ser gerado no Algoritmo Genético?\n Observações: (a) Deve ser um número natural, maior ou igual a 2, e multipo de 2.");
-                   try {
-                       int value = Integer.parseInt(leitura);
-                       if(value >=2 && value%2 == 0){  
-                           
-                            numeroIndividuos= value;
-                            isValid = 1;
-
-                       }
-                       else{
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                       }
-                       
-                   } catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                 }                    
-               }
-               isValid = 0;
-               while(isValid == 0){   
-                 leitura = JOptionPane.showInputDialog("Digite o NÚMERO MÁXIMO DE GERAÇÕES a ser aplicado ao Algoritmo Genético?");
-                   try {
-                       int value = Integer.parseInt(leitura);
-                       if(value>=0){
-                        geracoes = value;
-                        isValid = 1;
-                       }
-                       else{
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                       }
-                   } catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                 }                    
-               }
-               
-               isValid = 0;
-               while(isValid == 0){   
-                 leitura = JOptionPane.showInputDialog("Digite a TAXA DE RECOMBINAÇÃO (ou Crossover)\n(valor deve ser 0 a 100 indicando porcentagem).");
-                   try {
-                       int value = Integer.parseInt(leitura);
-                       if(value>=0){
-                        taxaCrossover = value;
-                        isValid = 1;
-                       }
-                       else{
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
-                       }
-                   } catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
-                 }                    
-               }
-              
-               isValid = 0;
-               while(isValid == 0){   
-                  leitura = JOptionPane.showInputDialog("Digite a TAXA DE MUTAÇÃO (valor deve ser 0 a 100 indicando porcentagem)");
-                   try {
-                       int value = Integer.parseInt(leitura);
-                       if(value>0 && value<=100){
-                        taxaMutacao = value;
-                        isValid = 1;
-                       }
-                       else{
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                       }
-                   } catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                 }                    
-               }
-               
-               isValid = 0;
-                while(isValid == 0){   
-                  leitura = JOptionPane.showInputDialog("Deverá ser empregado ELITISMO (S = sim, N = não)? ");
-                   try {
-                       
-                       if(leitura.trim().equalsIgnoreCase("s") || leitura.trim().equalsIgnoreCase("n")){                     
-                           if(leitura.trim().equalsIgnoreCase("s")){
-                               elitismo = true;
-                           } 
-                               isValid = 1;
-                       }
-                       else{
-                        JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                       }
-                    }
-                    catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                 }                    
-               }
-                
-                isValid = 0;
-               while(isValid == 0){   
-                  leitura = JOptionPane.showInputDialog("Digite 1 para Seleção Roleta ou 2 para Seleção Torneio");
-                   try {
-                       int value = Integer.parseInt(leitura);
-                       if(value==1 || value==2){
-                        selecao = value;
-                        isValid = 1;
-                       }
-                       else{
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                       }
-                   } catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                 }                    
-               }
-               
-               isValid = 0;
-               while(isValid == 0){   
-                  leitura = JOptionPane.showInputDialog("Digite 1 para One Point Crossover, 2 para Two Point Crossover ou 3 para Uniform Crossover");
-                   try {
-                       int value = Integer.parseInt(leitura);
-                       if(value==1 || value==2 || value==3){
-                        crossover = value;
-                        isValid = 1;
-                       }
-                       else{
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                       }
-                   } catch (NumberFormatException erro) {
-                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
-                 }                    
-               }
+//               while(isValid == 0){   
+//                 leitura = JOptionPane.showInputDialog("Digite o TAMANHO DA POPULAÇÃO a ser gerado no Algoritmo Genético?\n Observações: (a) Deve ser um número natural, maior ou igual a 2, e multipo de 2.");
+//                   try {
+//                       int value = Integer.parseInt(leitura);
+//                       if(value >=2 && value%2 == 0){  
+//                           
+//                            numeroIndividuos= value;
+//                            isValid = 1;
+//
+//                       }
+//                       else{
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                       }
+//                       
+//                   } catch (NumberFormatException erro) {
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                 }                    
+//               }
+//               isValid = 0;
+//               while(isValid == 0){   
+//                 leitura = JOptionPane.showInputDialog("Digite o NÚMERO MÁXIMO DE GERAÇÕES a ser aplicado ao Algoritmo Genético?");
+//                   try {
+//                       int value = Integer.parseInt(leitura);
+//                       if(value>=0){
+//                        geracoes = value;
+//                        isValid = 1;
+//                       }
+//                       else{
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                       }
+//                   } catch (NumberFormatException erro) {
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                 }                    
+//               }
+//               
+//               isValid = 0;
+//               while(isValid == 0){   
+//                 leitura = JOptionPane.showInputDialog("Digite a TAXA DE RECOMBINAÇÃO (ou Crossover)\n(valor deve ser 0 a 100 indicando porcentagem).");
+//                   try {
+//                       int value = Integer.parseInt(leitura);
+//                       if(value>=0){
+//                        taxaCrossover = value;
+//                        isValid = 1;
+//                       }
+//                       else{
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+//                       }
+//                   } catch (NumberFormatException erro) {
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!! Valor deve ser inteiro positivo.");
+//                 }                    
+//               }
+//              
+//               isValid = 0;
+//               while(isValid == 0){   
+//                  leitura = JOptionPane.showInputDialog("Digite a TAXA DE MUTAÇÃO (valor deve ser 0 a 100 indicando porcentagem)");
+//                   try {
+//                       int value = Integer.parseInt(leitura);
+//                       if(value>0 && value<=100){
+//                        taxaMutacao = value;
+//                        isValid = 1;
+//                       }
+//                       else{
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                       }
+//                   } catch (NumberFormatException erro) {
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                 }                    
+//               }
+//               
+//               isValid = 0;
+//                while(isValid == 0){   
+//                  leitura = JOptionPane.showInputDialog("Deverá ser empregado ELITISMO (S = sim, N = não)? ");
+//                   try {
+//                       
+//                       if(leitura.trim().equalsIgnoreCase("s") || leitura.trim().equalsIgnoreCase("n")){                     
+//                           if(leitura.trim().equalsIgnoreCase("s")){
+//                               elitismo = true;
+//                           } 
+//                               isValid = 1;
+//                       }
+//                       else{
+//                        JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                       }
+//                    }
+//                    catch (NumberFormatException erro) {
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                 }                    
+//               }
+//                
+//                isValid = 0;
+//               while(isValid == 0){   
+//                  leitura = JOptionPane.showInputDialog("Digite 1 para Seleção Roleta ou 2 para Seleção Torneio");
+//                   try {
+//                       int value = Integer.parseInt(leitura);
+//                       if(value==1 || value==2){
+//                        selecao = value;
+//                        isValid = 1;
+//                       }
+//                       else{
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                       }
+//                   } catch (NumberFormatException erro) {
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                 }                    
+//               }
+//               
+//               isValid = 0;
+//               while(isValid == 0){   
+//                  leitura = JOptionPane.showInputDialog("Digite 1 para One Point Crossover, 2 para Two Point Crossover ou 3 para Uniform Crossover");
+//                   try {
+//                       int value = Integer.parseInt(leitura);
+//                       if(value==1 || value==2 || value==3){
+//                        crossover = value;
+//                        isValid = 1;
+//                       }
+//                       else{
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                       }
+//                   } catch (NumberFormatException erro) {
+//                       JOptionPane.showMessageDialog(null,"Valor Invalido!!!");
+//                 }                    
+//               }
                
                  
                  button.setEnabled(false);
