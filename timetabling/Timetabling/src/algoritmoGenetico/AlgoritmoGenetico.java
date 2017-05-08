@@ -41,6 +41,7 @@ public class AlgoritmoGenetico {
     private static int taxaMutacao;
     private static int taxaCrossover;
     private static int melhorGeracao;
+    private static int flag = 0;
     
     //metodo para iniciar a classe solução
     //necessario para inicializar os objetos 
@@ -48,6 +49,10 @@ public class AlgoritmoGenetico {
     //e inicializar o tamanho do mapa de solução
     //assim como setar todas as restrições dos arquivos lidos
     private static void init() {
+            AlgoritmoGenetico.cromossomo = null;
+            AlgoritmoGenetico.melhorIndividuo = null;
+            Populacao.populacao = new ArrayList<>();
+            
         solucao.construirMapSolucao(Timeslot.getNumeroTimeslots(), Salas.getNumeroSala(), Docentes.getNumeroProfessores(), Disciplinas.getNumeroDisciplinas());
     }
 
@@ -228,8 +233,8 @@ public class AlgoritmoGenetico {
                             long tempoInicial = System.currentTimeMillis();
                             
                             TextArea.LOG.setText(""); //Limpar o Log
-                            
-                            init(); //necessario para iniciar o mapa de soluções
+                           // if(flag ==0)
+                                init(); //necessario para iniciar o mapa de soluções
                          
                         //cria população
                          Populacao.criaPopulacao(AlgoritmoGenetico.numeroIndividuos, Disciplinas.getNumeroDisciplinas(), Salas.getNumeroSala(), Docentes.getNumeroProfessores(), Timeslot.getNumeroTimeslots());
