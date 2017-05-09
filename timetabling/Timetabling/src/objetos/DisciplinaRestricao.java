@@ -6,6 +6,7 @@
 package objetos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  */
 public class DisciplinaRestricao {
     private int disciplina;//codigo da disciplina
-    private ArrayList<Integer> timeslot;  //codigo do timeslot
+    private List<Integer> timeslot;  //codigo do timeslot
 public DisciplinaRestricao(){
     timeslot=new ArrayList<>();
 }
@@ -34,7 +35,7 @@ public DisciplinaRestricao(){
     /**
      * @return the timeslot
      */
-    public ArrayList getTimeslot() {
+    public List getTimeslot() {
         return timeslot;
     }
 
@@ -43,6 +44,10 @@ public DisciplinaRestricao(){
      */
     public void setTimeslot(int timeslot) {
         this.timeslot.add(timeslot);
+    }
+    
+        public void setTimeslot(List<Integer> timeslot) {
+        this.timeslot = timeslot;
     }
     
 }
