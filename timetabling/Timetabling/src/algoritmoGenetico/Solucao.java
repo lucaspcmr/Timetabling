@@ -81,12 +81,12 @@ public class Solucao {
     private static boolean horarioValido;//variavel setada para verificar se nenhuma hardconstraint foi afetada
                                          //mostrando um horario valido
     
-    public static int fitnessRestricoes;
+        public static int FITNESS_RESTRICAO = -20000;
     //inicializa com timeslots, numero de salas e numero de professores
    public static void construirMapSolucao(int n_timeslots,int n_salas,int n_professores,int n_disciplinas){
       
          horarioValido = false;
-         fitnessRestricoes = 0;
+         
         //tamanho da matriz
         Solucao.n_timeslots            = n_timeslots; 
         Solucao.n_salas                = n_salas;
@@ -127,10 +127,10 @@ public class Solucao {
          tipoSalaSalaDisciplina();    //preencher listas de salas
          preencherDisciplinaProfessores();      //criar hashtable disciplina lista de professores que podem ministrar aquela disciplinas
         //as restrições precisam ser setadas apenas uma vez na mascara
-//        restricaoHorarioCurso();
-//        setRestricoesProfessores(Filetomemrest.docrest); 
-//        setRestricoesDisciplinas(Filetomemrest.discirest); 
-//        setRestricoesSalas(Filetomemrest.salarest);
+        restricaoHorarioCurso();
+        setRestricoesProfessores(Filetomemrest.docrest); 
+        setRestricoesDisciplinas(Filetomemrest.discirest); 
+        setRestricoesSalas(Filetomemrest.salarest);
         
    }  
   //inicializa as mascaras
@@ -387,7 +387,7 @@ public class Solucao {
             //fitnes = Somatorio das hardsconstrants + o maximo de penalidade das softsconstrants
             //para esse caso 1100
             
-            fitness =fitness - Estudantes.getNumeroAlunos() + fitnessRestricoes*HARDCONSTRAINT;//by Raquel hue
+            fitness = fitness  + FITNESS_RESTRICAO;//by Raquel hue
         }
         
         
@@ -468,7 +468,7 @@ public class Solucao {
                 int id = (int) timeslot.get(j) -1 ;//id do timeslot codigo -1
                 professores[professor][id] = 0;
             }
-            fitnessRestricoes = fitnessRestricoes + timeslot.size();
+            
             professoresRestricao.put(professor, 0);
         }
     }
@@ -500,7 +500,7 @@ public class Solucao {
                          int idTimeslot = timeslots.get(k).intValue() -1;                        
                          disciplinas[idDisciplina][idTimeslot]  = 0;//setar o valor disponivel                       
                      }
-                     fitnessRestricoes = fitnessRestricoes + 1;
+                     //fitnessRestricoes = fitnessRestricoes + timeslots.size();
                      disciplinasRestricao.put(idDisciplina, 0);
                  }
         }
@@ -564,7 +564,7 @@ public class Solucao {
                 int id = (int) timeslot.get(j) -1 ;//id do timeslot
                 salas[sala][id] = 2;
             }
-            fitnessRestricoes = fitnessRestricoes +1;
+           
             salasRestricao.put(sala, 0);
         }
     }

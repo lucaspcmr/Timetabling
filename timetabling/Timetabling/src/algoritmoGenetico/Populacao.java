@@ -81,8 +81,8 @@ public class Populacao {
         
         //se houver elitismo, primeira posição da lista novaPopulacao recebe primeira posição da lista populacao
         if(elitismo){
-            Individuo ind1 = populacao.get(0).clone();
-            Individuo ind2 = populacao.get(1).clone();
+            Individuo ind1 = copyIndividuo(populacao.get(0));
+            Individuo ind2 = copyIndividuo(populacao.get(1));
                   
             novaPopulacao.add(ind1);
             novaPopulacao.add(ind2);            
@@ -130,6 +130,26 @@ public class Populacao {
         populacao = novaPopulacao;
         
     }
+    
+    public static Individuo copyIndividuo(Individuo individuo) throws CloneNotSupportedException{
+         int size = individuo.getGenes().length;
+         
+             Gene genes[] =  new Gene[size]; 
+             for (int i = 0; i < size; i++) {
+                
+                 Gene gene = individuo.getGenes()[i].clone();
+                 
+                // gene.setDisciplina(aux.getDisciplina());
+                // gene.setProfessor(aux.getProfessor());
+               //  gene.setSala(aux.getSala());
+               //  gene.setTimeslot(aux.getTimeslot());               
+                 genes[i] = gene;               
+             }
+            Individuo ind = new Individuo(genes,Individuo.NO_MUTATION);      
+          
+           return ind;
+    }
+     
         
     public static int getampopulacao(){//tamanho da população
         return populacao.size();

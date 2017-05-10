@@ -252,7 +252,6 @@ public class AlgoritmoGenetico {
                          
                          AlgoritmoGenetico.melhorIndividuo = individuoCompara;
                          AlgoritmoGenetico.cromossomo = individuoCompara.getGenes();
-                         
                          //enquanto o resultado não alcança o valor mínimo aceito
                          while (individuoCompara.getFitness() != 0){                                               
                             //Debug do individuo pegando seu fitness
