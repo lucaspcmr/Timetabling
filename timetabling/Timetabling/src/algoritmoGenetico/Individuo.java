@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author Raquel
  */
-public class Individuo implements Comparable<Individuo>{
+public class Individuo implements Comparable<Individuo>, Cloneable{
 
     /**
      * @return the horarioValido
@@ -93,5 +93,10 @@ public class Individuo implements Comparable<Individuo>{
             return 0;
         }
 
+    }
+    
+    @Override
+    public Individuo clone() throws CloneNotSupportedException{
+        return (Individuo) super.clone();
     }
 }
