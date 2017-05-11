@@ -113,7 +113,12 @@ public class FileChooser extends JPanel  {
                                     Integer key = Disciplinas.D.get(disciplina);
                                     String cursoDisciplina    = Disciplinas.disciplinacurso.get(key);
                                     String disciplinaCodigo   = Disciplinas.disciplinacodigo.get(key);
-                                    String professorCodigo    = (professor +1)+"";
+                                    
+                                    
+                                    String professorCodigo    = "";
+                                    if(professor !=-1)
+                                        professorCodigo    = (professor +1)+"";
+
                                     String salaCodigo         = (sala+1)+"";
                                     String periodo            = Disciplinas.disciplinaperiodo.get(key);
                                     
@@ -154,7 +159,11 @@ public class FileChooser extends JPanel  {
                                         String curso              = turmas.get(j).getCurso()+"";
                                         String periodo            = turmas.get(j).getPeriodo();
                                         
-                                        String nomeProfessor = Docentes.docentenome.get(professor);
+                                        String nomeProfessor = "null";
+                                        
+                                        if(Docentes.docentenome.get(professor) != null)
+                                            nomeProfessor = Docentes.docentenome.get(professor);
+                                        
                                         String nomeSala      = Salas.salasigla.get(sala);
 
                                         String linha = disciplina+","+timeslot+","+nomeProfessor+","+nomeSala+","+curso+","+periodo+"\n";

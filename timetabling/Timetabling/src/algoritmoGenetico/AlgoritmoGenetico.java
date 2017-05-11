@@ -22,6 +22,8 @@ import static java.util.Collections.sort;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import objetos.Disciplinas;
 import objetos.Docentes;
 import objetos.Salas;
@@ -59,7 +61,7 @@ public class AlgoritmoGenetico {
 
     //Retorna um vetor de Individuos, fazendo o crossOver (One-Point)
     //Metodo deve passar dois individuos e o tamanho desses individuos
-    public static Individuo[] onePointCrossover(Individuo individuo1, Individuo individuo2) {
+    public static Individuo[] onePointCrossover(Individuo individuo1, Individuo individuo2) throws CloneNotSupportedException {
 
         int size;
         int pontoCorte;
@@ -83,20 +85,20 @@ public class AlgoritmoGenetico {
 
         //Primeiro filho
         for (int j = 0; j < pontoCorte; j++) {
-            geneFilho1[j] = genePai1[j];
+            geneFilho1[j] = genePai1[j].clone();
         }
 
         for (int j = pontoCorte; j < size; j++) {
-            geneFilho1[j] = genePai2[j];
+            geneFilho1[j] = genePai2[j].clone();
         }
 
         //Segundo filho
         for (int j = 0; j < pontoCorte; j++) {
-            geneFilho2[j] = genePai2[j];
+            geneFilho2[j] = genePai2[j].clone();
         }
 
         for (int j = pontoCorte; j < size; j++) {
-            geneFilho2[j] = genePai1[j];
+            geneFilho2[j] = genePai1[j].clone();
         }
 
         //Criar um vetor de individuos (gerado os dois filhos)
@@ -108,7 +110,7 @@ public class AlgoritmoGenetico {
     
     //Retorna um vetor de Individuos, fazendo o crossOver (Two-Point)
     //Metodo deve passar dois individuos e o tamanho desses individuos
-    public static Individuo[] twoPointCrossover(Individuo individuo1, Individuo individuo2) {
+    public static Individuo[] twoPointCrossover(Individuo individuo1, Individuo individuo2) throws CloneNotSupportedException {
 
         int size;
         int pontoCorte1, pontoCorte2;
@@ -151,21 +153,21 @@ public class AlgoritmoGenetico {
 
         //preenche lado esquerdo filho
         for (int j = 0; j < pontoCorte1; j++) {
-            geneFilho1[j] = genePai1[j];
-            geneFilho2[j] = genePai2[j];
+            geneFilho1[j] = genePai1[j].clone();
+            geneFilho2[j] = genePai2[j].clone();
         }
         
         
         //preenche núcleo filho (inverte núcleos dos pais)
         for (int j = pontoCorte1; j < pontoCorte2; j++) {
-            geneFilho1[j] = genePai2[j];
-            geneFilho2[j] = genePai1[j];
+            geneFilho1[j] = genePai2[j].clone();
+            geneFilho2[j] = genePai1[j].clone();
         }
 
         //preenche lado direito filho
         for (int j = pontoCorte2; j < size; j++) {
-            geneFilho1[j] = genePai1[j];
-            geneFilho2[j] = genePai2[j];
+            geneFilho1[j] = genePai1[j].clone();
+            geneFilho2[j] = genePai2[j].clone();
         }
 
         //Criar um vetor de individuos (gerado os dois filhos)
@@ -177,7 +179,7 @@ public class AlgoritmoGenetico {
     
     //Retorna um vetor de Individuos, fazendo o crossOver uniforme
     //Metodo deve passar dois individuos e o tamanho desses individuos
-    public static Individuo[] uniformCrossover(Individuo individuo1, Individuo individuo2) {
+    public static Individuo[] uniformCrossover(Individuo individuo1, Individuo individuo2) throws CloneNotSupportedException {
 
         int size;
         Random r;
@@ -200,12 +202,12 @@ public class AlgoritmoGenetico {
              int random = r.nextInt(2);
              
              if(random == 0){
-                 geneFilho1[i] = genePai2[i];
-                 geneFilho2[i] = genePai1[i];
+                 geneFilho1[i] = genePai2[i].clone();
+                 geneFilho2[i] = genePai1[i].clone();
              }
              else{
-                 geneFilho1[i] = genePai1[i];
-                 geneFilho2[i] = genePai2[i];
+                 geneFilho1[i] = genePai1[i].clone();
+                 geneFilho2[i] = genePai2[i].clone();
              }
          }
         
@@ -250,13 +252,16 @@ public class AlgoritmoGenetico {
                          
                          AlgoritmoGenetico.melhorIndividuo = individuoCompara;
                          AlgoritmoGenetico.cromossomo = individuoCompara.getGenes();
-                         
                          //enquanto o resultado não alcança o valor mínimo aceito
-                         while (individuoCompara.getFitness() != 0){                         
+                         while (individuoCompara.getFitness() != 0){                                               
                             //Debug do individuo pegando seu fitness
                             TextArea.LOG.append("Geração:" + contadorGeracoes +"   Fitness = "+ individuoCompara.getFitness() + " Horario Valido: "+individuoCompara.isHorarioValido()+"\n");
                             TextArea.LOG.setCaretPosition(TextArea.LOG.getText().length() ); // scroll rolando dinamicamente
-                            Populacao.criaNovaGeracao(AlgoritmoGenetico.elitismo, AlgoritmoGenetico.getTaxaMutacao(), AlgoritmoGenetico.taxaCrossover);
+                                try {
+                                    Populacao.criaNovaGeracao(AlgoritmoGenetico.elitismo, AlgoritmoGenetico.getTaxaMutacao(), AlgoritmoGenetico.taxaCrossover);
+                                } catch (CloneNotSupportedException ex) {
+                                    Logger.getLogger(AlgoritmoGenetico.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             sort(Populacao.populacao);
                             
                             individuoCompara = Populacao.populacao.get(0);
@@ -371,7 +376,7 @@ public class AlgoritmoGenetico {
             }
             
             novapop.add(pop1.get(i));//adiciona o elemento escolhido em uma nova população
-            //pop1.remove(i);//remove o elemento da população antiga
+
         }
         pop1=null;
         return novapop;
@@ -402,11 +407,13 @@ public class AlgoritmoGenetico {
         //ordena por valor de aptidão
         sort(listaTorneio);
         
-        //remove menos apto
-        listaTorneio.remove(2);
+        //seleciona os mais aptos
+         List<Individuo> aux = new ArrayList<Individuo>();
+        aux.add(listaTorneio.get(0));
+        aux.add(listaTorneio.get(1));
         
         //retorna lista com os 2 mais aptos
-        return listaTorneio;        
+        return aux;        
     }
     
     public static void mutation(Gene gene, int i){
@@ -420,64 +427,28 @@ public class AlgoritmoGenetico {
  
         Random rnd=new Random();
         Gene aux=new Gene();
-        //do{
 
-        aux.setDisciplina(gene.getDisciplina());
-        aux.setProfessor(gene.getProfessor());
-        aux.setSala(gene.getSala());
-        aux.setTimeslot(gene.getTimeslot());
         switch (i){
 
                 case 0: 
                      if(listaSalas.size() !=0){
                         int sorteioSala = rnd.nextInt(listaSalas.size());
-                            aux.setSala(listaSalas.get(sorteioSala));
+                            gene.setSala(listaSalas.get(sorteioSala));
                      }
                 break;
                 case 1:
                     if(listaProfessores.size() !=0){
                         int sorteioProfessor = rnd.nextInt(listaProfessores.size());
-                        aux.setProfessor(listaProfessores.get(sorteioProfessor));
+                        gene.setProfessor(listaProfessores.get(sorteioProfessor));
                     }
                 break;
-//                case 2:
-//                    if(listaTimeslotDisciplina.size() !=0){
-//                        int sorteioTimeslot = rnd.nextInt(listaTimeslotDisciplina.size());
-//                         aux.setTimeslot(listaTimeslotDisciplina.get(sorteioTimeslot));
-//                    }
-//                   
-//                break;
+
                 default: break;
         } 
                     
-
-    //}while(!Solucao.isValorValido(aux));
         gene=aux;
    }
-    
-    public static void mutation2(Gene genes[]){
-             
-         Random random = new Random();
-         Solucao.initSolucaoIndividuo(genes);
-         int r = random.nextInt(genes.length);
-
-         Gene gene = genes[r];
-         int disciplina = gene.getDisciplina();
-         List<Integer> listaTimeslotDisciplina = timeSlotLivreDisciplinaList(disciplina);
-         
-         while(listaTimeslotDisciplina.size() ==0){
-          r = random.nextInt(genes.length);
-
-          gene = genes[r];
-          disciplina = gene.getDisciplina();
-          listaTimeslotDisciplina = timeSlotLivreDisciplinaList(disciplina);
-         }
-         
-         r = random.nextInt(listaTimeslotDisciplina.size());
-         gene.setTimeslot(listaTimeslotDisciplina.get(r));
-    }
-
-    
+     
     /**
      * @return the cromossomo
      */

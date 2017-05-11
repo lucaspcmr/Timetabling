@@ -23,9 +23,9 @@ import static timetabling.Filetomem.buffR;
  */
 public class Filetomemrest {
 
-    public static List<DisciplinaRestricao> discirest;
-    public static List<SalaRestricao> salarest;
-    public static List<DocenteRestricao> docrest;
+    public static List<DisciplinaRestricao> discirest = new ArrayList<DisciplinaRestricao>();
+    public static List<SalaRestricao> salarest = new ArrayList<SalaRestricao>();
+    public static List<DocenteRestricao> docrest = new ArrayList<DocenteRestricao>();
 
     public static void sort(FileReader fileR) {
         buffR = new BufferedReader(fileR);//arquivo buferizado

@@ -9,7 +9,7 @@ package algoritmoGenetico;
  *
  * @author Home
  */
-public class Gene {
+public class Gene implements Cloneable{
     private int sala;//id da sala
     private int professor;//id do professor
     private int timeslot;//id do time slot
@@ -71,6 +71,9 @@ public class Gene {
         this.disciplina = disciplina;
     }
     
-    
+    @Override
+    public Gene clone() throws CloneNotSupportedException{
+        return (Gene) super.clone();
+    }
     
 }

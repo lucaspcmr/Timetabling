@@ -71,7 +71,7 @@ public class Populacao {
     }
     
     //cria nova geração
-    public static void criaNovaGeracao(boolean elitismo, int taxaMutacao, int taxaCrossover){
+    public static void criaNovaGeracao(boolean elitismo, int taxaMutacao, int taxaCrossover) throws CloneNotSupportedException{
             
         //ordena populacao pelo valor do fitness -> maior para o menor
         sort(Populacao.populacao);
@@ -118,8 +118,8 @@ public class Populacao {
             //senão, mantêm o valor dos pais nos filhos sem alteração
             else{
             
-                filhos[0] = pais.get(0);
-                filhos[1] = pais.get(1);
+                filhos[0] = pais.get(0).clone();
+                filhos[1] = pais.get(1).clone();
             }
             
             //inclui filhos na geração
@@ -131,25 +131,26 @@ public class Populacao {
         
     }
     
-    public static Individuo copyIndividuo(Individuo individuo){
-        int size = individuo.getGenes().length;
-        
-            Gene genes[] =  new Gene[size]; 
-            for (int i = 0; i < size; i++) {
-                Gene gene = new Gene();
-                Gene aux = individuo.getGenes()[i];
+    public static Individuo copyIndividuo(Individuo individuo) throws CloneNotSupportedException{
+         int size = individuo.getGenes().length;
+         
+             Gene genes[] =  new Gene[size]; 
+             for (int i = 0; i < size; i++) {
                 
-                gene.setDisciplina(aux.getDisciplina());
-                gene.setProfessor(aux.getProfessor());
-                gene.setSala(aux.getSala());
-                gene.setTimeslot(aux.getTimeslot());               
-                genes[i] = gene;               
-            }
-           Individuo ind = new Individuo(genes,Individuo.NO_MUTATION);      
-        
+                 Gene gene = individuo.getGenes()[i].clone();
+                 
+                // gene.setDisciplina(aux.getDisciplina());
+                // gene.setProfessor(aux.getProfessor());
+               //  gene.setSala(aux.getSala());
+               //  gene.setTimeslot(aux.getTimeslot());               
+                 genes[i] = gene;               
+             }
+            Individuo ind = new Individuo(genes,Individuo.NO_MUTATION);      
+          
            return ind;
     }
-    
+     
+        
     public static int getampopulacao(){//tamanho da população
         return populacao.size();
     }
