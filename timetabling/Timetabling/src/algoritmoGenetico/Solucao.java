@@ -430,18 +430,19 @@ public class Solucao {
          
         if(valor == true){
             //quanto mais restrição conseguir colocar no horario melhor
-            if(disciplinasRestricao.get(new Integer(disciplina)) != null)
-              fitness = fitness - HARDCONSTRAINT;
-            
-            if(professor !=-1){
-                if(professoresRestricao.get(new Integer(professor)) != null)
-                fitness = fitness - HARDCONSTRAINT;
+            if(!horarioValido){
+                if(disciplinasRestricao.get(new Integer(disciplina)) != null)
+                  fitness = fitness - HARDCONSTRAINT;
+
+                if(professor !=-1){
+                    if(professoresRestricao.get(new Integer(professor)) != null)
+                    fitness = fitness - HARDCONSTRAINT;
+                }
+
+
+                if(salasRestricao.get(new Integer(sala)) != null)
+                  fitness = fitness - HARDCONSTRAINT;
             }
-            
-              
-            if(salasRestricao.get(new Integer(sala)) != null)
-              fitness = fitness - HARDCONSTRAINT;
-            
             setValor(gene);
 
         }
